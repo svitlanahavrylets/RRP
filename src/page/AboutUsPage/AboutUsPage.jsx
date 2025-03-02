@@ -1,5 +1,11 @@
 const AboutUsPage = () => {
-  return <div>AboutUsPage</div>;
+  return (
+    <main>
+      <section className="">
+        <div>AboutUsPage</div>
+      </section>
+    </main>
+  );
 };
 
 export default AboutUsPage;

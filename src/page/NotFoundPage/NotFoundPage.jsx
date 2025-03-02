@@ -1,5 +1,11 @@
 const NotFoundPage = () => {
-  return <div>NotFoundPage</div>;
+  return (
+    <main>
+      <section className="">
+        <div>NotFoundPage</div>
+      </section>
+    </main>
+  );
 };
 
 export default NotFoundPage;

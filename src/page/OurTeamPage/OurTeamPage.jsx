@@ -1,5 +1,11 @@
 const OurTeamPage = () => {
-  return <div>OurTeamPage</div>;
+  return (
+    <main>
+      <section className="">
+        <div>OurTeamPage</div>
+      </section>
+    </main>
+  );
 };
 
 export default OurTeamPage;

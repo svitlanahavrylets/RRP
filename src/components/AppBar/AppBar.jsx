@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import Logo from "../Logo/logo.jsx";
 import Navigation from "../Navigation/Navigation.jsx";
+import styles from "./AppBar.module.css";
 
 const AppBar = () => {
   return (
-    <header>
-      <NavLink to="/"></NavLink>
+    <div className={styles.appBar}>
+      <Logo />
       <Navigation />
-    </header>
+    </div>
   );
 };
 

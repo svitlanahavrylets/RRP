@@ -1,0 +1,7 @@
+.logo {
+  cursor: pointer;
+  width: 80px;
+  /* height: 48px; */
+  object-fit: contain; /*Щоб лого не обрізалось */
+  padding: 4px;
+}

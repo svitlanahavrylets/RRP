@@ -1,0 +1,37 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.navLink {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--primary-color-white);
+  padding: 24px 0;
+  display: block;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.navLink:hover,
+.navItem:focus {
+  color: var(--secondary-color-3);
+}
+/* .studioLowerDash {
+  position: relative;
+  color: #404bbf;
+}
+.studioLowerDash::after {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  position: absolute;
+  background-color: #404bbf;
+  border-radius: 2px;
+  left: 0;
+  bottom: -1px;
+} */
