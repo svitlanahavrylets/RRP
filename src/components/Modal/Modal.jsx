@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Icon from "../Icon/Icon";
+// import Icon from "../Icon/Icon";
 import css from "./Modal.module.css";
 import { useEffect } from "react";
 
@@ -48,7 +48,7 @@ const Modal = ({
             className={css.closeModalBtn}
             onClick={onClose}
           >
-            <Icon id="icon-close" width={14} height={14} />
+            {/* <Icon id="icon-close" width={14} height={14} /> */}
           </button>
         </div>
 

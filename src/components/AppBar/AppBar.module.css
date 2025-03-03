@@ -6,9 +6,20 @@
   padding: 0 16px;
   margin: 0 auto;
 }
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: var(--primary-color-white);
+  cursor: pointer;
+}
 @media only screen and (min-width: 768px) {
   .appBar {
     max-width: 768px;
+  }
+  .burger {
+    display: block;
   }
 }
 @media only screen and (min-width: 1158px) {

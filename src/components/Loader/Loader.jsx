@@ -5,9 +5,9 @@ export default function Loader() {
   return (
     <div className={css.loaderOverlay}>
       <PropagateLoader
-        color="var(--primary-color-gold)" // Відповідає strokeColor
-        size={16} // Аналог strokeWidth
-        speedMultiplier={1.33} // Аналог animationDuration (стандарт = 0.75s, множник = 1.33)
+        color="var(--primary-color-gold)"
+        size={16}
+        speedMultiplier={1.33}
       />
     </div>
   );
