@@ -16,7 +16,7 @@
 }
 .navLink:hover,
 .navItem:focus {
-  color: var(--secondary-color-3);
+  color: var(--primary-color-gold);
 }
 /* .studioLowerDash {
   position: relative;

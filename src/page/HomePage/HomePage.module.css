@@ -4,17 +4,23 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: white;
+  color: var(--primary-color-white);
   text-align: center;
-  background-color: #2e2f42;
+  background-color: var(--secondary-color-2);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url("../../assets/hero.jpg");
   margin-right: auto;
   margin-left: auto;
   max-width: 320px;
   padding: 72px 0;
 }
+
 .heroTitle {
   font-weight: 700;
   font-size: 36px;
@@ -26,15 +32,18 @@
   margin-bottom: 72px;
   max-width: 216px;
 }
+
 @media screen and (min-width: 768px) {
   .heroImage {
     max-width: 768px;
     padding: 112px 0;
     background-image: linear-gradient(
-      rgba(46, 47, 66, 0.7),
-      rgba(46, 47, 66, 0.7)
-    );
+        rgba(46, 47, 66, 0.7),
+        rgba(46, 47, 66, 0.7)
+      ),
+      url("../../assets/hero.jpg");
   }
+
   .heroTitle {
     font-size: 56px;
     line-height: 1.07;
@@ -42,31 +51,23 @@
     max-width: 496px;
   }
 }
+
 @media screen and (min-width: 1158px) {
   .heroImage {
     max-width: 1440px;
     padding: 188px 0;
-    background-image: linear-gradient(
-      rgba(46, 47, 66, 0.7),
-      rgba(46, 47, 66, 0.7)
-    );
-  }
-  .heroTitle {
-    margin-bottom: 48px;
-  }
-}
-/* Retina-дисплеї */
-/* @media screen and (min-device-pixel-ratio: 2),
-  screen and (min-resolution: 192dpi),
-  screen and (min-resolution: 2dppx) {
-  .hero {
     background-image: linear-gradient(
         rgba(46, 47, 66, 0.7),
         rgba(46, 47, 66, 0.7)
       ),
       url("../../assets/hero.jpg");
   }
-} */
+
+  .heroTitle {
+    margin-bottom: 48px;
+  }
+}
+
 .heroDesContainer {
   display: flex;
   align-items: center;
@@ -75,17 +76,20 @@
   padding: 0 16px;
   margin: 0 auto;
 }
+
 @media only screen and (min-width: 768px) {
   .heroDesContainer {
     max-width: 768px;
   }
 }
+
 @media only screen and (min-width: 1158px) {
   .heroDesContainer {
     max-width: 1158px;
     padding: 0 15px;
   }
 }
+
 .heroText {
   font-weight: 400;
   font-size: 16px;

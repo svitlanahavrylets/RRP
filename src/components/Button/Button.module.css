@@ -1,0 +1,78 @@
+.button {
+  display: block;
+  height: 56px;
+  min-width: 169px;
+  border-radius: 4px;
+  padding: 16px 32px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-align: center;
+  /* box-shadow: var(--button-shadow); */
+
+  /* @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 30px;
+  } */
+}
+
+/* .button:hover {
+  box-shadow: var(--button-shadow-hover);
+} */
+
+.primary {
+  background-color: var(--primary-color-gold);
+  color: var(--primary-color-white);
+}
+
+.primary:hover {
+  background-color: var(--secondary-color-5);
+}
+/* 
+.secondary {
+  background-color: var(--secondary-color---5);
+  color: var(--primary-color-blue);
+}
+
+.secondary:hover {
+  background-color: var(--secondary-color---5);
+}
+
+.warning {
+  background-color: var(--secondary-color-3);
+  color: var(--primary-color-white);
+}
+
+.warning:hover {
+  background-color: var(--secondary-color-3);
+} */
+
+.text {
+  background-color: transparent;
+  color: var(--primary-color-white);
+  box-shadow: none;
+  padding: 0;
+}
+
+.text:hover {
+  color: var(--primary-color-white);
+  box-shadow: none;
+}
+/* 
+.text:hover .svgIcon {
+  stroke: var(--secondary-color-5);
+  fill: var(--secondary-color-5);
+}
+
+.svgIcon {
+  fill: currentColor;
+  stroke: currentColor;
+  display: inline-block;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+  margin-right: 10px;
+} */
