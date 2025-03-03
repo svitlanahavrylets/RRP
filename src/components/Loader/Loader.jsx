@@ -1,18 +1,13 @@
-import { RotatingLines } from "react-loader-spinner";
+import { PropagateLoader } from "react-spinners";
 import css from "./Loader.module.css";
+
 export default function Loader() {
   return (
     <div className={css.loaderOverlay}>
-      <RotatingLines
-        visible={true}
-        height="96"
-        width="96"
-        strokeColor="var(--primary-color-gold)"
-        strokeWidth="5"
-        animationDuration="0.75"
-        ariaLabel="rotating-lines-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
+      <PropagateLoader
+        color="var(--primary-color-gold)" // Відповідає strokeColor
+        size={16} // Аналог strokeWidth
+        speedMultiplier={1.33} // Аналог animationDuration (стандарт = 0.75s, множник = 1.33)
       />
     </div>
   );
