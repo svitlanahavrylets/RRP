@@ -1,0 +1,17 @@
+.icon-white {
+  background: transparent;
+  fill: none;
+  stroke: var(--primary-color-white);
+}
+
+.icon-gold {
+  background: transparent;
+  fill: none;
+  stroke: var(--primary-color-gold);
+}
+
+.icon-black {
+  background: transparent;
+  fill: none;
+  stroke: var(--secondary-color-4);
+}

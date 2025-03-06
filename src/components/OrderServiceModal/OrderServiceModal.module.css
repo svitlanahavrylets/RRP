@@ -1,0 +1,108 @@
+.modalContent {
+  position: relative;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+
+  position: fixed; /* Зробить модалку фіксованою на екрані */
+  top: 50%; /* Центруємо по вертикалі */
+  left: 50%; /* Центруємо по горизонталі */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Використовуємо трансформацію для точного центрування */
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%; /* Забезпечить модалку на всю ширину, якщо це потрібно */
+  max-height: 80vh; /* Обмеження по висоті */
+  overflow-y: auto; /* Додасть скрол для вмісту, якщо висоти недостатньо */
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: #8e8f99;
+  margin-bottom: 4px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.icon {
+  position: absolute;
+  left: 10px;
+  color: #888;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid rgba(46, 47, 66, 0.4);
+  border-radius: 4px;
+  height: 40px;
+  padding-left: 38px;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: transparent;
+  outline: transparent;
+}
+
+.textarea {
+  height: 120px;
+  resize: vertical;
+  padding: 8px;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:disabled:hover {
+  background-color: #ccc;
+}
