@@ -5,14 +5,18 @@ import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import styles from "./OrderServiceModal.module.css";
 
+const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const phoneRegexp = /^\+?\d{10,15}$/;
+
 const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
   phone: Yup.string()
-    .matches(/^\+?\d{10,15}$/, "Invalid phone number")
+    .matches(phoneRegexp, "Invalid phone number")
     .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string()
+    .matches(emailRegexp, "Invalid email address")
+    .required("Required"),
   comment: Yup.string(),
-  accepted: Yup.boolean().oneOf([true], "You must accept the terms"),
 });
 
 const OrderServiceModal = ({ onClose }) => {
@@ -96,7 +100,11 @@ const OrderServiceModal = ({ onClose }) => {
               />
             </label>
 
-            <Button type="submit" disabled={!isValid || !dirty}>
+            <Button
+              type="submit"
+              disabled={!isValid || !dirty}
+              className={styles.btnModal}
+            >
               Odeslat
             </Button>
           </Form>

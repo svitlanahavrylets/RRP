@@ -36,27 +36,33 @@
   text-align: center;
   margin-bottom: 1.5rem;
 }
-
 .label {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.04em;
-  color: #8e8f99;
-  margin-bottom: 4px;
+  color: var(--secondary-color-2);
+  margin-bottom: 8px;
+}
+.label:last-of-type {
+  margin-bottom: 16px;
 }
 
 .inputWrapper {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  color: var(--secondary-color-4);
 }
 
 .icon {
   position: absolute;
   left: 10px;
-  color: #888;
+}
+.inputWrapper:focus-within .icon {
+  color: var(--primary-color-gold);
 }
 
 .input,
@@ -75,20 +81,28 @@
   height: 120px;
   resize: vertical;
   padding: 8px;
+  /* margin-bottom: 16px; */
+}
+.input:focus,
+.textarea:focus {
+  border-color: var(--primary-color-gold);
+  outline: transparent;
 }
 
 .error {
-  color: #e74c3c;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
+  color: red; /* Колір тексту для помилки */
+  font-size: 12px; /* Розмір шрифту */
+  margin-top: 4px; /* Відступ зверху для повідомлення про помилку */
+  padding-left: 10px; /* Відступ зліва, щоб вирівняти з інпутом */
+  font-weight: bold;
 }
 
-button:disabled {
+.btnModal:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-button {
+.btnModal {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border: none;
@@ -99,10 +113,10 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.btnModal:hover {
   background-color: #2980b9;
 }
 
-button:disabled:hover {
+.btnModal:disabled:hover {
   background-color: #ccc;
 }
