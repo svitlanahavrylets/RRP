@@ -10,7 +10,7 @@ const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => setIsModalOpen(true);
-  // const handleCloseModal = () => setIsModalOpen(false);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -32,8 +32,8 @@ const HomePage = () => {
       </section>
 
       {isModalOpen && (
-        <Modal>
-          <OrderServiceModal />
+        <Modal onClose={handleCloseModal}>
+          <OrderServiceModal onClose={handleCloseModal} />
         </Modal>
       )}
     </>
