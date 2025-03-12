@@ -5,3 +5,22 @@ html {
   font-size: 100%;
   scroll-behavior: smooth;
 }
+.container {
+  max-width: 320px;
+  padding: 0 16px;
+  margin: 0 auto;
+  /* background-color: #969696; */
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media only screen and (min-width: 1158px) {
+  .container {
+    max-width: 1158px;
+    padding: 0 15px;
+  }
+}

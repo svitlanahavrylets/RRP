@@ -9,10 +9,12 @@ const AppBar = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <div className={styles.appBar}>
-      <Logo />
+    <div className="container">
+      <div className={styles.appBar}>
+        <Logo />
 
-      <Navigation isOpen={isOpen} closeMenu={closeMenu} />
+        <Navigation isOpen={isOpen} closeMenu={closeMenu} />
+      </div>
     </div>
   );
 };

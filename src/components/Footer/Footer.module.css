@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 320px;
+  padding: 0 16px;
+  margin: 0 auto;
+  background-color: var(--secondary-color-2);
+  padding: 20px;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) {
+  .footer {
+    max-width: 768px;
+  }
+}
+@media only screen and (min-width: 1158px) {
+  .footer {
+    max-width: 1158px;
+    padding: 0 15px;
+  }
+}
+.footerNav {
+  display: flex;
+  flex-direction: column;
+}

@@ -4,6 +4,9 @@ import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import styles from "./OrderServiceModal.module.css";
+import { useState } from "react";
+import iziToast from "izitoast";
+import { submitOrderData } from "../../api/userApi.js";
 
 const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegexp = /^\+?\d{10,15}$/;
@@ -20,17 +23,34 @@ const validationSchema = Yup.object({
 });
 
 const OrderServiceModal = ({ onClose }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const initialValues = {
     name: "",
     phone: "",
     email: "",
     comment: "",
-    accepted: false,
   };
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     console.log("Form submitted:", values);
-    resetForm();
+    setIsSubmitting(true);
+    try {
+      const response = await submitOrderData(values);
+      iziToast.success({
+        title: "Úspěch",
+        message: "Objednávka byla úspěšně odeslána!",
+        position: "topRight",
+      });
+      resetForm();
+    } catch (error) {
+      iziToast.error({
+        title: "Chyba",
+        message: "Nepodařilo se odeslat objednávku. Zkuste to znovu.",
+        position: "topRight",
+      });
+    }
+    // resetForm();
   };
 
   return (

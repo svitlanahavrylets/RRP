@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 320px;
+  /* max-width: 320px; */
   padding: 0 16px;
   margin: 0 auto;
 }
@@ -14,7 +14,7 @@
   color: var(--primary-color-white);
   cursor: pointer;
 }
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .appBar {
     max-width: 768px;
   }
@@ -22,9 +22,9 @@
     display: block;
   }
 }
-@media only screen and (min-width: 1158px) {
+@media only screen and (min-width: 1440px) {
   .appBar {
-    max-width: 1158px;
+    max-width: 1440px;
     padding: 0 15px;
   }
-}
+} */
