@@ -1,26 +1,82 @@
-.footer {
+/* .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 320px;
-  padding: 0 16px;
-  margin: 0 auto;
-  background-color: var(--secondary-color-2);
+}
+.navFooter {
+  background-color: #333;
+
+  color: white;
   padding: 20px;
   text-align: center;
 }
-@media only screen and (min-width: 768px) {
-  .footer {
-    max-width: 768px;
-  }
+.navList {
+  background-color: #ffffff;
 }
-@media only screen and (min-width: 1158px) {
-  .footer {
-    max-width: 1158px;
-    padding: 0 15px;
-  }
-}
-.footerNav {
+.navFooter ul {
+  list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 0;
+}
+
+.navFooter li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.navFooter a {
+  color: white;
+  text-decoration: none;
+}
+
+.navFooter a:hover {
+  text-decoration: underline;
+} */
+
+.footer {
+  /* background-color: #222; */
+  color: white;
+  padding: 72px 0;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: start;
+  gap: 50px;
+  justify-content: space-between;
+}
+.navFooter ul a {
+  padding: 8px 0;
+}
+
+.navFooter ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  gap: 0px;
+}
+
+.menu {
+  color: var(--primary-color-gold);
+  text-transform: uppercase;
+}
+
+.social {
+  margin-top: 10px;
+}
+
+.icon {
+  font-size: 24px;
+  color: white;
+  transition: color 0.3s;
+}
+
+.icon:hover {
+  color: #0077b5; /* Колір LinkedIn */
+}
+.copyright {
+  margin: 0;
+  padding: 24px 0;
+  font-size: 12px;
 }

@@ -4,7 +4,6 @@ import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import styles from "./OrderServiceModal.module.css";
-import { useState } from "react";
 import iziToast from "izitoast";
 import { submitOrderData } from "../../api/userApi.js";
 
@@ -23,8 +22,6 @@ const validationSchema = Yup.object({
 });
 
 const OrderServiceModal = ({ onClose }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const initialValues = {
     name: "",
     phone: "",
@@ -32,25 +29,41 @@ const OrderServiceModal = ({ onClose }) => {
     comment: "",
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     console.log("Form submitted:", values);
-    setIsSubmitting(true);
+    setSubmitting(true);
+
     try {
       const response = await submitOrderData(values);
-      iziToast.success({
-        title: "Úspěch",
-        message: "Objednávka byla úspěšně odeslána!",
-        position: "topRight",
-      });
-      resetForm();
+      console.log("Server response:", response);
+
+      if (response?.status === 201) {
+        iziToast.success({
+          title: "Úspěch",
+          message: "Objednávka byla úspěšně odeslána!",
+          position: "topRight",
+        });
+        resetForm();
+      } else {
+        iziToast.error({
+          title: "Chyba",
+          message: `Chyba: ${response?.message || "Něco se pokazilo"}`,
+          position: "topRight",
+        });
+      }
     } catch (error) {
+      console.error("Помилка відправки даних:", error);
+
       iziToast.error({
         title: "Chyba",
-        message: "Nepodařilo se odeslat objednávku. Zkuste to znovu.",
+        message:
+          error.response?.message ||
+          "Nepodařilo se odeslat objednávku. Zkuste to znovu.",
         position: "topRight",
       });
+    } finally {
+      setSubmitting(false); // Додаємо розблокування кнопки
     }
-    // resetForm();
   };
 
   return (
@@ -64,7 +77,7 @@ const OrderServiceModal = ({ onClose }) => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isValid, dirty }) => (
+        {({ isValid, dirty, isSubmitting }) => (
           <Form>
             <label className={styles.label}>
               Jméno
@@ -122,10 +135,10 @@ const OrderServiceModal = ({ onClose }) => {
 
             <Button
               type="submit"
-              disabled={!isValid || !dirty}
+              disabled={!isValid || !dirty || isSubmitting}
               className={styles.btnModal}
             >
-              Odeslat
+              {isSubmitting ? "Odesílání..." : "Odeslat"}
             </Button>
           </Form>
         )}

@@ -13,7 +13,11 @@ const AppBar = () => {
       <div className={styles.appBar}>
         <Logo />
 
-        <Navigation isOpen={isOpen} closeMenu={closeMenu} />
+        <Navigation
+          className={styles.navHeader}
+          isOpen={isOpen}
+          closeMenu={closeMenu}
+        />
       </div>
     </div>
   );

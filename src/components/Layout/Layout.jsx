@@ -15,6 +15,7 @@ function Layout() {
       </main>
       <footer className={styles.footerContainer}>
         <Footer />
+        <div className={styles.line}></div>
       </footer>
     </div>
   );
