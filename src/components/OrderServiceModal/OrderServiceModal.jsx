@@ -4,8 +4,9 @@ import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import styles from "./OrderServiceModal.module.css";
-import iziToast from "izitoast";
 import { submitOrderData } from "../../api/userApi.js";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegexp = /^\+?\d{10,15}$/;
@@ -35,9 +36,8 @@ const OrderServiceModal = ({ onClose }) => {
 
     try {
       const response = await submitOrderData(values);
-      console.log("Server response:", response);
 
-      if (response?.status === 201) {
+      if (response?.status === 200 || response?.status === 201) {
         iziToast.success({
           title: "Úspěch",
           message: "Objednávka byla úspěšně odeslána!",
@@ -47,22 +47,23 @@ const OrderServiceModal = ({ onClose }) => {
       } else {
         iziToast.error({
           title: "Chyba",
-          message: `Chyba: ${response?.message || "Něco se pokazilo"}`,
+          message: response?.data?.message || "Něco se pokazilo",
           position: "topRight",
         });
       }
     } catch (error) {
       console.error("Помилка відправки даних:", error);
+      console.log("Server error response:", error.response?.data);
 
       iziToast.error({
         title: "Chyba",
         message:
-          error.response?.message ||
+          error.response?.data?.message ||
           "Nepodařilo se odeslat objednávku. Zkuste to znovu.",
         position: "topRight",
       });
     } finally {
-      setSubmitting(false); // Додаємо розблокування кнопки
+      setSubmitting(false); // Завжди розблоковуємо кнопку після завершення
     }
   };
 

@@ -1,10 +1,8 @@
 const NotFoundPage = () => {
   return (
-    <main>
-      <section className="">
-        <div>NotFoundPage</div>
-      </section>
-    </main>
+    <section className="">
+      <div>NotFoundPage</div>
+    </section>
   );
 };
 

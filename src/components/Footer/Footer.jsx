@@ -1,4 +1,4 @@
-import { FaLinkedin } from "react-icons/fa";
+// import { FaLinkedin } from "react-icons/fa";
 import Logo from "../Logo/logo.jsx";
 import Navigation from "../Navigation/Navigation.jsx";
 import styles from "./Footer.module.css";
@@ -13,7 +13,7 @@ const Footer = () => {
           <Navigation className={styles.navFooter} />
         </div>
 
-        <div className={styles.social}>
+        {/* <div className={styles.social}>
           <a
             href="https://www.linkedin.com/in/your-profile"
             target="_blank"
@@ -21,7 +21,7 @@ const Footer = () => {
           >
             <FaLinkedin className={styles.icon} />
           </a>
-        </div>
+        </div> */}
       </div>
       <p className={styles.copyright}>
         Copyright © {new Date().getFullYear()} RRP. All Rights Reserved.
