@@ -3,9 +3,9 @@ import styles from "./HomePage.module.css";
 import Button from "../../components/Button/Button.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
 import OrderServiceModal from "../../components/OrderServiceModal/OrderServiceModal.jsx";
-import { LiaProjectDiagramSolid } from "react-icons/lia";
 import { PiChartLineUp } from "react-icons/pi";
 import { IoRocketOutline } from "react-icons/io5";
+import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 // import clsx from "clsx";
 
 const benefitsData = [
@@ -13,7 +13,7 @@ const benefitsData = [
     id: 1,
     title: "Projekty",
     text: "Realizujeme inovativní IT projekty, které mění byznys.",
-    icon: <LiaProjectDiagramSolid />,
+    icon: <AiOutlineFundProjectionScreen />,
   },
 
   {
