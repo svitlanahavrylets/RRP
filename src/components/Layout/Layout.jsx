@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import AppBar from "../AppBar/AppBar";
 import styles from "./Layout.module.css";
 import Footer from "../Footer/Footer.jsx";
+import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton.jsx";
 
 function Layout() {
   return (
@@ -17,6 +18,7 @@ function Layout() {
         <Footer />
         <div className={styles.line}></div>
       </footer>
+      <ScrollToTopButton />
     </div>
   );
 }

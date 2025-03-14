@@ -1,0 +1,27 @@
+.scrollToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: var(--primary-color-gold);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.scrollToTop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scrollToTop:hover {
+  background: var(--secondary-color-5);
+}
