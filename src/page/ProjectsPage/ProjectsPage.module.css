@@ -55,6 +55,8 @@
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--primary-color-blue);
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
 .portfolioOverlayImages {

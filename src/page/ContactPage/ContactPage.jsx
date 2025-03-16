@@ -2,36 +2,33 @@ import styles from "./ContactPage.module.css";
 
 const ContactPage = () => {
   return (
-    <section className={styles.contactSection}>
-      <h2 className={styles.title}>Kontakt</h2>
-      <div className={styles.infoWrapper}>
-        <div className={styles.info}>
-          <p>
-            <strong>Obchodní firma:</strong> RRP s.r.o.
+    <div className={styles.contact}>
+      <div className="container">
+        {/* <h2 className={styles.contactTitle}>Kontakt</h2> */}
+        <address className={styles.info}>
+          <h3 className={styles.addressTitle}>
+            Kontaktní a fakturační adresa:
+          </h3>
+          <p>RRP s.r.o.</p>
+          <p className={styles.address}>č.p. 181, 294 31 Písková Lhota</p>
+
+          <p className={styles.tel}>
+            tel.:
+            <a href="tel:+420000000000">+420 000 000 000</a>
           </p>
-          <p>
-            <strong>Identifikační číslo:</strong> 22634274
+          <p className={styles.email}>
+            e-mail:
+            <a href="mailto:Inforrp@seznam.cz">Inforrp@seznam.cz</a>
           </p>
-          <p>
-            <strong>Sídlo:</strong> č.p. 181, 294 31 Písková Lhota
-          </p>
-          <p>
-            <strong>Telefon:</strong>
-            <a href="tel:+420604698135">+420 604 698 135</a>
-          </p>
-        </div>
-        <div className={styles.mapWrapper}>
-          <iframe
-            className={styles.map}
-            title="Google Map"
-            src="https://www.google.com/maps/embed/v1/place?key=TVIY_API_KEY&q=%C4%8Dp.+181,+294+31+P%C3%ADskov%C3%A1+Lhota"
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+          <p className={styles.ic}>IČ: 22634274</p>
+        </address>
+
+        <p>
+          Společnost RRP s.r.o. se sídlem č.p. 181, 294 31 Písková Lhota zapsaná
+          v obchodním rejstříku vedeném Městským soudem v Praze.
+        </p>
       </div>
-    </section>
+    </div>
   );
 };
 
