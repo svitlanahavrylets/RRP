@@ -1,18 +1,39 @@
 import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
 import AppBar from "../AppBar/AppBar";
-import styles from "./Layout.module.css";
 import Footer from "../Footer/Footer.jsx";
 import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton.jsx";
+import styles from "./Layout.module.css";
 
 function Layout() {
+  const [isVisible, setIsVisible] = useState(true);
+  let lastScrollY = window.scrollY;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false); // Ховає хедер при прокрутці вниз
+      } else {
+        setIsVisible(true); // Показує хедер при прокрутці вгору
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div>
-      <header className={styles.headerContainer}>
+      <header
+        className={`${styles.headerContainer} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
+      >
         <AppBar />
       </header>
-      <main>
+      <main className={styles.mainContainer}>
         <Outlet />
-        {/* Тут буде рендеритися HomePage або інші сторінки */}
       </main>
       <footer className={styles.footerContainer}>
         <Footer />

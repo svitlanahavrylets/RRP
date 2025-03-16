@@ -6,7 +6,7 @@ const ProjectsPage = () => {
   return (
     <section className={styles.portfolioSection}>
       <div className="container">
-        <h2 className={styles.portfolioTitle}>Naše portfolio</h2>
+        <h2 className={styles.portfolioTitle}>Portfolio</h2>
         <ul className={styles.projectCard}>
           {projects.map((project, index) => (
             <li key={index} className={styles.projectCardItem}>

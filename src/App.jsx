@@ -9,6 +9,7 @@ const AboutUsPage = lazy(() => import("./page/AboutUsPage/AboutUsPage.jsx"));
 const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));
 const ProjectsPage = lazy(() => import("./page/ProjectsPage/ProjectsPage.jsx"));
 const BlogPage = lazy(() => import("./page/BlogPage/BlogPage.jsx"));
+const BlogPostPage = lazy(() => import("./page/BlogPostPage/BlogPostPage.jsx"));
 const ContactPage = lazy(() => import("./page/ContactPage/ContactPage.jsx"));
 const NotFoundPage = lazy(() => import("./page/NotFoundPage/NotFoundPage.jsx"));
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="ourTeam" element={<OurTeamPage />} />
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="blog" element={<BlogPage />} />
+          <Route path="blog/:id" element={<BlogPostPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

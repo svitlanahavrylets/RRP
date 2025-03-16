@@ -1,0 +1,72 @@
+.blogSection {
+  padding: 96px 0;
+}
+
+.articlesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.card {
+  /* background-color: var(--primary-color-white); */
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.content {
+  padding: 32px 16px;
+}
+
+.category {
+  font-size: 16px;
+  color: var(--primary-color-gold);
+  /* text-transform: uppercase; */
+  /* font-weight: bold; */
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 20px;
+  /* font-weight: bold; */
+  color: var(--primary-color-gold);
+  margin-bottom: 8px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--secondary-color-2);
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .largeCard {
+    width: calc(50% - 12px);
+  }
+
+  .smallCard {
+    width: calc(33.33% - 16px);
+  }
+}

@@ -1,46 +1,44 @@
 import styles from "./OurTeamPage.module.css";
 import { teamMembers } from "../../data/teamMembers.js";
-// import { socialIcons } from "../../data/socialIcons.js";
-import { TfiLinkedin } from "react-icons/tfi";
+import { socialIcons } from "../../data/socialIcons.jsx";
 
 const OurTeamPage = () => {
-  const socialIcons = [
-    {
-      icon: <TfiLinkedin />,
-      id: "linkedin",
-    },
-  ];
   return (
     <section className={styles.teamSection}>
       <div className="container">
         <h2 className={styles.teamTitle}>Náš tým</h2>
         <ul className={styles.teamCard}>
-          {teamMembers.map((members) => (
-            <li key={members.name} className={styles.teamCardItem}>
+          {teamMembers.map((member) => (
+            <li key={member.name} className={styles.teamCardItem}>
               <img
-                srcSet={`${members.img} 1x, ${members.img2x} 2x`}
-                src={members.img}
-                alt={`${members.name} avatar`}
+                srcSet={`${member.img} 1x, ${member.img2x} 2x`}
+                src={member.img}
+                alt={`${member.name} avatar`}
                 width="264"
                 height="260"
+                className={styles.teamCardImg}
               />
               <div className={styles.teamCardContainer}>
-                <h3 className={styles.teamListFullname}>{members.name}</h3>
-                <p className={styles.teamCardText}>{members.role}</p>
-                <ul className={styles.teamIconList}>
-                  {socialIcons.map(({ icon, id }) => (
-                    <li key={id} className={styles.teamIconItem}>
-                      <a
-                        href={members.socialLinks?.[id] || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.socialLink}
-                      >
-                        {icon}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className={styles.teamListFullname}>{member.name}</h3>
+                <p className={styles.teamCardText}>{member.role}</p>
+                {member.socialLinks && (
+                  <ul className={styles.teamIconList}>
+                    {socialIcons
+                      .filter(({ id }) => member.socialLinks?.[id]) // Фільтруємо тільки ті, для яких є посилання
+                      .map(({ icon, id }) => (
+                        <li key={id} className={styles.teamIconItem}>
+                          <a
+                            href={member.socialLinks[id]}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.socialLink}
+                          >
+                            {icon}
+                          </a>
+                        </li>
+                      ))}
+                  </ul>
+                )}
               </div>
             </li>
           ))}

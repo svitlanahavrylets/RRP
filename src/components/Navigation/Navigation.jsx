@@ -1,6 +1,10 @@
 import { useState } from "react";
 import styles from "./Navigation.module.css";
-import { FaBars, FaTimes } from "react-icons/fa";
+import {
+  //  FaBars,
+  FaTimes,
+} from "react-icons/fa";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navigation = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +16,7 @@ const Navigation = ({ className }) => {
     <div className={styles.navContainer}>
       {/* Бургер-кнопка */}
       <button className={styles.burger} onClick={toggleMenu}>
-        {isOpen ? <FaTimes /> : <FaBars />}
+        {isOpen ? <FaTimes /> : <RxHamburgerMenu />}
       </button>
 
       {/* Меню */}
