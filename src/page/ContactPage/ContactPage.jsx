@@ -16,8 +16,8 @@ const ContactPage = () => {
             <strong>Sídlo:</strong> č.p. 181, 294 31 Písková Lhota
           </p>
           <p>
-            <strong>Telefon:</strong>{" "}
-            <a href="tel:+420604698135">604 698 135</a>
+            <strong>Telefon:</strong>
+            <a href="tel:+420604698135">+420 604 698 135</a>
           </p>
         </div>
         <div className={styles.mapWrapper}>
