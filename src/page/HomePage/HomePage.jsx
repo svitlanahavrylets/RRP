@@ -3,32 +3,9 @@ import styles from "./HomePage.module.css";
 import Button from "../../components/Button/Button.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
 import OrderServiceModal from "../../components/OrderServiceModal/OrderServiceModal.jsx";
-import { PiChartLineUp } from "react-icons/pi";
-import { IoRocketOutline } from "react-icons/io5";
-import { AiOutlineFundProjectionScreen } from "react-icons/ai";
+import { benefitsData } from "../../data/benefitsData.jsx";
 // import clsx from "clsx";
 
-const benefitsData = [
-  {
-    id: 1,
-    title: "Projekty",
-    text: "Realizujeme inovativní IT projekty, které mění byznys.",
-    icon: <AiOutlineFundProjectionScreen />,
-  },
-
-  {
-    id: 2,
-    title: "Poradenstvi",
-    text: "Poskytujeme odborné konzultace pro efektivní rozvoj vašich IT řešení.",
-    icon: <PiChartLineUp />,
-  },
-  {
-    id: 3,
-    title: "Podpora",
-    text: "Zajišťujeme spolehlivou technickou podporu a správu vašich systémů.",
-    icon: <IoRocketOutline />,
-  },
-];
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
