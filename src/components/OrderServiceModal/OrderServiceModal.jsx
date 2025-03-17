@@ -66,7 +66,7 @@ const OrderServiceModal = ({ onClose }) => {
       setSubmitting(false); // Завжди розблоковуємо кнопку після завершення
     }
   };
-
+  console.log("OrderServiceModal rendered");
   return (
     <Modal
       title="Zanechte své kontakty a my vám zavoláme zpět"

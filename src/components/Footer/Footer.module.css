@@ -36,44 +36,64 @@
 } */
 
 .footer {
-  /* background-color: #222; */
   color: white;
   padding: 72px 0;
   display: flex;
-  /* flex-direction: column; */
-  align-items: start;
-  gap: 50px;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
 }
+
+/* Контейнер для структури футера */
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Логотип, текст і соцмережі */
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
 .footerLogoContainer {
-  margin-bottom: 72px;
+  margin-bottom: 16px;
 }
+
 .footerText {
   width: 264px;
 }
-.navFooter ul a {
-  padding: 8px 0;
-}
+
+/* Навігація */
+/* .navFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
 
 .navFooter ul {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  gap: 0px;
+  align-items: center;
+  gap: 8px;
 }
 
-.menu {
-  color: var(--primary-color-gold);
-  text-transform: uppercase;
+.navFooter ul a {
+  padding: 8px 0;
 }
 
+/* Соціальні мережі */
 .social {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  justify-content: start;
-  text-align: start;
+  justify-content: center;
   margin-top: 10px;
 }
 
@@ -86,8 +106,56 @@
 .icon:hover {
   color: #0077b5; /* Колір LinkedIn */
 }
+
 .copyright {
   margin: 0;
   padding: 24px 0;
   font-size: 12px;
+}
+
+/* Планшетна версія: два стовпчики */
+@media screen and (min-width: 768px) {
+  .footerContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footerLeft {
+    align-items: start;
+    text-align: left;
+  }
+
+  .navFooter {
+    align-items: start;
+  }
+
+  .navFooter ul {
+    align-items: start;
+  }
+}
+
+/* Десктопна версія: в рядок */
+@media screen and (min-width: 1024px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    text-align: left;
+  }
+}
+
+.nav {
+  display: flex !important;
+  position: static !important;
+  background: none !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.navList {
+  display: flex;
+  gap: 40px;
+  list-style: none;
 }

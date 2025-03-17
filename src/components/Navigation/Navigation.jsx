@@ -1,9 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Navigation.module.css";
-import {
-  //  FaBars,
-  FaTimes,
-} from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navigation = ({ className }) => {
@@ -12,14 +9,27 @@ const Navigation = ({ className }) => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // Блокування скролу, коли меню відкрите
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
     <div className={styles.navContainer}>
-      {/* Бургер-кнопка */}
+      {/* Бургер-кнопка (видима тільки на мобільних пристроях) */}
       <button className={styles.burger} onClick={toggleMenu}>
         {isOpen ? <FaTimes /> : <RxHamburgerMenu />}
       </button>
 
-      {/* Меню */}
+      {/* Меню (на весь екран при відкритті) */}
       <nav
         className={`${styles.nav} ${isOpen ? styles.show : ""} ${className}`}
       >
@@ -51,6 +61,9 @@ const Navigation = ({ className }) => {
           </li>
         </ul>
       </nav>
+
+      {/* Затемнення заднього фону при відкритому меню */}
+      {isOpen && <div className={styles.overlay} onClick={closeMenu}></div>}
     </div>
   );
 };

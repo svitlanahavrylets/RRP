@@ -1,0 +1,56 @@
+/* Кнопка бургер-меню */
+.burger-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1001;
+  color: white;
+}
+
+/* Контейнер меню */
+.burger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Кнопка закриття меню */
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* Навігація всередині бургер-меню */
+.burger-menu .nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+}
+
+.burger-menu .navLink {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.burger-menu .navLink:hover {
+  color: gold;
+}
