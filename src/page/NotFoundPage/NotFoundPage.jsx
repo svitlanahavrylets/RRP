@@ -1,8 +1,21 @@
+import { Link } from "react-router-dom";
+import styles from "./NotFoundPage.module.css";
+import { motion } from "framer-motion";
+
 const NotFoundPage = () => {
   return (
-    <section className="">
-      <div>NotFoundPage</div>
-    </section>
+    <motion.div
+      className={styles.container}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h1 className={styles.title}>404</h1>
+      <p className={styles.text}>Stránka nebyla nalezena</p>
+      <Link to="/" className={styles.button}>
+        Zpět na hlavní stránku
+      </Link>
+    </motion.div>
   );
 };
 

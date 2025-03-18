@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .matches(emailRegexp, "Invalid email address")
     .required("Required"),
-  comment: Yup.string(),
+  message: Yup.string(),
 });
 
 const OrderServiceModal = ({ onClose }) => {
@@ -32,7 +32,7 @@ const OrderServiceModal = ({ onClose }) => {
     name: "",
     phone: "",
     email: "",
-    comment: "",
+    message: "",
   };
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
@@ -128,12 +128,12 @@ const OrderServiceModal = ({ onClose }) => {
               Komentář
               <Field
                 as="textarea"
-                name="comment"
+                name="message"
                 className={styles.textarea}
                 placeholder="Text input"
               />
               <ErrorMessage
-                name="comment"
+                name="message"
                 component="div"
                 className={styles.error}
               />
