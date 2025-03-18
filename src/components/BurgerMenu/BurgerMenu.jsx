@@ -1,46 +1,32 @@
 import { useState, useEffect } from "react";
-import Navigation from "./Navigation"; // імпорт твого компонента навігації
-import { X, Menu } from "lucide-react"; // Іконки для бургер-меню
-import "./BurgerMenu.css"; // Підключаємо стилі
+import styles from "./BurgerMenu.module.css";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { VscClose } from "react-icons/vsc";
+import Navigation from "../Navigation/Navigation.jsx";
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Функція для перемикання стану меню
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
-  // Блокуємо скрол сторінки, коли меню відкрите
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
 
   return (
-    <>
-      {/* Кнопка бургер-меню */}
-      <button className="burger-button" onClick={toggleMenu}>
-        <Menu size={32} />
+    <div className={styles.burgerContainer}>
+      {/* Бургер-кнопка */}
+      <button className={styles.burger} onClick={toggleMenu}>
+        {isOpen ? <VscClose /> : <RxHamburgerMenu />}
       </button>
 
-      {/* Меню на весь екран */}
-      {isOpen && (
-        <div className="burger-menu">
-          <button className="close-button" onClick={toggleMenu}>
-            <X size={32} />
-          </button>
-          <Navigation />
-        </div>
-      )}
-    </>
+      {/* Навігація */}
+      <Navigation className={isOpen ? styles.show : ""} onClose={closeMenu} />
+    </div>
   );
 };
 

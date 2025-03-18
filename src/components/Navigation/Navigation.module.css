@@ -1,117 +1,21 @@
-/* Контейнер для навігації */
 .navContainer {
   display: flex;
   align-items: center;
   position: relative;
 }
 
-/* Бургер-кнопка */
 .burger {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: white;
-  cursor: pointer;
-}
-.navLink {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  color: var(--primary-color-white);
-  padding: 24px 0;
   display: block;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.navLink:hover,
-.navLink:focus {
-  color: var(--primary-color-gold);
-}
-/* .studioLowerDash {
-  position: relative;
-  color: #404bbf;
-}
-.studioLowerDash::after {
-  content: "";
-  display: block;
-  height: 4px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  position: absolute;
-  background-color: #404bbf;
-  border-radius: 2px;
-  left: 0;
-  bottom: -1px;
-} */
-
-/* Стилі для десктопного меню */
-.nav {
-  /* display: flex; */
-}
-
-.navList {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  gap: 40px;
-}
-
-/* Мобільні стилі */
-@media (max-width: 768px) {
-  .burger {
-    display: block;
-  }
-
-  /* .nav {
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    width: 100%;
-    height: 100%;
-    background: #941818;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    display: none;
-    border-radius: 8px;
-  } */
-  .nav {
-    top: 50px;
-    right: 0;
-    width: 200px;
-    background: #4d5ae5;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    display: none;
-  }
-  .nav.show {
-    display: flex;
-  }
-  .navList {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-}
-/* Бургер-кнопка */
-.burger {
-  position: absolute;
   background: none;
   border: none;
   font-size: 32px;
-  color: white;
+  color: var(--primary-color-white);
   cursor: pointer;
   z-index: 101;
   position: absolute;
   top: -18px;
   right: -24px;
 }
-
-/* Навігація */
 .nav {
   position: fixed;
   top: 0;
@@ -132,39 +36,56 @@
   transform: translateY(0);
 }
 
-/* Список навігації */
 .navList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
   text-align: center;
 }
 
-/* Посилання */
 .navLink {
-  /* font-size: 24px; */
-  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--primary-color-white);
+  padding: 24px 0;
+  display: block;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  transition: color 0.3s;
 }
-
-.navLink:hover {
+.navLink:hover,
+.navLink:focus {
   color: var(--primary-color-gold);
 }
-
-/* Затемнення заднього фону */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 99;
+.navFooter .nav {
+  position: static;
+  background: none;
+  height: auto;
+  transform: none;
+  flex-direction: row;
+  gap: 20px;
 }
 
-/* Видалення бургер-меню на десктопі */
+/* .studioLowerDash {
+  position: relative;
+  color: #404bbf;
+}
+.studioLowerDash::after {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  position: absolute;
+  background-color: #404bbf;
+  border-radius: 2px;
+  left: 0;
+  bottom: -1px;
+} */
+
 @media (min-width: 1158px) {
   .burger {
     display: none;
@@ -180,6 +101,9 @@
   }
 
   .navList {
+    display: flex;
     flex-direction: row;
+    gap: 40px;
+    text-align: center;
   }
 }
