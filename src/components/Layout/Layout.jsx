@@ -12,15 +12,24 @@ function Layout() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        setIsVisible(false); // Ховає хедер при прокрутці вниз
+        setIsVisible(false); // Ховає хедер при скролі вниз
       } else {
-        setIsVisible(true); // Показує хедер при прокрутці вгору
+        setIsVisible(true); // Показує хедер при скролі вгору
       }
       lastScrollY = window.scrollY;
     };
 
+    const handleTouch = () => {
+      setIsVisible(true); // Показує хедер при торканні екрану
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("touchstart", handleTouch);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchstart", handleTouch);
+    };
   }, []);
 
   return (
