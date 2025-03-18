@@ -38,7 +38,7 @@ const Modal = ({
       onClose();
     }
   };
-  console.log("Modal rendered");
+
   return (
     <div onClick={handleBackDropClick} className={styles.backdrop}>
       <div className={clsx(styles.modal, classNameModal)}>

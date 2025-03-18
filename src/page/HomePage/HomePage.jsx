@@ -1,10 +1,8 @@
 import { useState } from "react";
 import styles from "./HomePage.module.css";
 import Button from "../../components/Button/Button.jsx";
-import Modal from "../../components/Modal/Modal.jsx";
 import OrderServiceModal from "../../components/OrderServiceModal/OrderServiceModal.jsx";
 import { benefitsData } from "../../data/benefitsData.jsx";
-// import clsx from "clsx";
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,11 +33,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {isModalOpen && (
-        <Modal onClose={handleCloseModal}>
-          <OrderServiceModal onClose={handleCloseModal} />
-        </Modal>
-      )}
+      {isModalOpen && <OrderServiceModal onClose={handleCloseModal} />}
     </>
   );
 };

@@ -20,7 +20,6 @@ const Navigation = ({ className, isFooter = false }) => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
-  console.log(className);
   return (
     <div className={styles.navContainer}>
       {/* Бургер-кнопка тільки для хедера і тільки на мобайл/планшет */}

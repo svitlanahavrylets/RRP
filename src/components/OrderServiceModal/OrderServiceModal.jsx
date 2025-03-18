@@ -12,7 +12,12 @@ const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegexp = /^\+?\d{10,15}$/;
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Required"),
+  name: Yup.string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(32, "Name must be at maximum 32 characters")
+    .matches(/\S/, "Name cannot contain only spaces")
+    .required("Required"),
   phone: Yup.string()
     .matches(phoneRegexp, "Invalid phone number")
     .required("Required"),
@@ -66,7 +71,7 @@ const OrderServiceModal = ({ onClose }) => {
       setSubmitting(false); // Завжди розблоковуємо кнопку після завершення
     }
   };
-  console.log("OrderServiceModal rendered");
+
   return (
     <Modal
       title="Zanechte své kontakty a my vám zavoláme zpět"

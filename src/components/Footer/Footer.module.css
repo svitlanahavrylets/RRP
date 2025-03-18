@@ -4,29 +4,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 72px;
+  /* gap: 72px; */
   text-align: center;
 }
 
-.footerContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.footerLeft {
+/* .footerLeft {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-}
+} */
 
 .LogoTextContainer {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  margin-bottom: 72px;
 }
 
 .logoFooter {
@@ -43,6 +36,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 72px;
 }
 .socialText {
   /* font-weight: 500;
@@ -113,15 +107,13 @@
 } */
 
 /* Планшетна версія: два стовпчики */
-@media screen and (min-width: 768px) {
-  .footerContainer {
+@media screen and (min-width: 768px) and (max-width: 1157px) {
+  .footer {
+    display: flex;
+    align-items: baseline;
     flex-direction: row;
     justify-content: space-between;
-  }
-
-  .footerLeft {
-    align-items: start;
-    text-align: left;
+    /* gap: 72px; */
   }
 
   .navFooter {
@@ -132,12 +124,27 @@
     align-items: start;
   }
 }
+.navWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 /* Десктопна версія: в рядок */
 @media screen and (min-width: 1158px) {
   .footer {
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: start;
+    text-align: left;
+    gap: 300px;
+  }
+  .LogoTextContainer {
+    margin-right: 250px;
+  }
+  .footerLeft {
+    display: flex;
+    flex-direction: row;
     align-items: start;
     text-align: left;
   }
