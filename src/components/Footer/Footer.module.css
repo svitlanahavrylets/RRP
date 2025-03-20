@@ -127,11 +127,11 @@
   .navFooter ul {
     align-items: start;
   }
-}
-.navWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  .navWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Десктопна версія: в рядок */

@@ -22,7 +22,8 @@
 }
 .address,
 .email,
-.ic {
+.dic,
+.contactText {
   margin-bottom: 36px;
 }
 .tel a {
@@ -41,6 +42,7 @@
 .email a:hover {
   text-decoration: underline;
 }
+
 .mapContainer {
   height: 300px;
   width: 100%;
