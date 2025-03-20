@@ -38,6 +38,17 @@ const BlogPostPage = () => {
           soluta? Tempora quas, tenetur maiores asperiores nesciunt aperiam nemo
           soluta.
         </p>
+        {/* Додаємо кнопку YouTube, якщо є посилання */}
+        {article.youtubeLink && (
+          <a
+            href={article.youtubeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.youtubeButton}
+          >
+            Podívejte se na video na YouTube
+          </a>
+        )}
       </div>
     </section>
   );

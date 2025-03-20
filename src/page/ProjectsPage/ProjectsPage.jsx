@@ -8,6 +8,7 @@ const ProjectsPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
+    console.log("Window resized:", window.innerWidth);
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1158);
     };
@@ -17,12 +18,23 @@ const ProjectsPage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    console.log("Updated activeIndex:", activeIndex);
+  }, [activeIndex]);
+
   const handleClick = (index) => {
     if (isMobile) {
-      setActiveIndex(activeIndex === index ? null : index);
+      console.log("Clicked on project index:", index);
+      console.log("Current activeIndex before update:", activeIndex);
+
+      setActiveIndex((prev) => {
+        const newIndex = prev === index ? null : index;
+        console.log("New activeIndex inside setState:", newIndex);
+        return newIndex;
+      });
     }
   };
-
+  console.log("Rendering, activeIndex:", activeIndex);
   return (
     <section className={styles.portfolioSection}>
       <div className="container">
@@ -36,7 +48,7 @@ const ProjectsPage = () => {
             >
               <motion.div
                 className={styles.portfolioOverlayImages}
-                whileHover={!isMobile ? { scale: 1.05 } : {}}
+                whileHover={!isMobile ? { scale: 1.0 } : {}}
               >
                 <img
                   src={project.image}

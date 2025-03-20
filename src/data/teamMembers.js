@@ -5,6 +5,7 @@ export const teamMembers = [
     name: "Roman Řehák",
     role: "Projektmanažer",
     img: romanImg,
+    img2x: romanImg,
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/roman-%C5%99eh%C3%A1k/",
       facebook: "",

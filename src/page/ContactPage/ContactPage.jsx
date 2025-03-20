@@ -43,7 +43,7 @@ const ContactPage = () => {
           <p className={styles.address}>č.p. 181, 294 31 Písková Lhota</p>
 
           <p className={styles.tel}>
-            tel.: <a href="tel:+420000000000">+420 000 000 000</a>
+            tel.: <a href="tel:+420604698135">+420 604 698 135</a>
           </p>
           <p className={styles.email}>
             e-mail: <a href="mailto:Inforrp@seznam.cz">Inforrp@seznam.cz</a>

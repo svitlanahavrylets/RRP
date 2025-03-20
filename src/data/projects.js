@@ -7,7 +7,7 @@ export const projects = [
     category: "Projektové řízení v IT",
     image: project1Img,
     description:
-      "Specializuji se na řízení IT projektů od plánování až po realizaci. Koordinuji vývojové týmy, optimalizuji procesy a zajišťuji včasné dodání s ohledem na obchodní cíle a technologické trendy.",
+      "Specializuji se na řízení IT projektů od plánování až po realizaci. Koordinuji vývojové týmy, optimalizuji procesy a zajišťuji včasné dodání s ohledem na obchodní cíle a technologické trendy.Specializuji se na řízení IT projektů od plánování až po realizaci. Koordinuji vývojové týmy, optimalizuji procesy a zajišťuji včasné dodání s ohledem na obchodní cíle a technologické trendy.Specializuji se na řízení IT projektů od plánování až po realizaci. Koordinuji vývojové týmy, optimalizuji procesy a zajišťuji včasné dodání s ohledem na obchodní cíle a technologické trendy.",
   },
   {
     title: "Úspěšné zavádění digitálních řešení",

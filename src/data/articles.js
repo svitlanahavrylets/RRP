@@ -7,6 +7,7 @@ export const articles = [
     title: "Jak IT startupy využívají výkonnostní marketing",
     date: "7. prosince 2021",
     image: project1Img,
+    youtubeLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
   },
   {
     category: "Design",
@@ -19,6 +20,7 @@ export const articles = [
     title: "Proč technologické firmy outsourcují marketingové aktivity",
     date: "5. listopadu 2021",
     image: project1Img,
+    youtubeLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
   },
   {
     category: "Design",

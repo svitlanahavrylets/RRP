@@ -100,8 +100,12 @@
   line-height: 1.11;
   letter-spacing: 0.02em;
   text-align: center;
-  color: var(--primary-color-gold);
+  /* color: var(--primary-color-gold); */
   margin-bottom: 8px;
+  background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .benefitsText {

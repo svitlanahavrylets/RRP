@@ -26,8 +26,12 @@
   letter-spacing: 0.02em;
   text-transform: capitalize;
   text-align: center;
-  color: var(--primary-color-gold);
+  /* color: var(--primary-color-gold); */
   margin-bottom: 72px;
+  background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .categoryDateWrap {
   display: flex;
@@ -42,6 +46,13 @@
   margin: 0 auto 36px;
   max-width: 100%;
   height: auto;
+}
+.youtubeButton {
+  color: var(--primary-color-gold);
+}
+.youtubeButton:hover,
+.youtubeButton:focus {
+  color: var(--secondary-color-5);
 }
 @media screen and (min-width: 768px) {
   .image {
