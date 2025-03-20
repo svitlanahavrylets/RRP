@@ -68,7 +68,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  justify-content: space-between;
 }
 
 .socialIconItem {
@@ -96,6 +96,10 @@
 .socialLink:hover,
 .socialLink:focus {
   background-color: var(--primary-color-gold);
+}
+.socialIconList svg {
+  width: 24px;
+  height: 24px;
 }
 /* .navWrapper .navFooter .burger,
 .navWrapper .navFooter .burger * {
@@ -147,6 +151,9 @@
     flex-direction: row;
     align-items: start;
     text-align: left;
+  }
+  .socialIconList {
+    gap: 16px;
   }
 }
 

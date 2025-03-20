@@ -1,10 +1,21 @@
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import styles from "./ContactPage.module.css";
+import L from "leaflet";
+
+const position = [50.1976, 14.9073]; // Координати (широта, довгота)//
+const customIcon = new L.Icon({
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  iconSize: [25, 41], // Розмір іконки
+  iconAnchor: [12, 41], // Центр іконки
+  popupAnchor: [1, -34],
+});
 
 const ContactPage = () => {
   return (
     <div className={styles.contact}>
       <div className="container">
-        {/* <h2 className={styles.contactTitle}>Kontakt</h2> */}
         <address className={styles.info}>
           <h3 className={styles.addressTitle}>
             Kontaktní a fakturační adresa:
@@ -13,20 +24,32 @@ const ContactPage = () => {
           <p className={styles.address}>č.p. 181, 294 31 Písková Lhota</p>
 
           <p className={styles.tel}>
-            tel.:
-            <a href="tel:+420000000000">+420 000 000 000</a>
+            tel.: <a href="tel:+420000000000">+420 000 000 000</a>
           </p>
           <p className={styles.email}>
-            e-mail:
-            <a href="mailto:Inforrp@seznam.cz">Inforrp@seznam.cz</a>
+            e-mail: <a href="mailto:Inforrp@seznam.cz">Inforrp@seznam.cz</a>
           </p>
-          <p className={styles.ic}>IČ: 22634274</p>
+          <p>IČ: 22634274</p>
+          <p className={styles.dic}>DIČ: CZ22634274</p>
         </address>
 
         <p>
           Společnost RRP s.r.o. se sídlem č.p. 181, 294 31 Písková Lhota zapsaná
           v obchodním rejstříku vedeném Městským soudem v Praze.
         </p>
+
+        {/* Карта OpenStreetMap */}
+        <div className={styles.mapContainer}>
+          <MapContainer center={position} zoom={15} scrollWheelZoom={false}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <Marker position={position} icon={customIcon}>
+              <Popup>RRP s.r.o. - č.p. 181, Písková Lhota</Popup>
+            </Marker>
+          </MapContainer>
+        </div>
       </div>
     </div>
   );

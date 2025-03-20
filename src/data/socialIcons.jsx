@@ -1,9 +1,12 @@
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { TfiLinkedin } from "react-icons/tfi";
+import { IoLogoWhatsapp } from "react-icons/io5";
+
 const iconLinkedin = <TfiLinkedin />;
 const iconInstagram = <FaInstagram />;
-const iconTwitter = <FaTwitter />;
 const iconFacebook = <FaFacebookF />;
+const iconYoutube = <FaYoutube />;
+const iconWhatsApp = <IoLogoWhatsapp />;
 
 export const socialIcons = [
   {
@@ -14,12 +17,17 @@ export const socialIcons = [
     icon: iconInstagram,
     id: "instagram",
   },
-  {
-    icon: iconTwitter,
-    id: "twitter",
-  },
+
   {
     icon: iconFacebook,
     id: "facebook",
+  },
+  {
+    icon: iconYoutube,
+    id: "youtube",
+  },
+  {
+    icon: iconWhatsApp,
+    id: "whatsapp",
   },
 ];

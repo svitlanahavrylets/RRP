@@ -36,7 +36,7 @@ const Navigation = ({ className, isFooter = false }) => {
       >
         <ul className={styles.navList}>
           <li className={styles.navItem}>
-            <a className={styles.navLink} href="/about" onClick={closeMenu}>
+            <a className={styles.navLink} href="/" onClick={closeMenu}>
               O nás
             </a>
           </li>

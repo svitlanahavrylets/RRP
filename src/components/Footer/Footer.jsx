@@ -1,8 +1,8 @@
-import { TfiLinkedin } from "react-icons/tfi";
 import Logo from "../Logo/logo.jsx";
 // import Navigation from "../Navigation/Navigation.jsx";
 import styles from "./Footer.module.css";
-import { FaYoutube } from "react-icons/fa";
+import { socialIcons } from "../../data/socialIcons.jsx";
+import { socialLinks } from "../../data/socialLinks.js";
 
 const Footer = () => {
   return (
@@ -23,26 +23,20 @@ const Footer = () => {
           <div className={styles.social}>
             <h3 className={styles.socialText}>Sociální sítě</h3>
             <ul className={styles.socialIconList}>
-              <li className={styles.socialIconItem}>
-                <a
-                  href="https://www.linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                >
-                  <TfiLinkedin className={styles.icon} />
-                </a>
-              </li>
-              <li className={styles.socialIconItem}>
-                <a
-                  href="https://www.youtube.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                >
-                  <FaYoutube className={styles.icon} />
-                </a>
-              </li>
+              {socialIcons
+                .filter(({ id }) => socialLinks[id]) // Фільтруємо тільки наявні соцмережі
+                .map(({ icon, id }) => (
+                  <li key={id} className={styles.socialIconItem}>
+                    <a
+                      href={socialLinks[id]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialLink}
+                    >
+                      {icon}
+                    </a>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>
