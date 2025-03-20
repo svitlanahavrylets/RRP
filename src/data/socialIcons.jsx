@@ -19,15 +19,15 @@ export const socialIcons = [
   },
 
   {
-    icon: iconFacebook,
-    id: "facebook",
-  },
-  {
     icon: iconYoutube,
     id: "youtube",
   },
   {
     icon: iconWhatsApp,
     id: "whatsapp",
+  },
+  {
+    icon: iconFacebook,
+    id: "facebook",
   },
 ];
