@@ -1,18 +1,42 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import styles from "./ProjectsPage.module.css";
 import { projects } from "../../data/projects.js";
 
 const ProjectsPage = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1158);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleClick = (index) => {
+    if (isMobile) {
+      setActiveIndex(activeIndex === index ? null : index);
+    }
+  };
+
   return (
     <section className={styles.portfolioSection}>
       <div className="container">
         <h2 className={styles.portfolioTitle}>Portfolio</h2>
         <ul className={styles.projectCard}>
           {projects.map((project, index) => (
-            <li key={index} className={styles.projectCardItem}>
+            <li
+              key={index}
+              className={styles.projectCardItem}
+              onClick={() => handleClick(index)}
+            >
               <motion.div
                 className={styles.portfolioOverlayImages}
-                whileHover={{ scale: 1.05 }}
+                whileHover={!isMobile ? { scale: 1.05 } : {}}
               >
                 <img
                   src={project.image}
@@ -20,9 +44,11 @@ const ProjectsPage = () => {
                   className={styles.image}
                 />
                 <motion.p
-                  className={styles.portfolioOverlayText}
-                  initial={{ opacity: 0, y: 100 }}
-                  whileHover={{ opacity: 1, y: 0 }}
+                  className={`${styles.portfolioOverlayText} ${
+                    isMobile && activeIndex === index ? styles.active : ""
+                  }`}
+                  initial={!isMobile ? { opacity: 0, y: 100 } : {}}
+                  whileHover={!isMobile ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.3 }}
                 >
                   {project.description}
