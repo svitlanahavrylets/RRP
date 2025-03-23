@@ -59,15 +59,21 @@
 .navLink:focus {
   color: var(--primary-color-gold);
 }
-.navFooter .nav {
+/* .navFooter .nav {
   position: static;
   background: none;
   height: auto;
   transform: none;
-  flex-direction: row;
+  flex-direction: column;
   gap: 20px;
+} */
+.navFooter .navList {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start; /* або center, якщо треба по центру */
 }
-
 /* .studioLowerDash {
   position: relative;
   color: #404bbf;

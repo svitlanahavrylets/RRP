@@ -18,7 +18,7 @@
 .LogoTextContainer {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
   margin-bottom: 72px;
 }
 
@@ -101,14 +101,28 @@
   width: 24px;
   height: 24px;
 }
-/* .navWrapper .navFooter .burger,
-.navWrapper .navFooter .burger * {
-  display: none !important;
-} */
-/* .socialIconItem:hover,
-.socialIconItem:focus {
-  background-color: var(--primary-color-gold);
-} */
+.navWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.menu {
+  color: var(--primary-color-gold);
+}
+.navFooter {
+  display: flex;
+}
+.navFooter ul {
+  /* background-color: #fff; */
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: start;
+}
+.navFooter ul a {
+  padding: 0;
+}
 
 /* Планшетна версія: два стовпчики */
 @media screen and (min-width: 768px) and (max-width: 1157px) {
@@ -121,16 +135,11 @@
   }
 
   .navFooter {
-    align-items: start;
+    /* align-items: start; */
   }
 
   .navFooter ul {
-    align-items: start;
-  }
-  .navWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    /* align-items: start; */
   }
 }
 
@@ -138,13 +147,12 @@
 @media screen and (min-width: 1158px) {
   .footer {
     flex-direction: row;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: start;
     text-align: left;
-    gap: 300px;
   }
   .LogoTextContainer {
-    margin-right: 250px;
+    margin-right: 170px;
   }
   .footerLeft {
     display: flex;

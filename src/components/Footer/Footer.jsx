@@ -1,10 +1,11 @@
 import Logo from "../Logo/logo.jsx";
-// import Navigation from "../Navigation/Navigation.jsx";
+import Navigation from "../Navigation/Navigation.jsx";
 import styles from "./Footer.module.css";
 import { socialIcons } from "../../data/socialIcons.jsx";
 import { socialLinks } from "../../data/socialLinks.js";
 
 const Footer = () => {
+  console.log("Footer rendered");
   return (
     <div className="container">
       <div className={styles.footer}>
@@ -42,7 +43,8 @@ const Footer = () => {
         </div>
         <div className={styles.navWrapper}>
           <h3 className={styles.menu}>Menu</h3>
-          {/* <Navigation className="navFooter" /> */}
+          <Navigation isFooter={true} className={styles.navFooter} />
+          {/* <Navigation isFooter={false} /> */}
         </div>
       </div>
       <p className={styles.copyright}>

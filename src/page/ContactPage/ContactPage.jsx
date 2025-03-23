@@ -46,7 +46,7 @@ const ContactPage = () => {
             tel.: <a href="tel:+420604698135">+420 604 698 135</a>
           </p>
           <p className={styles.email}>
-            e-mail: <a href="mailto:Inforrp@seznam.cz">Inforrp@seznam.cz</a>
+            e-mail: <a href="mailto:info@rrp-it.cz">info@rrp-it.cz</a>
           </p>
           <p>IČ: 22634274</p>
           <p className={styles.dic}>DIČ: CZ22634274</p>
