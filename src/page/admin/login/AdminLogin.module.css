@@ -1,0 +1,60 @@
+.adminContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--secondary-color-2);
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--primary-color-gold);
+  margin-bottom: 20px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.inputWrapper input:focus {
+  border-color: var(--primary-color-gold);
+}
+
+.inputWrapper button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--primary-color-blue);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inputWrapper button:hover {
+  background-color: var(--primary-color-gold);
+}
+
+.inputWrapper p {
+  font-size: 14px;
+  color: red;
+  text-align: center;
+}

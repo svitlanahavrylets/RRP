@@ -4,7 +4,7 @@ import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import styles from "./OrderServiceModal.module.css";
-import { submitOrderData } from "../../api/userApi.js";
+import { submitOrderData } from "../../api/user/userApi.js";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 

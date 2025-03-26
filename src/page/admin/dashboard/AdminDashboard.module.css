@@ -1,0 +1,47 @@
+.adminWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--secondary-color-2);
+}
+.formikAdminWrapper {
+  margin-bottom: 72px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: var(--primary-color-white);
+  margin-bottom: 8px;
+}
+.label:last-of-type {
+  margin-bottom: 16px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--primary-color-gold);
+  border-radius: 4px;
+  height: 40px;
+  padding-left: 8px;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--primary-color-white);
+  outline: transparent;
+}
+.input:focus {
+  border-color: var(--primary-color-white);
+  outline: transparent;
+}
+.error {
+  color: red; /* Колір тексту для помилки */
+  font-size: 12px; /* Розмір шрифту */
+  margin-top: 4px; /* Відступ зверху для повідомлення про помилку */
+  padding-left: 10px; /* Відступ зліва, щоб вирівняти з інпутом */
+  font-weight: bold;
+}

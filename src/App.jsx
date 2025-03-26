@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
+import AdminRoutes from "./routes/AdminRoutes.jsx";
+import AdminDashboard from "./page/admin/dashboard/AdminDashboard.jsx";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));
 const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));
@@ -26,6 +28,10 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
+
+        {/* Адмін маршрути */}
+        <Route path="admin/*" element={<AdminRoutes />} />
+        <Route path="/test-dashboard" element={<AdminDashboard />} />
       </Routes>
     </Suspense>
   );
