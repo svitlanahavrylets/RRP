@@ -1,13 +1,41 @@
 .adminWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   background-color: var(--secondary-color-2);
 }
-.formikAdminWrapper {
+
+.adminHeaderLogout {
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--primary-color-blue);
+  border-bottom: 2px solid #e7e9fc;
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
   margin-bottom: 72px;
+}
+
+.buttonWrapper {
+  display: flex;
+  max-width: 1158px;
+  margin: 0 auto;
+}
+
+.btnLogOut {
+  margin: 8px;
+  background-color: #19a142;
+}
+
+.teamTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  margin-bottom: 72px;
+}
+
+.formikAdminWrapper {
+  margin: 0 auto 72px;
+  max-width: 264px;
 }
 
 .label {
@@ -20,13 +48,10 @@
   color: var(--primary-color-white);
   margin-bottom: 8px;
 }
-.label:last-of-type {
-  margin-bottom: 16px;
-}
 
 .input {
   width: 100%;
-  border: 1px solid var(--primary-color-gold);
+  border: 1px solid transparent;
   border-radius: 4px;
   height: 40px;
   padding-left: 8px;
@@ -38,10 +63,42 @@
   border-color: var(--primary-color-white);
   outline: transparent;
 }
+
+.input:last-of-type {
+  margin-bottom: 16px;
+}
+
 .error {
   color: red; /* Колір тексту для помилки */
   font-size: 12px; /* Розмір шрифту */
   margin-top: 4px; /* Відступ зверху для повідомлення про помилку */
   padding-left: 10px; /* Відступ зліва, щоб вирівняти з інпутом */
   font-weight: bold;
+}
+
+.teamCard {
+  display: flex;
+  max-width: 1158px;
+  margin: 0 auto;
+  flex-direction: row;
+  gap: 24px;
+  row-gap: 64px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.teamCardItem {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+.teamCardItem:last-of-type {
+  margin-bottom: 72px;
+}
+
+.btnAdminDelete {
+  background-color: #e60202;
+  margin-bottom: 8px;
+  display: flex;
 }

@@ -20,3 +20,13 @@ export const createTeamData = async (dataTeam) => {
     console.error("Помилка при отриманні даних:", error.response.data);
   }
 };
+
+export const deleteTeamData = async (id) => {
+  console.log(`Видаляємо картку з ID: ${id}`);
+  try {
+    const response = await axios.delete(`${API_URL}/team/${id}`);
+    console.log("Картку успішно видалено:", response.data);
+  } catch (error) {
+    console.error("Помилка при видаленні картки:", error.response.data);
+  }
+};

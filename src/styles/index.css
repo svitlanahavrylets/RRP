@@ -9,7 +9,6 @@ html {
   max-width: 320px;
   padding: 0 16px;
   margin: 0 auto;
-  /* background-color: #969696; */
 }
 
 @media only screen and (min-width: 768px) {

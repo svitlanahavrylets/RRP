@@ -5,9 +5,17 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Button from "../../../components/Button/Button"; // Імпорт кнопки
 import { Formik, Form, Field } from "formik";
-import { createTeamData } from "../../../api/content/team.js";
+import {
+  createTeamData,
+  deleteTeamData,
+  fetchTeamData,
+} from "../../../api/content/team.js";
 // import { style } from "framer-motion/client";
 import styles from "./AdminDashboard.module.css";
+import TeamCardItem from "../../../components/TeamCardItem/TeamCardItem.jsx";
+import Loader from "../../../components/Loader/Loader.jsx";
+import { FaTrash } from "react-icons/fa";
+import clsx from "clsx";
 
 const TeamMemberSchema = Yup.object().shape({
   photoUrl: Yup.mixed().required("Фото обов'язкове"),
@@ -35,6 +43,26 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
+  const [teamMembers, setTeamMembers] = useState([]);
+
+  useEffect(() => {
+    const loadTeamData = async () => {
+      const data = await fetchTeamData();
+
+      // if (data) {
+      //   // Переконуємося, що нові працівники додаються в кінець
+      //   const sortedData = data.sort(
+      //     (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      //   );
+      //   setTeamMembers(sortedData || []);
+      // }
+      setTeamMembers(data);
+      setIsLoading(false);
+    };
+
+    loadTeamData();
+  }, []);
+
   // useEffect(() => {
   //   const verifyAuth = async () => {
   //     try {
@@ -57,15 +85,33 @@ const AdminDashboard = () => {
     setIsLoading(false); // Прибираємо перевірку токена
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await deleteTeamData(id);
+      setTeamMembers((prevMembers) =>
+        prevMembers.filter((member) => member._id !== id)
+      );
+    } catch (error) {
+      console.error("Помилка при видаленні:", error);
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/admin");
   };
 
-  if (isLoading) return <p>Завантаження...</p>;
-
   return (
-    <div className={styles.adminWrapper}>
+    <div className={clsx("", styles.adminWrapper)}>
+      {isLoading && <Loader />}
+      <div className={styles.adminHeaderLogout}>
+        <div className="container">
+          <Button onClick={logout} className={styles.btnLogOut}>
+            LogOut
+          </Button>
+        </div>
+      </div>
+      <h2 className={styles.teamTitle}>Správa týmu</h2>
       <Formik
         initialValues={{
           photoUrl: null,
@@ -78,7 +124,7 @@ const AdminDashboard = () => {
           // whatsapp: "",
         }}
         validationSchema={TeamMemberSchema}
-        onSubmit={(values, { resetForm }) => {
+        onSubmit={async (values, { resetForm }) => {
           console.log("Форма сабмітиться!");
           console.log("дані на відправку:", values);
 
@@ -89,13 +135,13 @@ const AdminDashboard = () => {
           formData.append("lastName", values.lastName);
           formData.append("position", values.position);
 
-          console.log("FormData перед відправкою:", formData);
-          for (let pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]);
+          try {
+            const newMember = await createTeamData(formData);
+            setTeamMembers((prevMembers) => [...prevMembers, newMember]);
+            resetForm();
+          } catch (error) {
+            console.error("Помилка при додаванні:", error);
           }
-
-          createTeamData(formData); // Виклик функції для відправки даних на сервер
-          resetForm();
         }}
       >
         {({ setFieldValue, errors, touched }) => (
@@ -146,26 +192,45 @@ const AdminDashboard = () => {
             {/* <label>LinkedIn:</label>
           <Field name="linkedin" placeholder="Zadejte odkaz na LinkedIn" />
           {errors.linkedin && touched.linkedin && <div>{errors.linkedin}</div>}
-
+          
           <label>Facebook:</label>
           <Field name="facebook" placeholder="Zadejte odkaz na Facebook" />
           {errors.facebook && touched.facebook && <div>{errors.facebook}</div>}
-
+          
           <label>Instagram:</label>
           <Field name="instagram" placeholder="Zadejte odkaz na Instagram" />
           {errors.instagram && touched.instagram && (
             <div>{errors.instagram}</div>
-          )}
-
-          <label>WhatsApp:</label>
-          <Field name="whatsapp" placeholder="Zadejte odkaz na WhatsApp" />
-          {errors.whatsapp && touched.whatsapp && <div>{errors.whatsapp}</div>} */}
+            )}
+            
+            <label>WhatsApp:</label>
+            <Field name="whatsapp" placeholder="Zadejte odkaz na WhatsApp" />
+            {errors.whatsapp && touched.whatsapp && <div>{errors.whatsapp}</div>} */}
             <Button type="submit">Odeslat</Button>
             {/* <button ></button> */}
           </Form>
         )}
       </Formik>
-      <Button onClick={logout}>LogOut</Button>;
+      <ul className={styles.teamCard}>
+        {teamMembers.map((member) => {
+          console.log(member);
+
+          return (
+            <>
+              <li key={member._id} className={styles.teamCardItem}>
+                <TeamCardItem member={member} />
+                <Button
+                  onClick={() => handleDelete(member._id)}
+                  className={styles.btnAdminDelete}
+                  icon={<FaTrash />}
+                >
+                  Smazat
+                </Button>
+              </li>
+            </>
+          );
+        })}
+      </ul>
     </div>
   );
 };

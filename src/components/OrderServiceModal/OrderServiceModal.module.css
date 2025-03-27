@@ -80,7 +80,7 @@
 
 .textarea {
   height: 120px;
-  resize: vertical;
+  resize: none;
   padding: 8px;
   /* margin-bottom: 16px; */
 }

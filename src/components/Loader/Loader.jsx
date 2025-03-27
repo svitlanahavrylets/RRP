@@ -1,7 +1,7 @@
 import { PropagateLoader } from "react-spinners";
 import css from "./Loader.module.css";
 
-export default function Loader() {
+const Loader = () => {
   return (
     <div className={css.loaderOverlay}>
       <PropagateLoader
@@ -11,4 +11,6 @@ export default function Loader() {
       />
     </div>
   );
-}
+};
+
+export default Loader;

@@ -72,7 +72,47 @@ const OurTeamPage = () => {
           </div>
         )}
 
-        <ul className={styles.teamCard}>
+        {/* Відображаємо всіх інших працівників в рядок */}
+        {employees.length > 0 && (
+          <ul className={styles.teamCard}>
+            {employees.map((member) => (
+              <li key={member._id} className={styles.teamCardItem}>
+                <img
+                  src={member.photoUrl}
+                  alt={`${member.firstName} avatar`}
+                  width="264"
+                  height="260"
+                  className={styles.teamCardImg}
+                />
+                <div className={styles.teamCardContainer}>
+                  <h3 className={styles.teamListFullname}>
+                    {member.firstName}
+                  </h3>
+                  <p className={styles.teamCardText}>{member.position}</p>
+                  {member.socialLinks && (
+                    <ul className={styles.teamIconList}>
+                      {socialIcons
+                        .filter(({ id }) => member.socialLinks?.[id])
+                        .map(({ icon, id }) => (
+                          <li key={id} className={styles.teamIconItem}>
+                            <a
+                              href={member.socialLinks[id]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={styles.socialLink}
+                            >
+                              {icon}
+                            </a>
+                          </li>
+                        ))}
+                    </ul>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {/* <ul className={styles.teamCard}>
           {teamMembers.map((member) => (
             <li key={member._id} className={styles.teamCardItem}>
               <img
@@ -106,7 +146,7 @@ const OurTeamPage = () => {
               </div>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </section>
   );

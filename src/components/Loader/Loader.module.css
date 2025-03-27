@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 100px;
-  /* background-color: var(--primary-color-white); */
+  background-color: transparent;
   z-index: 1000;
   color: var(--primary-color-gold);
 }
