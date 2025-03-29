@@ -3,9 +3,12 @@ import styles from "./OurTeamPage.module.css";
 import { socialIcons } from "../../data/socialIcons.jsx";
 import { useEffect, useState } from "react";
 import { fetchTeamData } from "../../api/content/team.js";
+import TeamCardItem from "../../components/TeamCardItem/TeamCardItem.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
 
 const OurTeamPage = () => {
   const [teamMembers, setTeamMembers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadTeamData = async () => {
@@ -13,11 +16,13 @@ const OurTeamPage = () => {
 
       if (data) {
         // Переконуємося, що нові працівники додаються в кінець
+
         const sortedData = data.sort(
           (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
         );
         setTeamMembers(sortedData || []);
       }
+      setIsLoading(false);
     };
 
     loadTeamData();
@@ -33,120 +38,61 @@ const OurTeamPage = () => {
       <div className="container">
         <h2 className={styles.teamTitle}>Náš tým</h2>
 
-        {/* Відображаємо jednatel окремо */}
-        {jednatel && (
-          <div className={styles.jednatelWrapper}>
-            <div className={styles.teamCardItem}>
-              <img
-                src={jednatel.photoUrl}
-                alt={`${jednatel.firstName} avatar`}
-                width="264"
-                height="260"
-                className={styles.teamCardImg}
-              />
-              <div className={styles.teamCardContainer}>
-                <h3 className={styles.teamListFullname}>
-                  {jednatel.firstName}
-                </h3>
-                <p className={styles.teamCardText}>{jednatel.position}</p>
-                {jednatel.socialLinks && (
-                  <ul className={styles.teamIconList}>
-                    {socialIcons
-                      .filter(({ id }) => jednatel.socialLinks?.[id])
-                      .map(({ icon, id }) => (
-                        <li key={id} className={styles.teamIconItem}>
-                          <a
-                            href={jednatel.socialLinks[id]}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.socialLink}
-                          >
-                            {icon}
-                          </a>
-                        </li>
-                      ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Відображаємо всіх інших працівників в рядок */}
-        {employees.length > 0 && (
-          <ul className={styles.teamCard}>
-            {employees.map((member) => (
-              <li key={member._id} className={styles.teamCardItem}>
-                <img
-                  src={member.photoUrl}
-                  alt={`${member.firstName} avatar`}
-                  width="264"
-                  height="260"
-                  className={styles.teamCardImg}
-                />
-                <div className={styles.teamCardContainer}>
-                  <h3 className={styles.teamListFullname}>
-                    {member.firstName}
-                  </h3>
-                  <p className={styles.teamCardText}>{member.position}</p>
-                  {member.socialLinks && (
-                    <ul className={styles.teamIconList}>
-                      {socialIcons
-                        .filter(({ id }) => member.socialLinks?.[id])
-                        .map(({ icon, id }) => (
-                          <li key={id} className={styles.teamIconItem}>
-                            <a
-                              href={member.socialLinks[id]}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={styles.socialLink}
-                            >
-                              {icon}
-                            </a>
-                          </li>
-                        ))}
-                    </ul>
-                  )}
+        {/* Якщо ще триває завантаження, показуємо лоадер */}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {/* Відображаємо jednatel окремо */}
+            {jednatel && (
+              <div className={styles.jednatelWrapper}>
+                <div className={styles.teamCardItem}>
+                  <img
+                    src={jednatel.photoUrl}
+                    alt={`${jednatel.name} avatar`}
+                    width="264"
+                    height="260"
+                    className={styles.teamCardImg}
+                  />
+                  <div className={styles.teamCardContainer}>
+                    <h3 className={styles.teamListFullname}>{jednatel.name}</h3>
+                    <p className={styles.teamCardText}>{jednatel.position}</p>
+                    {jednatel.socialLinks && (
+                      <ul className={styles.teamIconList}>
+                        {socialIcons
+                          .filter(({ id }) => jednatel.socialLinks?.[id])
+                          .map(({ icon, id }) => (
+                            <li key={id} className={styles.teamIconItem}>
+                              <a
+                                href={jednatel.socialLinks[id]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.socialLink}
+                              >
+                                {icon}
+                              </a>
+                            </li>
+                          ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-              </li>
-            ))}
-          </ul>
-        )}
-        {/* <ul className={styles.teamCard}>
-          {teamMembers.map((member) => (
-            <li key={member._id} className={styles.teamCardItem}>
-              <img
-                src={member.photoUrl}
-                alt={`${member.firstName} avatar`}
-                width="264"
-                height="260"
-                className={styles.teamCardImg}
-              />
-              <div className={styles.teamCardContainer}>
-                <h3 className={styles.teamListFullname}>{member.firstName}</h3>
-                <p className={styles.teamCardText}>{member.position}</p>
-                {member.socialLinks && (
-                  <ul className={styles.teamIconList}>
-                    {socialIcons
-                      .filter(({ id }) => member.socialLinks?.[id]) // Фільтруємо тільки ті, для яких є посилання
-                      .map(({ icon, id }) => (
-                        <li key={id} className={styles.teamIconItem}>
-                          <a
-                            href={member.socialLinks[id]}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.socialLink}
-                          >
-                            {icon}
-                          </a>
-                        </li>
-                      ))}
-                  </ul>
-                )}
               </div>
-            </li>
-          ))}
-        </ul> */}
+            )}
+
+            {/* Відображаємо всіх інших працівників в рядок */}
+
+            {employees.length > 0 && (
+              <ul className={styles.teamCard}>
+                {employees.map((member) => (
+                  <li key={member._id} className={styles.teamCardItem}>
+                    <TeamCardItem member={member} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        )}
       </div>
     </section>
   );

@@ -6,13 +6,13 @@ const TeamCardItem = ({ member }) => {
     <>
       <img
         src={member.photoUrl}
-        alt={`${member.firstName} avatar`}
+        alt={`${member.name} avatar`}
         width="264"
         height="260"
         className={styles.teamCardImg}
       />
       <div className={styles.teamCardContainer}>
-        <h3 className={styles.teamListFullname}>{member.firstName}</h3>
+        <h3 className={styles.teamListFullname}>{member.name}</h3>
         <p className={styles.teamCardText}>{member.position}</p>
         {member.socialLinks && (
           <ul className={styles.teamIconList}>
