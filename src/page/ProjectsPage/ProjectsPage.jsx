@@ -1,11 +1,31 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import styles from "./ProjectsPage.module.css";
-import { projects } from "../../data/projects.js";
+import { fetchProjectsData } from "../../api/content/projects.js";
+import Loader from "../../components/Loader/Loader.jsx";
+import ProjectCardItem from "../../components/ProjectCardItem/ProjectCardItem.jsx";
 
 const ProjectsPage = () => {
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
+
+  useEffect(() => {
+    const loadProjectsData = async () => {
+      const data = await fetchProjectsData();
+
+      if (data) {
+        const sortedData = data.sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        );
+        setProjects(sortedData || []);
+      }
+      setIsLoading(false);
+    };
+
+    loadProjectsData();
+  }, []);
 
   useEffect(() => {
     console.log("Window resized:", window.innerWidth);
@@ -22,57 +42,43 @@ const ProjectsPage = () => {
     console.log("Updated activeIndex:", activeIndex);
   }, [activeIndex]);
 
-  const handleClick = (index) => {
+  const handleClick = (_id) => {
     if (isMobile) {
-      console.log("Clicked on project index:", index);
+      console.log("Clicked on project index:", _id);
       console.log("Current activeIndex before update:", activeIndex);
 
       setActiveIndex((prev) => {
-        const newIndex = prev === index ? null : index;
+        const newIndex = prev === _id ? null : _id;
         console.log("New activeIndex inside setState:", newIndex);
         return newIndex;
       });
     }
   };
   console.log("Rendering, activeIndex:", activeIndex);
+
   return (
     <section className={styles.portfolioSection}>
       <div className="container">
         <h2 className={styles.portfolioTitle}>Portfolio</h2>
-        <ul className={styles.projectCard}>
-          {projects.map((project, index) => (
-            <li
-              key={index}
-              className={styles.projectCardItem}
-              onClick={() => handleClick(index)}
-            >
-              <motion.div
-                className={styles.portfolioOverlayImages}
-                whileHover={!isMobile ? { scale: 1.0 } : {}}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ul className={styles.projectCard}>
+            {projects.map((project) => (
+              <li
+                key={project._id}
+                className={styles.projectCardItem}
+                onClick={() => handleClick(project._id)}
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={styles.image}
+                <ProjectCardItem
+                  project={project}
+                  isMobile={isMobile}
+                  activeIndex={activeIndex}
                 />
-                <motion.p
-                  className={`${styles.portfolioOverlayText} ${
-                    isMobile && activeIndex === index ? styles.active : ""
-                  }`}
-                  initial={!isMobile ? { opacity: 0, y: 100 } : {}}
-                  whileHover={!isMobile ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.3 }}
-                >
-                  {project.description}
-                </motion.p>
-              </motion.div>
-              <div className={styles.projectCardContainer}>
-                <h3 className={styles.projectCardTitle}>{project.title}</h3>
-                <p className={styles.projectCardText}>{project.category}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

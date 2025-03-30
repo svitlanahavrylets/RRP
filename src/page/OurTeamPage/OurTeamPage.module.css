@@ -85,7 +85,7 @@
   border-radius: 50%;
   justify-content: center;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: #ffffff;
+  color: var(--primary-color-white);
 }
 
 .socialLink:hover,
@@ -101,7 +101,7 @@
 .jednatelWrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 48px;
+  margin-bottom: 72px;
 }
 
 @media screen and (min-width: 768px) {
@@ -110,6 +110,10 @@
     gap: 24px;
     row-gap: 64px;
     flex-direction: row;
+  }
+
+  .jednatelWrapper {
+    margin-bottom: 64px;
   }
 
   /* .teamCardItem {

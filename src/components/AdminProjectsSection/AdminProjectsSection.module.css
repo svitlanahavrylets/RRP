@@ -1,0 +1,152 @@
+.formikAdminWrapper {
+  margin: 0 auto 72px;
+  max-width: 264px;
+}
+
+.label {
+  display: flex;
+  /* flex-direction: column;
+  gap: 4px; */
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: var(--primary-color-white);
+  margin-bottom: 4px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 40px;
+  padding-left: 8px;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--primary-color-white);
+  outline: transparent;
+  margin-bottom: 8px;
+}
+.input:focus {
+  border-color: var(--primary-color-white);
+  outline: transparent;
+}
+
+/* .input:last-of-type {
+  margin-bottom: 16px;
+} */
+
+.textarea {
+  height: 120px;
+  resize: none;
+  padding: 8px;
+  /* margin-bottom: 16px; */
+}
+
+.inputFile {
+  display: none;
+}
+
+.fileInputWrapper {
+  position: relative;
+}
+
+.fileInputButton {
+  display: inline-block;
+  background-color: var(--primary-color-white);
+  color: var(--secondary-color-2);
+  padding: 14px 8px;
+  border-radius: 4px;
+  /* border: 1px solid #ccc; */
+  cursor: pointer;
+  text-align: start;
+  width: 100%;
+  transition: background-color 0.3s;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.fileInputButton:hover {
+  background-color: var(--primary-color-gold);
+}
+
+.selectedFile {
+  font-size: 52px;
+  color: var(--primary-color-gold);
+  margin-bottom: 8px;
+  font-weight: bold;
+  padding: 4px 0;
+  text-align: left;
+}
+
+.error {
+  color: #e60202;
+  font-size: 12px;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.projectsTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  margin-bottom: 72px;
+}
+
+.projectsCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  row-gap: 48px;
+  max-width: 1158px;
+  margin: 0 auto;
+  flex-direction: row;
+  /* row-gap: 64px; */
+  justify-content: center;
+}
+
+.projectsCardItem {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-color-white);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  cursor: pointer;
+}
+
+.projectsCardItem:hover,
+.projectsCardItem:focus {
+  box-shadow: 0 4px 6px rgba(46, 47, 66, 0.1), 0 2px 4px rgba(46, 47, 66, 0.06);
+}
+
+@media screen and (min-width: 768px) {
+  .projectsCard {
+    gap: 24px;
+    row-gap: 72px;
+  }
+
+  .projectsCardItem {
+    width: calc((100% - 24px) / 2);
+  }
+}
+
+@media screen and (min-width: 1158px) {
+  .projectsCard {
+    gap: 24px;
+    row-gap: 48px;
+  }
+
+  .projectsCardItem {
+    width: calc((100% - 2 * 24px) / 3);
+  }
+}
+
+.btnAdminDelete {
+  background-color: #e60202;
+  margin-bottom: 32px;
+  display: flex;
+}

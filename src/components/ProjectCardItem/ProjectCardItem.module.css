@@ -1,0 +1,69 @@
+.projectCardContainer {
+  text-align: center;
+  padding: 32px 16px;
+  border-top: none;
+}
+.projectCardImg {
+  height: 260px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.projectCardTitle {
+  /* font-weight: 500; */
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: #2e2f42;
+  margin-bottom: 8px;
+}
+
+.projectCardText {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--primary-color-blue);
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.portfolioOverlayImages {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.portfolioOverlayText {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(214, 183, 90, 0.9);
+  color: #ffffff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 32px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.projectCardItem:hover .portfolioOverlayText,
+.projectCardItem:focus .portfolioOverlayText {
+  transform: translateY(0%);
+}
+
+@media screen and (max-width: 1157px) {
+  .portfolioOverlayText.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}

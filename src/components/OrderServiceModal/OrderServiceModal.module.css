@@ -84,6 +84,7 @@
   padding: 8px;
   /* margin-bottom: 16px; */
 }
+
 .input:focus,
 .textarea:focus {
   border-color: var(--primary-color-gold);

@@ -1,6 +1,4 @@
 import styles from "./OurTeamPage.module.css";
-// import { teamMembers } from "../../data/teamMembers.js";
-import { socialIcons } from "../../data/socialIcons.jsx";
 import { useEffect, useState } from "react";
 import { fetchTeamData } from "../../api/content/team.js";
 import TeamCardItem from "../../components/TeamCardItem/TeamCardItem.jsx";
@@ -38,7 +36,6 @@ const OurTeamPage = () => {
       <div className="container">
         <h2 className={styles.teamTitle}>Náš tým</h2>
 
-        {/* Якщо ще триває завантаження, показуємо лоадер */}
         {isLoading ? (
           <Loader />
         ) : (
@@ -47,7 +44,8 @@ const OurTeamPage = () => {
             {jednatel && (
               <div className={styles.jednatelWrapper}>
                 <div className={styles.teamCardItem}>
-                  <img
+                  <TeamCardItem member={jednatel} />
+                  {/* <img
                     src={jednatel.photoUrl}
                     alt={`${jednatel.name} avatar`}
                     width="264"
@@ -75,7 +73,7 @@ const OurTeamPage = () => {
                           ))}
                       </ul>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}

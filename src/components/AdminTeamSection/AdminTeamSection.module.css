@@ -1,0 +1,126 @@
+.formCardWrapper {
+  margin-bottom: 72px;
+}
+
+.teamTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  margin-bottom: 72px;
+}
+
+.formikAdminWrapper {
+  margin: 0 auto 72px;
+  max-width: 264px;
+}
+
+.label {
+  display: flex;
+  /* flex-direction: column;
+  gap: 4px; */
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: var(--primary-color-white);
+  margin-bottom: 4px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 40px;
+  padding-left: 8px;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--primary-color-white);
+  outline: transparent;
+  margin-bottom: 8px;
+}
+.input:focus {
+  border-color: var(--primary-color-white);
+  outline: transparent;
+}
+
+.input:last-of-type {
+  margin-bottom: 16px;
+}
+
+.inputFile {
+  display: none;
+}
+
+.fileInputWrapper {
+  position: relative;
+}
+
+.fileInputButton {
+  display: inline-block;
+  background-color: var(--primary-color-white);
+  color: var(--secondary-color-2);
+  padding: 14px 8px;
+  border-radius: 4px;
+  /* border: 1px solid #ccc; */
+  cursor: pointer;
+  text-align: start;
+  width: 100%;
+  transition: background-color 0.3s;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.fileInputButton:hover {
+  background-color: var(--primary-color-gold);
+}
+
+.selectedFile {
+  font-size: 12px;
+  color: var(--primary-color-gold);
+  margin-bottom: 8px;
+  font-weight: bold;
+  padding: 4px 0;
+  text-align: left;
+}
+
+.error {
+  color: #e60202;
+  font-size: 12px;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.teamCard {
+  display: flex;
+  max-width: 1158px;
+  margin: 0 auto;
+  flex-direction: row;
+  gap: 24px;
+  row-gap: 64px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.teamCardItem {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  margin-bottom: 32px;
+}
+
+/* .teamCardItem:last-of-type {
+  margin-bottom: 72px;
+} */
+
+.btnAdminDelete {
+  background-color: #e60202;
+  margin-bottom: 32px;
+  display: flex;
+}
+
+/* .formCardWrapper {
+  display: flex;
+  flex-direction: row;
+} */
