@@ -20,7 +20,7 @@
 .projectCard {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  /* gap: 24px; */
   row-gap: 48px;
 }
 
@@ -99,6 +99,7 @@
 
 @media screen and (min-width: 768px) {
   .projectCard {
+    gap: 24px;
     row-gap: 72px;
   }
 

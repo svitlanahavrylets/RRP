@@ -122,17 +122,22 @@ const AdminTeamSection = () => {
               <label className={styles.label}>Foto</label>
               <div className={styles.fileInputWrapper}>
                 <input
-                  id="fileInput"
+                  id="fileInputTeam"
                   className={styles.inputFile}
                   name="photoUrl"
                   type="file"
                   onChange={(e) => {
                     const file = e.currentTarget.files[0];
+                    console.log("Selected file:", file);
                     setFieldValue("photoUrl", file);
                     setSelectedFileName(file ? file.name : ""); // Зберігаємо ім'я файлу
+                    console.log("Selected file name:", selectedFileName);
                   }}
                 />
-                <label htmlFor="fileInput" className={styles.fileInputButton}>
+                <label
+                  htmlFor="fileInputTeam"
+                  className={styles.fileInputButton}
+                >
                   Vybrat soubor
                 </label>
                 {/* Виведення імені вибраного файлу */}

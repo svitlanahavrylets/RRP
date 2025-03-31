@@ -13,13 +13,37 @@
   margin-bottom: 72px;
 }
 
-.buttonWrapper {
+.btnWrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 1158px;
   margin: 0 auto;
 }
 
+.btn {
+  margin: 16px 8px;
+}
+
+.btn button {
+  width: 190px; /* Максимальна ширина кнопки */
+}
+
 .btnLogOut {
-  margin: 8px;
-  background-color: var(--primary-color-gold);
+  background-color: #e60202;
+}
+
+@media screen and (min-width: 768px) {
+  .btnWrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btnWrapper li {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1158px) {
 }

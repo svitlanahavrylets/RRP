@@ -1,3 +1,7 @@
+.formCardWrapper {
+  padding-bottom: 72px;
+}
+
 .formikAdminWrapper {
   margin: 0 auto 72px;
   max-width: 264px;
@@ -70,12 +74,13 @@
 }
 
 .selectedFile {
-  font-size: 52px;
+  font-size: 12px;
   color: var(--primary-color-gold);
   margin-bottom: 8px;
   font-weight: bold;
   padding: 4px 0;
   text-align: left;
+  padding-left: 10px;
 }
 
 .error {
@@ -98,7 +103,7 @@
 .projectsCard {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  /* gap: 24px; */
   row-gap: 48px;
   max-width: 1158px;
   margin: 0 auto;
@@ -132,16 +137,21 @@
   .projectsCardItem {
     width: calc((100% - 24px) / 2);
   }
+  .formikAdminWrapper {
+    max-width: 356px;
+  }
 }
 
 @media screen and (min-width: 1158px) {
   .projectsCard {
-    gap: 24px;
     row-gap: 48px;
   }
 
   .projectsCardItem {
     width: calc((100% - 2 * 24px) / 3);
+  }
+  .formikAdminWrapper {
+    max-width: 360px;
   }
 }
 

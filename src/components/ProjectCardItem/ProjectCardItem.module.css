@@ -3,8 +3,10 @@
   padding: 32px 16px;
   border-top: none;
 }
+
 .projectCardImg {
-  height: 260px;
+  width: 288px;
+  height: 280px;
   object-fit: cover;
   border-radius: 4px;
   display: block;
@@ -59,6 +61,19 @@
 .projectCardItem:hover .portfolioOverlayText,
 .projectCardItem:focus .portfolioOverlayText {
   transform: translateY(0%);
+}
+
+@media screen and (min-width: 768px) {
+  .projectCardImg {
+    width: 356px;
+    height: 300px;
+  }
+}
+@media screen and (min-width: 1158px) {
+  .projectCardImg {
+    width: 360px;
+    height: 300px;
+  }
 }
 
 @media screen and (max-width: 1157px) {

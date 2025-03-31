@@ -8,11 +8,12 @@ import Loader from "../../../components/Loader/Loader.jsx";
 import clsx from "clsx";
 import AdminTeamSection from "../../../components/AdminTeamSection/AdminTeamSection.jsx";
 import AdminProjectsSection from "../../../components/AdminProjectsSection/AdminProjectsSection.jsx";
+import AdminBlogSection from "../../../components/AdminBlogSection/AdminBlogSection.jsx";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  // const [projects, setProjects] = useState([]);
+  const [activeSection, setActiveSection] = useState("team"); // Відображається за замовчуванням
 
   // useEffect(() => {
   //   const verifyAuth = async () => {
@@ -45,15 +46,35 @@ const AdminDashboard = () => {
     <div className={clsx("", styles.adminWrapper)}>
       {isLoading && <Loader />}
       <div className={styles.adminHeaderLogout}>
-        <div className="container">
-          <Button onClick={logout} className={styles.btnLogOut}>
-            LogOut
-          </Button>
-        </div>
+        <ul className={clsx("container", styles.btnWrapper)}>
+          <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("team")}>
+              Správa týmu
+            </Button>
+          </li>
+          <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("projects")}>
+              Správa projektů
+            </Button>
+          </li>
+          <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("blog")}>
+              Správa blogu
+            </Button>
+          </li>
+          <li className={styles.btn}>
+            <Button onClick={logout} className={styles.btnLogOut}>
+              LogOut
+            </Button>
+          </li>
+        </ul>
       </div>
 
-      <AdminTeamSection />
-      <AdminProjectsSection />
+      <div className={styles.adminContent}>
+        {activeSection === "team" && <AdminTeamSection />}
+        {activeSection === "projects" && <AdminProjectsSection />}
+        {activeSection === "blog" && <AdminBlogSection />}
+      </div>
     </div>
   );
 };

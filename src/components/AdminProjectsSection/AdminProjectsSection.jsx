@@ -101,7 +101,7 @@ const AdminProjectsSection = () => {
   };
 
   return (
-    <div className={styles.projectsWrapper}>
+    <div className="container">
       <h2 className={styles.projectsTitle}>Správa projektů</h2>
       <div className={styles.formCardWrapper}>
         {isLoading && <Loader />}
@@ -149,7 +149,7 @@ const AdminProjectsSection = () => {
               <label className={styles.label}>Obrázek</label>
               <div className={styles.fileInputWrapper}>
                 <input
-                  id="fileInput"
+                  id="fileInputProject"
                   className={styles.inputFile}
                   name="image"
                   type="file"
@@ -157,11 +157,15 @@ const AdminProjectsSection = () => {
                     const file = e.currentTarget.files[0];
                     console.log("Selected file:", file);
                     setFieldValue("image", file);
-                    setSelectedFileName(file ? file.name : ""); // Зберігаємо ім'я файлу
+
+                    setSelectedFileName(() => (file ? file.name : "")); // Зберігаємо ім'я файлу
                     console.log("Selected file name:", selectedFileName);
                   }}
                 />
-                <label htmlFor="fileInput" className={styles.fileInputButton}>
+                <label
+                  htmlFor="fileInputProject"
+                  className={styles.fileInputButton}
+                >
                   Vybrat soubor
                 </label>
                 {/* Виведення імені вибраного файлу */}
