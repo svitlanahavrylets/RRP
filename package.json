@@ -14,6 +14,14 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
+    "@tiptap/core": "^2.11.7",
+    "@tiptap/extension-highlight": "^2.11.7",
+    "@tiptap/extension-list-item": "^2.11.7",
+    "@tiptap/extension-text-align": "^2.11.7",
+    "@tiptap/extension-underline": "^2.11.7",
+    "@tiptap/pm": "^2.11.7",
+    "@tiptap/react": "^2.11.7",
+    "@tiptap/starter-kit": "^2.11.7",
     "axios": "^1.8.2",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
@@ -29,6 +37,7 @@
     "react-router-dom": "^7.2.0",
     "react-spinners": "^0.15.0",
     "redux": "^5.0.1",
+    "shadcn": "^2.4.0-canary.17",
     "yup": "^1.6.1"
   },
   "devDependencies": {

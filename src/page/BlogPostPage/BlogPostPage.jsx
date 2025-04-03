@@ -1,15 +1,52 @@
 import { Link, useParams } from "react-router-dom";
-import { articles } from "../../data/articles.js";
 import styles from "./BlogPostPage.module.css";
 import { FaArrowLeft } from "react-icons/fa";
+import Loader from "../../components/Loader/Loader.jsx";
+import { useEffect, useState } from "react";
+import { fetchSingleBlog } from "../../api/content/blog.js";
 
 const BlogPostPage = () => {
-  const { id } = useParams();
-  const article = articles[id];
+  const { id } = useParams(); // Отримуємо id з URL
+  const [blog, setBlog] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (!article) {
+  useEffect(() => {
+    const loadBlog = async () => {
+      const data = await fetchSingleBlog(id); // Завантажуємо дані по id
+      setBlog(data);
+      setIsLoading(false);
+    };
+
+    loadBlog();
+  }, [id]);
+
+  if (!blog) {
     return <p>Článek nebyl nalezen</p>;
   }
+
+  const formatDate = (dateString) => {
+    const months = [
+      "ledna",
+      "února",
+      "března",
+      "dubna",
+      "května",
+      "června",
+      "července",
+      "srpna",
+      "září",
+      "října",
+      "listopadu",
+      "prosince",
+    ];
+
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    return `${day}. ${month} ${year}`;
+  };
 
   return (
     <section className={styles.blogPost}>
@@ -17,31 +54,24 @@ const BlogPostPage = () => {
         <Link to="/blog" className={styles.backButton}>
           <FaArrowLeft /> Zpět na blog
         </Link>
-        <h1 className={styles.title}>{article.title}</h1>
+        {isLoading && <Loader />}
+        <h1 className={styles.title}>{blog.title}</h1>
         <div className={styles.categoryDateWrap}>
-          <p className={styles.category}>{article.category}</p>
-          <p className={styles.date}>{article.date}</p>
+          <p className={styles.category}>{blog.category}</p>
+          <p className={styles.date}>{formatDate(blog.date)}</p>
+        </div>
+        <div className={styles.content}>
+          <img src={blog.imageUrl} alt={blog.title} className={styles.image} />
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: blog.description }}
+          />
         </div>
 
-        <img src={article.image} alt={article.title} className={styles.image} />
-        <p className={styles.content}>Obsah článku bude zde...</p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Reprehenderit a necessitatibus quos ad nulla quae tempora, natus
-          dolorem ducimus sequi, vero commodi voluptas quia iusto unde? Ipsum
-          totam vel velit. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Aperiam eligendi similique aliquam voluptatibus aut doloremque
-          facere eos quia hic vero voluptate soluta fugiat, corrupti est
-          voluptas debitis a expedita quod. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Ipsum sed inventore deleniti,
-          accusantium maiores reprehenderit, dolores, omnis cum iure laboriosam
-          soluta? Tempora quas, tenetur maiores asperiores nesciunt aperiam nemo
-          soluta.
-        </p>
         {/* Додаємо кнопку YouTube, якщо є посилання */}
-        {article.youtubeLink && (
+        {blog.youtubeLink && (
           <a
-            href={article.youtubeLink}
+            href={blog.youtubeLink}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.youtubeButton}

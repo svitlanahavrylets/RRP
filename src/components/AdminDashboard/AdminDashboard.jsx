@@ -1,44 +1,47 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { checkAdminAuth } from "../../../api/auth/auth.js";
+import logo from "../../assets/Лого RRP.png";
 
-import Button from "../../../components/Button/Button";
+import Button from "../Button/Button.jsx";
 import styles from "./AdminDashboard.module.css";
-import Loader from "../../../components/Loader/Loader.jsx";
+import Loader from "../Loader/Loader.jsx";
 import clsx from "clsx";
-import AdminTeamSection from "../../../components/AdminTeamSection/AdminTeamSection.jsx";
-import AdminProjectsSection from "../../../components/AdminProjectsSection/AdminProjectsSection.jsx";
-import AdminBlogSection from "../../../components/AdminBlogSection/AdminBlogSection.jsx";
+import AdminTeamSection from "../AdminTeamSection/AdminTeamSection.jsx";
+import AdminProjectsSection from "../AdminProjectsSection/AdminProjectsSection.jsx";
+import AdminBlogSection from "../AdminBlogSection/AdminBlogSection.jsx";
+import { checkAdminAuth } from "../../api/auth/auth.js";
+import iziToast from "izitoast";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [activeSection, setActiveSection] = useState("team"); // Відображається за замовчуванням
+  const [activeSection, setActiveSection] = useState("home"); // Відображається за замовчуванням
 
-  // useEffect(() => {
-  //   const verifyAuth = async () => {
-  //     try {
-  //       await checkAdminAuth();
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       iziToast.error({
-  //         title: "Chyba",
-  //         message: error || "Neplatné heslo. Zkuste to znovu",
-  //         position: "topRight",
-  //       });
-  //       navigate("/admin"); // Якщо неавторизований — переадресація на логін
-  //     }
-  //   };
-  //
-  //   verifyAuth();
-  // }, [navigate]);
+  useEffect(() => {
+    const verifyAuth = async () => {
+      try {
+        await checkAdminAuth();
+        setIsLoading(false);
+      } catch (error) {
+        iziToast.error({
+          title: "Chyba",
+          message: error || "Neplatné heslo. Zkuste to znovu",
+          position: "topRight",
+        });
+        navigate("/admin"); // Якщо неавторизований — переадресація на логін
+      }
+    };
+
+    verifyAuth();
+  }, [navigate]);
 
   useEffect(() => {
     setIsLoading(false); // Прибираємо перевірку токена
   }, []);
 
   const logout = () => {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("adminToken");
     navigate("/admin");
   };
 
@@ -71,6 +74,12 @@ const AdminDashboard = () => {
       </div>
 
       <div className={styles.adminContent}>
+        {activeSection === "home" && (
+          <div
+            className={styles.homeSection}
+            style={{ backgroundImage: `url(${logo})` }}
+          ></div>
+        )}
         {activeSection === "team" && <AdminTeamSection />}
         {activeSection === "projects" && <AdminProjectsSection />}
         {activeSection === "blog" && <AdminBlogSection />}

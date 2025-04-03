@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import AdminLogin from "../page/admin/login/AdminLogin";
-import AdminDashboard from "../page/admin/dashboard/AdminDashboard";
-import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import AdminPage from "../page/AdminPage/AdminPage.jsx"; // Імпортуємо AdminPage
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute.jsx"; // Для захищених маршрутів
+import AdminDashboard from "../components/AdminDashboard/AdminDashboard.jsx"; // Панель адміністратора
 
 const AdminRoutes = () => (
   <Routes>
-    <Route path="" element={<AdminLogin />} />
+    {/* Адмін сторінка з перевіркою авторизації */}
+    <Route path="/" element={<AdminPage />} />
+
+    {/* Захищений маршрут для адмінки */}
     <Route
       path="dashboard"
       element={

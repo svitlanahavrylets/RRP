@@ -4,7 +4,7 @@ import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import AdminRoutes from "./routes/AdminRoutes.jsx";
-import AdminDashboard from "./page/admin/dashboard/AdminDashboard.jsx";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));
 const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));

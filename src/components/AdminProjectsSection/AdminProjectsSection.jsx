@@ -11,6 +11,7 @@ import {
 import Loader from "../Loader/Loader.jsx";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import clsx from "clsx";
 
 const ProjectSchema = Yup.object().shape({
   image: Yup.mixed()
@@ -28,13 +29,13 @@ const ProjectSchema = Yup.object().shape({
   title: Yup.string()
     .trim()
     .min(2, "Title must be at least 2 characters")
-    .max(32, "Title must be at maximum 32 characters")
+
     .matches(/\S/, "Title cannot contain only spaces")
     .required("Required"),
   category: Yup.string()
     .trim()
     .min(2, "Title must be at least 2 characters")
-    .max(32, "Title must be at maximum 32 characters")
+
     .matches(/\S/, "Title cannot contain only spaces")
     .required("Required"),
   description: Yup.string()
@@ -150,7 +151,7 @@ const AdminProjectsSection = () => {
               <div className={styles.fileInputWrapper}>
                 <input
                   id="fileInputProject"
-                  className={styles.inputFile}
+                  className={clsx(styles.inputFile, styles.btnInput)}
                   name="image"
                   type="file"
                   onChange={(e) => {
@@ -242,7 +243,7 @@ const AdminProjectsSection = () => {
               ) : null
             )
           ) : (
-            <p>V databázi nebyl nalezen žádný zaměstnanec</p>
+            <p>V databázi nebyl nalezen žádný project</p>
           )}
         </ul>
       </div>

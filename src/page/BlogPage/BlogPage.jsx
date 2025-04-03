@@ -1,32 +1,42 @@
 import { Link } from "react-router-dom";
-import { articles } from "../../data/articles.js";
 import styles from "./BlogPage.module.css";
+import BlogCardItem from "../../components/BlogCardItem/BlogCardItem.jsx";
+import { useEffect, useState } from "react";
+import { fetchBlogData } from "../../api/content/blog.js";
+import Loader from "../../components/Loader/Loader.jsx";
 
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadBlogData = async () => {
+      const data = await fetchBlogData();
+
+      setBlogs(data || []);
+      setIsLoading(false);
+    };
+
+    loadBlogData();
+  }, []);
+
   return (
     <section className={styles.blogSection}>
       <div className="container">
         <div className={styles.articlesWrapper}>
-          {articles.map((article, index) => (
-            <Link
-              to={`/blog/${index}`}
-              key={index}
-              className={`${styles.card} ${
-                index < 2 ? styles.largeCard : styles.smallCard
-              }`}
-            >
-              <img
-                src={article.image}
-                alt={article.title}
-                className={styles.image}
-              />
-              <div className={styles.content}>
-                <p className={styles.category}>{article.category}</p>
-                <h3 className={styles.title}>{article.title}</h3>
-                <p className={styles.date}>{article.date}</p>
-              </div>
-            </Link>
-          ))}
+          {isLoading && <Loader />}
+          {Array.isArray(blogs) &&
+            blogs.map((blog, index) => (
+              <Link
+                to={`/blog/${blog._id}`}
+                key={blog._id}
+                className={`${styles.card} ${
+                  index < 2 ? styles.largeCard : styles.smallCard
+                }`}
+              >
+                <BlogCardItem blog={blog} />
+              </Link>
+            ))}
         </div>
       </div>
     </section>

@@ -20,7 +20,10 @@ const ProjectCardItem = ({ project, isMobile, activeIndex }) => {
           className={`${styles.portfolioOverlayText} ${
             isMobile && activeIndex === project._id ? styles.active : ""
           }`}
-          initial={!isMobile ? { opacity: 0, y: 100 } : {}}
+          initial={{ opacity: 0, y: 100 }} // Завжди прихований при завантаженні
+          animate={
+            isMobile && activeIndex === project._id ? { opacity: 1, y: 0 } : {}
+          }
           whileHover={!isMobile ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.3 }}
         >

@@ -11,6 +11,7 @@ import Button from "../Button/Button.jsx";
 import TeamCardItem from "../TeamCardItem/TeamCardItem.jsx";
 import { FaTrash } from "react-icons/fa";
 import Loader from "../Loader/Loader.jsx";
+import clsx from "clsx";
 
 const TeamMemberSchema = Yup.object().shape({
   photoUrl: Yup.mixed()
@@ -123,15 +124,14 @@ const AdminTeamSection = () => {
               <div className={styles.fileInputWrapper}>
                 <input
                   id="fileInputTeam"
-                  className={styles.inputFile}
+                  className={clsx(styles.inputFile, styles.btnInput)}
                   name="photoUrl"
                   type="file"
                   onChange={(e) => {
                     const file = e.currentTarget.files[0];
-                    console.log("Selected file:", file);
+
                     setFieldValue("photoUrl", file);
                     setSelectedFileName(file ? file.name : ""); // Зберігаємо ім'я файлу
-                    console.log("Selected file name:", selectedFileName);
                   }}
                 />
                 <label

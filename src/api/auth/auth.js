@@ -31,14 +31,19 @@ api.interceptors.response.use(
 
 export const loginAdmin = async (password) => {
   try {
-    const response = await api.post("/login", { password });
+    const response = await api.post("/admin/login", { password });
     return response.data;
   } catch (error) {
-    console.error("Login error:", error);
-    throw error.response?.data?.message || "Chyba při přihlášení"; // Якщо є помилка від сервера, показуємо її
+    const errorMessage =
+      error.response?.data?.message || "Chyba při přihlášení";
+    throw new Error(errorMessage); // Прокидаємо помилку для обробки в компоненті
   }
 };
 
 export const checkAdminAuth = async () => {
-  return api.get("/admin/protected"); // Запит для перевірки токена
+  const token = getToken();
+  if (!token) {
+    throw new Error("No token found, please login");
+  }
+  return api.get("/admin/protected");
 };

@@ -47,6 +47,14 @@
   max-width: 100%;
   height: auto;
 }
+
+.content {
+  text-align: center;
+  margin-bottom: 58px;
+  background-color: #fff;
+  color: var(--primary-color-blue);
+  border-radius: 4px;
+}
 .youtubeButton {
   color: var(--primary-color-gold);
 }

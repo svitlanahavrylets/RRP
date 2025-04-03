@@ -4,20 +4,31 @@ import { API_URL } from "../config.js";
 export const fetchBlogData = async () => {
   try {
     const response = await axios.get(`${API_URL}/blog`);
-    console.log("Отримані дані про команду:", response.data);
-    return response.data;
+    console.log(response.data.posts);
+
+    return response.data.posts;
   } catch (error) {
     console.error("Помилка при отриманні даних:", error);
   }
 };
 
+export const fetchSingleBlog = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/blog/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Помилка при отриманні блогу:", error);
+    return null;
+  }
+};
+
 export const createBlogData = async (dataBlog) => {
-  console.log("Функція createTeamData викликана з даними:", dataBlog);
   try {
     const response = await axios.post(`${API_URL}/blog`, dataBlog);
-    console.log("Сервер відповів:", response.data);
+    return response.data;
   } catch (error) {
-    console.error("Помилка при отриманні даних:", error.response.data);
+    console.error("Помилка при отриманні даних:", error.response?.data);
+    return null;
   }
 };
 
@@ -25,7 +36,7 @@ export const deleteBlogData = async (id) => {
   console.log(`Видаляємо картку з ID: ${id}`);
   try {
     const response = await axios.delete(`${API_URL}/blog/${id}`);
-    console.log("Картку успішно видалено:", response.data);
+    return response.data;
   } catch (error) {
     console.error("Помилка при видаленні картки:", error.response.data);
   }

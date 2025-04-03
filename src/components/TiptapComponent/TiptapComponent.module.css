@@ -1,0 +1,24 @@
+.label {
+  font-size: 12px;
+}
+
+.editorWrapper {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-height: 200px;
+  background: #fff;
+  margin-bottom: 16px;
+}
+/* .editorWrapper p,
+h1,
+h2,
+h3 {
+  color: var(--secondary-color-4);
+  min-height: 200px;
+  padding: 10px;
+  margin: 0;
+} */
+
+.editor {
+  min-height: 200px;
+}
