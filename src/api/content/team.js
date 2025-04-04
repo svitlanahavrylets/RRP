@@ -1,9 +1,9 @@
-import axios from "axios";
+import api from "../auth/auth.js"; // Імпортуємо api інстанс з auth.js
 import { API_URL } from "../config.js";
 
 export const fetchTeamData = async () => {
   try {
-    const response = await axios.get(`${API_URL}/team`);
+    const response = await api.get(`${API_URL}/team`); // Використовуємо api інстанс
     return response.data;
   } catch (error) {
     console.error("Помилка при отриманні даних:", error);
@@ -12,8 +12,7 @@ export const fetchTeamData = async () => {
 
 export const createTeamData = async (dataTeam) => {
   try {
-    const response = await axios.post(`${API_URL}/team`, dataTeam);
-
+    const response = await api.post(`${API_URL}/team`, dataTeam); // Використовуємо api інстанс
     return response.data;
   } catch (error) {
     console.error("Помилка при отриманні даних:", error.response.data);
@@ -22,7 +21,7 @@ export const createTeamData = async (dataTeam) => {
 
 export const deleteTeamData = async (id) => {
   try {
-    const response = await axios.delete(`${API_URL}/team/${id}`);
+    const response = await api.delete(`${API_URL}/team/${id}`); // Використовуємо api інстанс
     return response.data;
   } catch (error) {
     console.error("Помилка при видаленні картки:", error.response.data);

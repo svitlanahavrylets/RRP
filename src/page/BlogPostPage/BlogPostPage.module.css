@@ -10,7 +10,7 @@
   margin-bottom: 58px;
   font-size: 12px;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--primary-color-white);
   border-radius: 4px;
   text-decoration: none;
   transition: background-color 0.3s ease;
@@ -49,12 +49,15 @@
 }
 
 .content {
-  text-align: center;
   margin-bottom: 58px;
-  background-color: #fff;
-  color: var(--primary-color-blue);
-  border-radius: 4px;
 }
+
+.content p:empty::before {
+  content: " ";
+  display: inline-block;
+  min-height: 1em;
+}
+
 .youtubeButton {
   color: var(--primary-color-gold);
 }
@@ -62,6 +65,7 @@
 .youtubeButton:focus {
   color: var(--secondary-color-5);
 }
+
 @media screen and (min-width: 768px) {
   .image {
     margin: 0 auto 72px;

@@ -85,6 +85,11 @@ const AdminBlogSection = () => {
       Highlight, // Додає підсвічування тексту
     ],
     content: "",
+    editorProps: {
+      attributes: {
+        style: "min-height: 200px; padding: 10px; margin: 0;   outline: none;",
+      },
+    },
   });
 
   return (

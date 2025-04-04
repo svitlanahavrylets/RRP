@@ -3,12 +3,12 @@ import { API_URL } from "../config.js";
 
 const api = axios.create({
   baseURL: API_URL,
+  withCredentials: true, // для refreshToken в cookie
 });
 
-// Функція для отримання токена
 const getToken = () => localStorage.getItem("adminToken");
 
-// Додавання токена у всі запити
+// 👉 Додаємо токен до кожного запиту
 api.interceptors.request.use((config) => {
   const token = getToken();
   if (token) {
@@ -17,33 +17,67 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Перехоплення помилок 401 (неавторизовано)
+// 👉 Відловлюємо 401 і пробуємо оновити токен
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("adminToken");
-      window.location.href = "/admin"; // Вихід та редірект на логін
+  async (error) => {
+    const originalRequest = error.config;
+
+    // Якщо неавторизований і ще не пробували рефреш
+    if (
+      error.response?.status === 401 &&
+      originalRequest &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+
+      try {
+        const res = await axios.post(
+          `${API_URL}/admin/refresh`,
+          {},
+          { withCredentials: true }
+        );
+
+        const newToken = res.data.token;
+        localStorage.setItem("adminToken", newToken);
+        originalRequest.headers.Authorization = `Bearer ${newToken}`;
+
+        return api(originalRequest);
+      } catch (refreshError) {
+        // ❌ Не вдалося оновити токен — чистимо та редірект
+        localStorage.removeItem("adminToken");
+        window.location.href = "/admin"; // або можеш передати refreshFailed, якщо хочеш обробляти в UI
+
+        return Promise.reject({ ...refreshError, refreshFailed: true });
+      }
     }
+
     return Promise.reject(error);
   }
 );
 
+// 🔑 Вхід адміністратора
 export const loginAdmin = async (password) => {
   try {
     const response = await api.post("/admin/login", { password });
+    localStorage.setItem("adminToken", response.data.token);
     return response.data;
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Chyba při přihlášení";
-    throw new Error(errorMessage); // Прокидаємо помилку для обробки в компоненті
+    throw new Error(errorMessage);
   }
 };
 
+// 🔐 Перевірка доступу до захищеного ресурсу
 export const checkAdminAuth = async () => {
   const token = getToken();
   if (!token) {
     throw new Error("No token found, please login");
   }
-  return api.get("/admin/protected");
+
+  const res = await api.get("/admin/protected");
+  return res.data;
 };
+
+export default api;

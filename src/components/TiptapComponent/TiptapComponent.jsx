@@ -11,11 +11,18 @@ const TiptapComponent = ({ editor }) => {
     if (!editor) return;
 
     const handleUpdate = () => {
-      setFieldValue("description", editor.getHTML());
+      let html = editor.getHTML();
+
+      // Заміняємо порожні абзаци на &nbsp;
+      html = html.replace(/<p><\/p>/g, "<p>&nbsp;</p>");
+
+      setFieldValue("description", html);
     };
 
+    // Відслідковуємо оновлення в редакторі
     editor.on("update", handleUpdate);
 
+    // Очищаємо слухачів при демонтажі компонента
     return () => {
       editor.off("update", handleUpdate);
     };

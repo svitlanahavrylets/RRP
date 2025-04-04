@@ -10,7 +10,7 @@
   gap: 10px;
   flex-wrap: wrap;
 }
-/* 
+
 .buttonGroup button {
   background-color: #f0f0f0;
   color: #333;
@@ -25,7 +25,7 @@
 .buttonGroup button:hover {
   background-color: var(--primary-color-gold);
   border: 1px solid var(--primary-color-gold);
-}
+} /* 
 .buttonGroup button.is-active:focus {
   box-shadow: 0 0 0 2px var(--primary-color-gold);
 }
@@ -44,16 +44,16 @@
   background-color: #0056b3;
 } */
 
-.iconWrapper {
-  border: 1px solid; /* Обведення */
-  border-radius: 0.375rem; /* Округлення кутів (середнє) */
-  padding: 0.25rem; /* Відступи всередині елемента */
-  margin-bottom: 0.25rem; /* Відступ знизу */
-  background-color: #f1f5f9; /* Світлий сірий фон (bg-slate-50) */
-  display: flex; /* Встановлюємо для можливості використання space-x */
-  gap: 0.5rem; /* Простір між дочірніми елементами по горизонталі (space-x-2) */
-  z-index: 50; /* Високий рівень стеку (z-50) */
-}
+/* .iconWrapper {
+  border: 1px solid; 
+  border-radius: 0.375rem; 
+  padding: 0.25rem; 
+  margin-bottom: 0.25rem; 
+  background-color: #f1f5f9;
+  display: flex; 
+  gap: 0.5rem; 
+  z-index: 50; 
+} */
 
 .tiptap {
   :first-child {

@@ -8,6 +8,8 @@
 }
 
 .title {
+  display: flex;
+  text-align: center;
   font-size: 36px;
   font-weight: bold;
   color: var(--primary-color-gold);
@@ -23,9 +25,36 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  align-items: center;
 }
 
-.inputWrapper input {
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye {
+  width: 16px;
+  height: 16px;
+  fill: var(--primary-color-black);
+}
+
+.logInPass {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -34,11 +63,11 @@
   outline: none;
 }
 
-.inputWrapper input:focus {
+.logInPass:focus {
   border-color: var(--primary-color-gold);
 }
 
-.inputWrapper button {
+.logInBtn {
   padding: 10px;
   font-size: 16px;
   background-color: var(--primary-color-blue);
@@ -49,11 +78,11 @@
   transition: background-color 0.3s ease;
 }
 
-.inputWrapper button:hover {
+.logInBtn:hover {
   background-color: var(--primary-color-gold);
 }
 
-.inputWrapper p {
+.logInErrorText {
   font-size: 14px;
   color: red;
   text-align: center;

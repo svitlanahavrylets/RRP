@@ -13,7 +13,12 @@ const BlogPostPage = () => {
   useEffect(() => {
     const loadBlog = async () => {
       const data = await fetchSingleBlog(id); // Завантажуємо дані по id
-      setBlog(data);
+      // Заміняємо &nbsp; назад на порожні абзаци
+      const fixedDescription = data.description.replace(
+        /<p>&nbsp;<\/p>/g,
+        "<p></p>"
+      );
+      setBlog({ ...data, description: fixedDescription });
       setIsLoading(false);
     };
 

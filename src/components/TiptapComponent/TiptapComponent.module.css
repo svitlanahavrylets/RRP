@@ -3,22 +3,11 @@
 }
 
 .editorWrapper {
-  border: 1px solid #ccc;
   border-radius: 5px;
   min-height: 200px;
-  background: #fff;
+  background: var(--primary-color-blue);
   margin-bottom: 16px;
-}
-/* .editorWrapper p,
-h1,
-h2,
-h3 {
-  color: var(--secondary-color-4);
-  min-height: 200px;
-  padding: 10px;
-  margin: 0;
-} */
-
-.editor {
+  display: flex;
+  flex-direction: column;
   min-height: 200px;
 }
