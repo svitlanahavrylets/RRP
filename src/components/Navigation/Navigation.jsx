@@ -40,7 +40,7 @@ const Navigation = ({ className, isFooter }) => {
           <ul className={styles.navList}>
             <li className={styles.navItem}>
               <NavLink
-                to="/about"
+                to="/"
                 end
                 onClick={closeMenu}
                 className={({ isActive }) =>
