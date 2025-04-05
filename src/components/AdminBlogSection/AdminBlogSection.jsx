@@ -18,6 +18,10 @@ import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
 import TiptapComponent from "../TiptapComponent/TiptapComponent.jsx";
+import TextStyle from "@tiptap/extension-text-style";
+import Color from "@tiptap/extension-color";
+import FontFamily from "@tiptap/extension-font-family";
+import Placeholder from "@tiptap/extension-placeholder";
 
 const BlogSchema = Yup.object().shape({
   image: Yup.mixed()
@@ -82,12 +86,21 @@ const AdminBlogSection = () => {
     extensions: [
       StarterKit,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Highlight, // Додає підсвічування тексту
+      Highlight,
+      TextStyle.configure({ mergeNestedSpanStyles: true }),
+      Color,
+      FontFamily,
+      Placeholder.configure({
+        emptyEditorClass: "is-editor-empty",
+        emptyNodeClass: "my-custom-is-empty-class",
+        placeholder: "Zadejte text...",
+      }),
     ],
     content: "",
     editorProps: {
       attributes: {
-        style: "min-height: 200px; padding: 10px; margin: 0;   outline: none;",
+        style:
+          "min-height: 200px; padding: 10px; margin: 0; outline: none; list-style-type: disc;",
       },
     },
   });
@@ -110,12 +123,6 @@ const AdminBlogSection = () => {
           onSubmit={async (values, { resetForm }) => {
             console.log("Форма сабмітиться!");
             console.log("дані на відправку:", values);
-
-            // Форматуємо текст для збереження коректних абзаців
-            // const formattedDescription = values.description.replace(
-            //   /\n+/g,
-            //   "\n\n"
-            // );
 
             // Створюємо форму для відправки даних
             const formData = new FormData();
@@ -143,6 +150,9 @@ const AdminBlogSection = () => {
               }
 
               resetForm();
+
+              editor.commands.clearContent();
+
               setSelectedFileName("");
             } catch (error) {
               console.error("Помилка при додаванні:", error);

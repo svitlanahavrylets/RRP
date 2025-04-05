@@ -59,21 +59,30 @@
 .navLink:focus {
   color: var(--primary-color-gold);
 }
-/* .navFooter .nav {
-  position: static;
-  background: none;
-  height: auto;
-  transform: none;
-  flex-direction: column;
-  gap: 20px;
-} */
-.navFooter .navList {
+
+/* .navFooter .navList {
   display: flex !important;
   flex-direction: column !important;
   align-items: center;
   flex-direction: column;
-  align-items: flex-start; /* або center, якщо треба по центру */
+  align-items: flex-start; 
+} */
+
+.navFooter {
+  position: static;
+  background: none;
+  height: auto;
+  transform: none;
+  display: flex;
+  justify-content: center;
 }
+
+.navFooter .navList {
+  flex-direction: column;
+  align-items: flex-start; /* або center */
+  gap: 20px;
+}
+
 /* .studioLowerDash {
   position: relative;
   color: #404bbf;
@@ -97,19 +106,8 @@
     display: none;
   }
 
-  .nav {
-    position: static;
-    background: none;
-    height: auto;
-    transform: none;
+  .navFooter .navList {
     flex-direction: row;
-    gap: 40px;
-  }
-
-  .navList {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    text-align: center;
+    align-items: flex-start;
   }
 }

@@ -130,7 +130,7 @@
     display: flex;
     align-items: baseline;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     /* gap: 72px; */
   }
   /* 
@@ -164,30 +164,3 @@
     gap: 16px;
   }
 }
-
-/* .nav {
-  display: flex !important;
-  position: static !important;
-  background: none !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-} */
-
-/* .navList {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-} */
-
-/* .navFooter ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.navFooter ul a {
-  padding: 8px 0;
-} */

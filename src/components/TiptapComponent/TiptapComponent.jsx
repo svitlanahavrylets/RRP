@@ -11,6 +11,8 @@ const TiptapComponent = ({ editor }) => {
     if (!editor) return;
 
     const handleUpdate = () => {
+      editor.commands.removeEmptyTextStyle();
+
       let html = editor.getHTML();
 
       // Заміняємо порожні абзаци на &nbsp;

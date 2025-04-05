@@ -34,9 +34,10 @@ const Navigation = ({ className, isFooter }) => {
 
       {(isFooter || isDesktop || isOpen) && (
         <nav
-          className={`${styles.nav} ${isOpen ? styles.show : ""} ${
-            className || ""
-          }`}
+          className={`${styles.nav} 
+      ${isFooter ? styles.navFooter : ""} 
+      ${isOpen ? styles.show : ""} 
+      ${className || ""}`}
         >
           <ul className={styles.navList}>
             <li className={styles.navItem}>
