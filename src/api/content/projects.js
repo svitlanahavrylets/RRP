@@ -11,7 +11,6 @@ export const fetchProjectsData = async () => {
 };
 
 export const createProjectsData = async (dataProjects) => {
-  console.log("Функція createProjectsData викликана з даними:", dataProjects);
   try {
     const response = await api.post(`${API_URL}/projects`, dataProjects); // Використовуємо api інстанс
     return response.data;
@@ -21,7 +20,6 @@ export const createProjectsData = async (dataProjects) => {
 };
 
 export const deleteProjectsData = async (id) => {
-  console.log(`Видаляємо картку з ID: ${id}`);
   try {
     const response = await api.delete(`${API_URL}/projects/${id}`); // Використовуємо api інстанс
     return response.data;

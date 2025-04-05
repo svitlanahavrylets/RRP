@@ -84,18 +84,13 @@ const AdminProjectsSection = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("Updated activeIndex:", activeIndex);
-  }, [activeIndex]);
+  useEffect(() => {}, [activeIndex]);
 
   const handleClick = (_id) => {
     if (isMobile) {
-      console.log("Clicked on project index:", _id);
-      console.log("Current activeIndex before update:", activeIndex);
-
       setActiveIndex((prev) => {
         const newIndex = prev === _id ? null : _id;
-        console.log("New activeIndex inside setState:", newIndex);
+
         return newIndex;
       });
     }
@@ -115,9 +110,6 @@ const AdminProjectsSection = () => {
           }}
           validationSchema={ProjectSchema}
           onSubmit={async (values, { resetForm }) => {
-            console.log("Форма сабмітиться!");
-            console.log("дані на відправку:", values);
-
             // Створюємо форму для відправки даних
             const formData = new FormData();
             formData.append("image", values.image);
@@ -127,7 +119,6 @@ const AdminProjectsSection = () => {
 
             try {
               const newProject = await createProjectsData(formData);
-              console.log("Отриманий проєкт після сабміту:", newProject);
 
               if (newProject?.project) {
                 setProjects((prevProjects) => [
@@ -219,7 +210,9 @@ const AdminProjectsSection = () => {
           )}
         </Formik>
         <ul className={styles.projectsCard}>
-          {projects?.length > 0 ? (
+          {isLoading ? (
+            <Loader /> // Покажемо лоадер, коли завантажується дані
+          ) : projects?.length > 0 ? (
             projects.map((project) =>
               project ? (
                 <li

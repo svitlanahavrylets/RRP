@@ -8,13 +8,22 @@ import Loader from "../../components/Loader/Loader.jsx";
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadBlogData = async () => {
-      const data = await fetchBlogData();
+      try {
+        const data = await fetchBlogData();
 
-      setBlogs(data || []);
-      setIsLoading(false);
+        setBlogs(data || []);
+      } catch (err) {
+        setError(
+          "Něco se pokazilo. Zkuste to prosím znovu později. Error:",
+          err
+        );
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadBlogData();
@@ -25,6 +34,7 @@ const Blog = () => {
       <div className="container">
         <div className={styles.articlesWrapper}>
           {isLoading && <Loader />}
+          {error && <p className={styles.errorMessage}>{error}</p>}
           {Array.isArray(blogs) &&
             blogs.map((blog, index) => (
               <Link

@@ -5,7 +5,6 @@ import { socialIcons } from "../../data/socialIcons.jsx";
 import { socialLinks } from "../../data/socialLinks.js";
 
 const Footer = () => {
-  console.log("Footer rendered");
   return (
     <div className="container">
       <div className={styles.footer}>
@@ -25,7 +24,7 @@ const Footer = () => {
             <h3 className={styles.socialText}>Sociální sítě</h3>
             <ul className={styles.socialIconList}>
               {socialIcons
-                .filter(({ id }) => socialLinks[id]) // Фільтруємо тільки наявні соцмережі
+                .filter(({ id }) => socialLinks[id])
                 .map(({ icon, id }) => (
                   <li key={id} className={styles.socialIconItem}>
                     <a

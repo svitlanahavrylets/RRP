@@ -104,11 +104,13 @@
 .navWrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 24px;
 }
+
 .menu {
   color: var(--primary-color-gold);
+  text-align: left;
 }
 .navFooter {
   display: flex;
@@ -162,5 +164,8 @@
   }
   .socialIconList {
     gap: 16px;
+  }
+  .navWrapper {
+    align-items: center;
   }
 }

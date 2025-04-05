@@ -3,6 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import styles from "./Navigation.module.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { VscClose } from "react-icons/vsc";
+import { NavLink } from "react-router-dom";
 
 const Navigation = ({ className, isFooter }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,10 +18,7 @@ const Navigation = ({ className, isFooter }) => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
-  console.log("isFooter:", isFooter);
-  console.log("isDesktop:", isDesktop);
-  console.log("isOpen:", isOpen);
-  console.log("Navigation in Footer");
+
   return (
     <div className={styles.navContainer}>
       {/* Бургер-кнопка тільки для хедера на мобайл/планшеті */}
@@ -41,33 +39,60 @@ const Navigation = ({ className, isFooter }) => {
         >
           <ul className={styles.navList}>
             <li className={styles.navItem}>
-              <a className={styles.navLink} href="/" onClick={closeMenu}>
-                O nás
-              </a>
-            </li>
-            <li className={styles.navItem}>
-              <a className={styles.navLink} href="/ourTeam" onClick={closeMenu}>
-                Náš tým
-              </a>
-            </li>
-            <li className={styles.navItem}>
-              <a
-                className={styles.navLink}
-                href="/projects"
+              <NavLink
+                to="/about"
+                end
                 onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
+                O nás
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/ourTeam"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
+                Náš tým
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/projects"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
               >
                 Projekty
-              </a>
+              </NavLink>
             </li>
             <li className={styles.navItem}>
-              <a className={styles.navLink} href="/blog" onClick={closeMenu}>
+              <NavLink
+                to="/blog"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
                 Blog
-              </a>
+              </NavLink>
             </li>
             <li className={styles.navItem}>
-              <a className={styles.navLink} href="/contact" onClick={closeMenu}>
+              <NavLink
+                to="/contact"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
                 Kontakt
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>

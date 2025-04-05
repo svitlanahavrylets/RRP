@@ -121,9 +121,6 @@ const AdminBlogSection = () => {
           }}
           validationSchema={BlogSchema}
           onSubmit={async (values, { resetForm }) => {
-            console.log("Форма сабмітиться!");
-            console.log("дані на відправку:", values);
-
             // Створюємо форму для відправки даних
             const formData = new FormData();
             formData.append("image", values.image);
@@ -138,7 +135,6 @@ const AdminBlogSection = () => {
 
             try {
               const newBlog = await createBlogData(formData);
-              console.log("Отриманий проєкт після сабміту:", newBlog);
 
               if (newBlog?.post) {
                 setBlogs((prevPost) => [
@@ -245,7 +241,9 @@ const AdminBlogSection = () => {
           )}
         </Formik>
         <ul className={styles.projectsCard}>
-          {blogs?.length > 0 ? (
+          {isLoading ? (
+            <Loader /> // Покажемо лоадер, коли завантажується дані
+          ) : blogs?.length > 0 ? (
             blogs.map((blog) =>
               blog ? (
                 <li

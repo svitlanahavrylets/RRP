@@ -21,10 +21,10 @@
   .burger {
     display: block;
   }
-}
-@media only screen and (min-width: 1440px) {
+}*/
+
+@media screen and (min-width: 1158px) {
   .appBar {
-    max-width: 1440px;
-    padding: 0 15px;
+    padding: 0px;
   }
-} */
+}

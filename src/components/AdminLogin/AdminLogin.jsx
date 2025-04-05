@@ -25,8 +25,6 @@ const AdminLogin = () => {
 
       navigate("/admin/dashboard");
     } catch (error) {
-      console.log("CATCH BLOCK RUNNING");
-      console.log("Error:", error);
       const errorMessage = error.message || "Chyba při přihlášení";
       setError("Nesprávné heslo! Zkuste to znovu.");
 

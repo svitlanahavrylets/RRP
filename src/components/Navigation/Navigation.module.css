@@ -83,31 +83,53 @@
   gap: 20px;
 }
 
-/* .studioLowerDash {
+.activeLink {
   position: relative;
-  color: #404bbf;
+  color: var(--primary-color-gold); /* Можеш змінити колір за потреби */
 }
-.studioLowerDash::after {
+
+.activeLink::after {
   content: "";
-  display: block;
-  height: 4px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
   position: absolute;
-  background-color: #404bbf;
-  border-radius: 2px;
   left: 0;
-  bottom: -1px;
-} */
+  bottom: 2px;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color-gold);
+  border-radius: 2px;
+}
+
+@media (min-width: 758px) {
+  .navFooter .activeLink::after {
+    bottom: -7px;
+  }
+}
 
 @media (min-width: 1158px) {
   .burger {
     display: none;
   }
 
+  .nav {
+    position: static;
+    background: none;
+    height: auto;
+    transform: none;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .navList {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    text-align: center;
+  }
   .navFooter .navList {
     flex-direction: row;
     align-items: flex-start;
+  }
+  .navFooter .activeLink::after {
+    bottom: -7px;
   }
 }

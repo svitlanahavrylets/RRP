@@ -72,7 +72,6 @@ const AdminTeamSection = () => {
     <div className={styles.teamWrapper}>
       <h2 className={styles.teamTitle}>Správa týmu</h2>
       <div className={styles.formCardWrapper}>
-        {isLoading && <Loader />}
         <Formik
           initialValues={{
             photoUrl: null,
@@ -223,7 +222,9 @@ const AdminTeamSection = () => {
         </Formik>
 
         <ul className={styles.teamCard}>
-          {teamMembers?.length > 0 ? (
+          {isLoading ? (
+            <Loader />
+          ) : teamMembers?.length > 0 ? (
             teamMembers.map((member) =>
               member ? (
                 <li key={member._id} className={styles.teamCardItem}>

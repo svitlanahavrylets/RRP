@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 import { fetchSingleBlog } from "../../api/content/blog.js";
 
 const BlogPostPage = () => {
-  const { id } = useParams(); // Отримуємо id з URL
+  const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadBlog = async () => {
-      const data = await fetchSingleBlog(id); // Завантажуємо дані по id
-      // Заміняємо &nbsp; назад на порожні абзаци
+      const data = await fetchSingleBlog(id);
+
       const fixedDescription = data.description.replace(
         /<p>&nbsp;<\/p>/g,
         "<p></p>"
