@@ -42,19 +42,6 @@ const AdminLogin = () => {
   };
 
   return (
-    // <div className={style.adminContainer}>
-    //   <h2 className={style.title}>Přihlášení do administrace</h2>
-    //   <div className={style.inputWrapper}>
-    //     <input
-    //       type="password"
-    //       placeholder="Zadejte heslo"
-    //       value={password}
-    //       onChange={(e) => setPassword(e.target.value)}
-    //     />
-    //     <button onClick={handleLogin}>Přihlásit se</button>
-    //     {error && <p style={{ color: "red" }}>{error}</p>}
-    //   </div>
-    // </div>
     <form
       onSubmit={(e) => {
         e.preventDefault();

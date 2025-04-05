@@ -98,12 +98,15 @@
   background-color: var(--primary-color-gold);
   border-radius: 2px;
 }
-
+.navFooter .activeLink::after {
+  bottom: -7px;
+}
+/* 
 @media (min-width: 758px) {
   .navFooter .activeLink::after {
     bottom: -7px;
   }
-}
+} */
 
 @media (min-width: 1158px) {
   .burger {
@@ -129,7 +132,7 @@
     flex-direction: row;
     align-items: flex-start;
   }
-  .navFooter .activeLink::after {
+  /* .navFooter .activeLink::after {
     bottom: -7px;
-  }
+  } */
 }

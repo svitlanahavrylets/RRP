@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import { motion } from "framer-motion";
 import styles from "./ProjectsPage.module.css";
 import { fetchProjectsData } from "../../api/content/projects.js";
 import Loader from "../../components/Loader/Loader.jsx";
