@@ -7,6 +7,7 @@ import styles from "./OrderServiceModal.module.css";
 import { submitOrderData } from "../../api/user/userApi.js";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import FormAutoSave from "../FormAutoSave.jsx";
 
 const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegexp = /^\+?\d{10,15}$/;
@@ -27,8 +28,21 @@ const validationSchema = Yup.object({
   message: Yup.string(),
 });
 
+const STORAGE_KEY = "orderServiceFormData";
+
+const loadFromStorage = () => {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return saved ? JSON.parse(saved) : null;
+};
+
+const clearStorage = () => {
+  localStorage.removeItem(STORAGE_KEY);
+};
+
 const OrderServiceModal = ({ onClose }) => {
-  const initialValues = {
+  const savedValues = loadFromStorage();
+
+  const initialValues = savedValues || {
     name: "",
     phone: "",
     email: "",
@@ -49,6 +63,7 @@ const OrderServiceModal = ({ onClose }) => {
           position: "topRight",
         });
         resetForm();
+        clearStorage();
       } else {
         iziToast.error({
           title: "Chyba",
@@ -84,69 +99,72 @@ const OrderServiceModal = ({ onClose }) => {
         onSubmit={handleSubmit}
       >
         {({ isValid, dirty, isSubmitting }) => (
-          <Form>
-            <label className={styles.label}>
-              Jméno
-              <div className={styles.inputWrapper}>
-                <AiOutlineUser className={styles.icon} size={20} />
-                <Field type="text" name="name" className={styles.input} />
-              </div>
-              <ErrorMessage
-                name="name"
-                component="div"
-                className={styles.error}
-              />
-            </label>
+          <>
+            <FormAutoSave />
+            <Form>
+              <label className={styles.label}>
+                Jméno
+                <div className={styles.inputWrapper}>
+                  <AiOutlineUser className={styles.icon} size={20} />
+                  <Field type="text" name="name" className={styles.input} />
+                </div>
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className={styles.error}
+                />
+              </label>
 
-            <label className={styles.label}>
-              Telefon
-              <div className={styles.inputWrapper}>
-                <AiOutlinePhone className={styles.icon} size={20} />
-                <Field type="tel" name="phone" className={styles.input} />
-              </div>
-              <ErrorMessage
-                name="phone"
-                component="div"
-                className={styles.error}
-              />
-            </label>
+              <label className={styles.label}>
+                Telefon
+                <div className={styles.inputWrapper}>
+                  <AiOutlinePhone className={styles.icon} size={20} />
+                  <Field type="tel" name="phone" className={styles.input} />
+                </div>
+                <ErrorMessage
+                  name="phone"
+                  component="div"
+                  className={styles.error}
+                />
+              </label>
 
-            <label className={styles.label}>
-              Email
-              <div className={styles.inputWrapper}>
-                <AiOutlineMail className={styles.icon} size={20} />
-                <Field type="email" name="email" className={styles.input} />
-              </div>
-              <ErrorMessage
-                name="email"
-                component="div"
-                className={styles.error}
-              />
-            </label>
+              <label className={styles.label}>
+                Email
+                <div className={styles.inputWrapper}>
+                  <AiOutlineMail className={styles.icon} size={20} />
+                  <Field type="email" name="email" className={styles.input} />
+                </div>
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className={styles.error}
+                />
+              </label>
 
-            <label className={styles.label}>
-              Komentář
-              <Field
-                as="textarea"
-                name="message"
-                className={styles.textarea}
-                placeholder="Text input"
-              />
-              <ErrorMessage
-                name="message"
-                component="div"
-                className={styles.error}
-              />
-            </label>
+              <label className={styles.label}>
+                Komentář
+                <Field
+                  as="textarea"
+                  name="message"
+                  className={styles.textarea}
+                  placeholder="Text input"
+                />
+                <ErrorMessage
+                  name="message"
+                  component="div"
+                  className={styles.error}
+                />
+              </label>
 
-            <Button
-              type="submit"
-              disabled={!isValid || !dirty || isSubmitting}
-              className={styles.btnModal}
-            >
-              {isSubmitting ? "Odesílání..." : "Odeslat"}
-            </Button>
-          </Form>
+              <Button
+                type="submit"
+                disabled={!isValid || !dirty || isSubmitting}
+                className={styles.btnModal}
+              >
+                {isSubmitting ? "Odesílání..." : "Odeslat"}
+              </Button>
+            </Form>
+          </>
         )}
       </Formik>
     </Modal>
