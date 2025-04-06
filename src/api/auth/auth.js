@@ -13,6 +13,7 @@ api.interceptors.request.use((config) => {
   const token = getToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
+    console.log("🔐 Додаємо токен:", config.headers.Authorization);
   }
   return config;
 });
@@ -27,7 +28,8 @@ api.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       originalRequest &&
-      !originalRequest._retry
+      !originalRequest._retry &&
+      !originalRequest.url.includes("/admin/refresh") // <--- ось додаткова перевірка
     ) {
       originalRequest._retry = true;
 
@@ -38,7 +40,10 @@ api.interceptors.response.use(
           { withCredentials: true }
         );
 
-        const newToken = res.data.token;
+        const newToken = res.data?.token;
+        if (!newToken) {
+          throw new Error("Новий токен не отримано");
+        }
         localStorage.setItem("adminToken", newToken);
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
 
@@ -46,7 +51,7 @@ api.interceptors.response.use(
       } catch (refreshError) {
         // ❌ Не вдалося оновити токен — чистимо та редірект
         localStorage.removeItem("adminToken");
-        window.location.href = "/admin"; // або можеш передати refreshFailed, якщо хочеш обробляти в UI
+        window.location.replace("/admin");
 
         return Promise.reject({ ...refreshError, refreshFailed: true });
       }

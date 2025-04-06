@@ -20,6 +20,8 @@ export const createTeamData = async (dataTeam) => {
 };
 
 export const deleteTeamData = async (id) => {
+  const token = localStorage.getItem("adminToken");
+  console.log("token перед DELETE:", token); // ← додай це
   try {
     const response = await api.delete(`${API_URL}/team/${id}`); // Використовуємо api інстанс
     return response.data;
