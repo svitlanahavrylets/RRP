@@ -52,7 +52,7 @@ const Navigation = ({ className, isFooter }) => {
             </li>
             <li className={styles.navItem}>
               <NavLink
-                to="/ourTeam"
+                to="/our-team"
                 onClick={closeMenu}
                 className={({ isActive }) =>
                   `${styles.navLink} ${isActive ? styles.activeLink : ""}`

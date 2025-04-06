@@ -11,6 +11,9 @@ const ProjectsPage = lazy(() => import("./page/ProjectsPage/ProjectsPage.jsx"));
 const BlogPage = lazy(() => import("./page/BlogPage/BlogPage.jsx"));
 const BlogPostPage = lazy(() => import("./page/BlogPostPage/BlogPostPage.jsx"));
 const ContactPage = lazy(() => import("./page/ContactPage/ContactPage.jsx"));
+const PrivacyPolicyPage = lazy(() =>
+  import("./page/PrivacyPolicyPage/PrivacyPolicyPage.jsx")
+);
 const NotFoundPage = lazy(() => import("./page/NotFoundPage/NotFoundPage.jsx"));
 
 function App() {
@@ -20,11 +23,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/" element={<HomePage />} />
-          <Route path="ourTeam" element={<OurTeamPage />} />
+          <Route path="our-team" element={<OurTeamPage />} />
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/:id" element={<BlogPostPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 

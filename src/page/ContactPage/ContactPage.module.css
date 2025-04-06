@@ -3,22 +3,13 @@
   background-color: var(--primary-color-gold);
 }
 
-.contactTitle {
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 1.11;
-  letter-spacing: 0.02em;
-  text-transform: capitalize;
-  text-align: center;
-  margin-bottom: 72px;
-}
-
 .addressTitle {
-  font-size: 20px;
+  /* font-size: 20px; */
   line-height: 1.2;
   letter-spacing: 0.02em;
   /* color: var(--secondary-color-4); */
   margin-bottom: 36px;
+  font-style: normal;
 }
 .address,
 .email,

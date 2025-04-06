@@ -3,6 +3,7 @@ import Navigation from "../Navigation/Navigation.jsx";
 import styles from "./Footer.module.css";
 import { socialIcons } from "../../data/socialIcons.jsx";
 import { socialLinks } from "../../data/socialLinks.js";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -43,12 +44,20 @@ const Footer = () => {
         <div className={styles.navWrapper}>
           <h3 className={styles.menu}>Menu</h3>
           <Navigation isFooter={true} className={styles.navFooter} />
-          {/* <Navigation isFooter={false} /> */}
         </div>
       </div>
-      <p className={styles.copyright}>
-        Copyright © {new Date().getFullYear()} RRP. All Rights Reserved.
-      </p>
+      <ul className={styles.copyrightPrivacyPolicy}>
+        <li className={styles.cPpItem}>
+          <p className={styles.copyright}>
+            Copyright © {new Date().getFullYear()} RRP. All Rights Reserved.
+          </p>
+        </li>
+        <li className={styles.cPpItem}>
+          <Link to="/privacy-policy" className={styles.PrivacyPolicy}>
+            PrivacyPolicy
+          </Link>
+        </li>
+      </ul>
     </div>
   );
 };
