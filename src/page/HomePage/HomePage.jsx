@@ -25,10 +25,12 @@ const HomePage = () => {
   return (
     <>
       <section className={styles.heroImage}>
-        <h1 className={styles.heroTitle}>
-          Efektivní řešení pro vaše podnikání
-        </h1>
-        <Button onClick={handleOpenModal}>Objednat službu</Button>
+        <div className={styles.heroWrapper}>
+          <h1 className={styles.heroTitle}>
+            Efektivní řešení pro vaše podnikání
+          </h1>
+          <Button onClick={handleOpenModal}>Objednat službu</Button>
+        </div>
       </section>
       <section className={styles.benefitsContainer}>
         <div className="container">
