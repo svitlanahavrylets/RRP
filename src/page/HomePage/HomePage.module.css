@@ -20,10 +20,11 @@
   padding: 72px 0;
   margin-top: 30px;
 
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  object-position: center;
+  width: 100%;
+  min-height: 100svh; /* сучасні браузери підтримують стабільно */
+  min-height: calc(
+    var(--vh, 1vh) * 100
+  ); /* fallback для мобайлів, де svh не працює */
 }
 
 .heroTitle {

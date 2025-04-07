@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./HomePage.module.css";
 import Button from "../../components/Button/Button.jsx";
 import OrderServiceModal from "../../components/OrderServiceModal/OrderServiceModal.jsx";
@@ -6,6 +6,18 @@ import { benefitsData } from "../../data/benefitsData.jsx";
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVh();
+    window.addEventListener("resize", setVh);
+
+    return () => window.removeEventListener("resize", setVh);
+  }, []);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);

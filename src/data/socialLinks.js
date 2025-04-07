@@ -1,5 +1,5 @@
 export const socialLinks = {
-  linkedin: "https://www.linkedin.com",
+  linkedin: "https://www.linkedin.com/company/rrp-s-r-o/",
   whatsapp:
     "https://api.whatsapp.com/send/?phone=420604698135&text&type=phone_number&app_absent=0",
   youtube: "https://www.youtube.com/@rrp-l4g",
