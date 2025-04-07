@@ -14,20 +14,25 @@ const HomePage = () => {
         "--real-height",
         `${height}px`
       );
-      if (window.innerWidth < 768) {
-        const height = document.documentElement.clientHeight;
-        document.documentElement.style.setProperty(
-          "--real-height",
-          `${height}px`
-        );
-      }
     };
 
     setRealHeight(); // встановити при першому завантаженні
 
-    // необов’язково оновлювати при resize, якщо хочеш фіксовану
-    // window.addEventListener("resize", setRealHeight);
-    // return () => window.removeEventListener("resize", setRealHeight);
+    let timeoutId;
+
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setRealHeight();
+      }, 200); // 200 мс затримка після останнього resize
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const handleOpenModal = () => setIsModalOpen(true);
