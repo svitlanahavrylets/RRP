@@ -14,7 +14,7 @@ const HomePage = () => {
         "--real-height",
         `${height}px`
       );
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 1158) {
         const height = document.documentElement.clientHeight;
         document.documentElement.style.setProperty(
           "--real-height",
@@ -23,11 +23,7 @@ const HomePage = () => {
       }
     };
 
-    setRealHeight(); // встановити при першому завантаженні
-
-    // необов’язково оновлювати при resize, якщо хочеш фіксовану
-    window.addEventListener("resize", setRealHeight);
-    return () => window.removeEventListener("resize", setRealHeight);
+    setRealHeight();
   }, []);
 
   const handleOpenModal = () => setIsModalOpen(true);
