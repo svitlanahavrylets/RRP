@@ -4,6 +4,7 @@ import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import AdminRoutes from "./routes/AdminRoutes.jsx";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));
 const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));
@@ -19,6 +20,7 @@ const NotFoundPage = lazy(() => import("./page/NotFoundPage/NotFoundPage.jsx"));
 function App() {
   return (
     <Suspense fallback={<Loader />}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

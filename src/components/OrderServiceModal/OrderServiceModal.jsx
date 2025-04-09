@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .matches(emailRegexp, "Invalid email address")
     .required("Required"),
-  message: Yup.string(),
+  message: Yup.string().trim(),
 });
 
 const STORAGE_KEY = "orderServiceFormData";
@@ -62,7 +62,14 @@ const OrderServiceModal = ({ onClose }) => {
           message: "Objednávka byla úspěšně odeslána!",
           position: "topRight",
         });
-        resetForm();
+        resetForm({
+          values: {
+            name: "",
+            phone: "",
+            email: "",
+            message: "",
+          },
+        });
         clearStorage();
       } else {
         iziToast.error({
@@ -95,10 +102,11 @@ const OrderServiceModal = ({ onClose }) => {
     >
       <Formik
         initialValues={initialValues}
+        enableReinitialize={true}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isValid, dirty, isSubmitting }) => (
+        {({ isValid, isSubmitting }) => (
           <>
             <FormAutoSave />
             <Form>
@@ -158,7 +166,7 @@ const OrderServiceModal = ({ onClose }) => {
 
               <Button
                 type="submit"
-                disabled={!isValid || !dirty || isSubmitting}
+                disabled={!isValid || isSubmitting}
                 className={styles.btnModal}
               >
                 {isSubmitting ? "Odesílání..." : "Odeslat"}
