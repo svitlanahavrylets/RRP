@@ -15,10 +15,10 @@ import clsx from "clsx";
 
 const ProjectSchema = Yup.object().shape({
   image: Yup.mixed()
-    .required("Required")
+    .required("Povinné pole")
     .test(
       "fileType",
-      "Invalid file type. Must be /jpeg /png /webp",
+      "Neplatný typ souboru. Povolené: jpeg, png, webp",
       (value) => {
         return (
           value &&
@@ -28,21 +28,19 @@ const ProjectSchema = Yup.object().shape({
     ),
   title: Yup.string()
     .trim()
-    .min(2, "Title must be at least 2 characters")
-
-    .matches(/\S/, "Title cannot contain only spaces")
-    .required("Required"),
+    .min(2, "Název musí mít alespoň 2 znaky")
+    .matches(/\S/, "Název nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
   category: Yup.string()
     .trim()
-    .min(2, "Title must be at least 2 characters")
-
-    .matches(/\S/, "Title cannot contain only spaces")
-    .required("Required"),
+    .min(2, "Kategorie musí mít alespoň 2 znaky")
+    .matches(/\S/, "Kategorie nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
   description: Yup.string()
     .trim()
-    .min(2, "Title must be at least 2 characters")
-    .matches(/\S/, "Title cannot contain only spaces")
-    .required("Required"),
+    .min(2, "Popis musí mít alespoň 2 znaky")
+    .matches(/\S/, "Popis nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
 });
 
 const AdminProjectsSection = () => {

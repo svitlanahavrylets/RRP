@@ -22,13 +22,12 @@ import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
 import FontFamily from "@tiptap/extension-font-family";
 import Placeholder from "@tiptap/extension-placeholder";
-
 const BlogSchema = Yup.object().shape({
   image: Yup.mixed()
-    .required("Required")
+    .required("Povinné pole")
     .test(
       "fileType",
-      "Invalid file type. Must be /jpeg /png /webp",
+      "Neplatný typ souboru. Povolené: jpeg, png, webp",
       (value) => {
         return (
           value &&
@@ -38,21 +37,21 @@ const BlogSchema = Yup.object().shape({
     ),
   title: Yup.string()
     .trim()
-    .min(2, "Title must be at least 2 characters")
-    .matches(/\S/, "Title cannot contain only spaces")
-    .required("Required"),
+    .min(2, "Název musí mít alespoň 2 znaky")
+    .matches(/\S/, "Název nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
   category: Yup.string()
     .trim()
-    .min(2, "Title must be at least 2 characters")
-    .matches(/\S/, "Title cannot contain only spaces")
-    .required("Required"),
-  date: Yup.date().typeError("Invalid date format").required("Required"),
+    .min(2, "Kategorie musí mít alespoň 2 znaky")
+    .matches(/\S/, "Kategorie nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
+  date: Yup.date().typeError("Neplatný formát datumu").required("Povinné pole"),
   description: Yup.string()
     .trim()
-    .min(2, "Title must be at least 2 characters")
-    .matches(/\S/, "Title cannot contain only spaces")
-    .required("Required"),
-  youtubeLink: Yup.string("Incorrect link"),
+    .min(2, "Popis musí mít alespoň 2 znaky")
+    .matches(/\S/, "Popis nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
+  youtubeLink: Yup.string("Neplatný odkaz na YouTube"),
 });
 
 const AdminBlogSection = () => {

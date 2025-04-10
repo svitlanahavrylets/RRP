@@ -16,17 +16,17 @@ const phoneRegexp = /^\+?\d{10,15}$/;
 const validationSchema = Yup.object({
   name: Yup.string()
     .trim()
-    .min(2, "Name must be at least 2 characters")
-    .max(32, "Name must be at maximum 32 characters")
-    .matches(/\S/, "Name cannot contain only spaces")
-    .matches(nameRegex, "Invalid name")
-    .required("Required"),
+    .min(2, "Jméno musí mít alespoň 2 znaky")
+    .max(32, "Jméno může mít maximálně 32 znaků")
+    .matches(/\S/, "Jméno nemůže obsahovat pouze mezery")
+    .matches(nameRegex, "Neplatné jméno")
+    .required("Povinné pole"),
   phone: Yup.string()
-    .matches(phoneRegexp, "Invalid phone number")
-    .required("Required"),
+    .matches(phoneRegexp, "Neplatné telefonní číslo")
+    .required("Povinné pole"),
   email: Yup.string()
-    .matches(emailRegexp, "Invalid email address")
-    .required("Required"),
+    .matches(emailRegexp, "Neplatná e-mailová adresa")
+    .required("Povinné pole"),
   message: Yup.string().trim(),
 });
 

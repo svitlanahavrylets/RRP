@@ -15,10 +15,10 @@ import clsx from "clsx";
 
 const TeamMemberSchema = Yup.object().shape({
   photoUrl: Yup.mixed()
-    .required("Required")
+    .required("Povinné pole")
     .test(
       "fileType",
-      "Invalid file type. Must be /jpeg /png /webp",
+      "Neplatný typ souboru. Povolené: jpeg, png, webp",
       (value) => {
         return (
           value &&
@@ -28,16 +28,16 @@ const TeamMemberSchema = Yup.object().shape({
     ),
   name: Yup.string()
     .trim()
-    .min(2, "Name must be at least 2 characters")
-    .max(32, "Name must be at maximum 32 characters")
-    .matches(/\S/, "Name cannot contain only spaces")
-    .required("Required"),
-  position: Yup.string().required("Required"),
+    .min(2, "Jméno musí mít alespoň 2 znaky")
+    .max(32, "Jméno může mít maximálně 32 znaků")
+    .matches(/\S/, "Jméno nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
+  position: Yup.string().required("Povinné pole"),
   socialLinks: Yup.object({
-    linkedin: Yup.string("Incorrect link"),
-    facebook: Yup.string("Incorrect link"),
-    instagram: Yup.string("Incorrect link"),
-    whatsapp: Yup.string("Incorrect link"),
+    linkedin: Yup.string("Neplatný odkaz"),
+    facebook: Yup.string("Neplatný odkaz"),
+    instagram: Yup.string("Neplatný odkaz"),
+    whatsapp: Yup.string("Neplatný odkaz"),
   }),
 });
 

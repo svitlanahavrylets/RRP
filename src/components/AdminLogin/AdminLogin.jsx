@@ -18,8 +18,8 @@ const AdminLogin = () => {
       const data = await loginAdmin(password);
       localStorage.setItem("adminToken", data.token);
       iziToast.success({
-        title: "Success",
-        message: "You have successfully logged in!",
+        title: "Úspěch",
+        message: "Úspěšně jste se přihlásili!",
         position: "topRight",
       });
 
@@ -29,7 +29,7 @@ const AdminLogin = () => {
       setError("Nesprávné heslo! Zkuste to znovu.");
 
       iziToast.error({
-        title: "Login Error",
+        title: "Chyba přihlášení",
         message: errorMessage,
         position: "topRight",
         timeout: 5000,
@@ -89,7 +89,6 @@ const AdminLogin = () => {
             {error}
           </p>
         )}
-        {/* Відображення помилки */}
       </div>
     </form>
   );
