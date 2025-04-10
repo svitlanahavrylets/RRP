@@ -24,9 +24,7 @@
   font-size: 36px;
   line-height: 1.11;
   letter-spacing: 0.02em;
-  text-transform: capitalize;
   text-align: center;
-  /* color: var(--primary-color-gold); */
   margin-bottom: 72px;
   background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
   background-clip: text;
