@@ -9,6 +9,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import FormAutoSave from "../FormAutoSave.jsx";
 
+const nameRegex = /^[A-Za-zА-Яа-яЁёІіЇїЄєČčĎďĚěŇňŘřŠšŤťŮůŽžÁáÉéÍíÓóÚúÝý' -]+$/;
 const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegexp = /^\+?\d{10,15}$/;
 
@@ -18,6 +19,7 @@ const validationSchema = Yup.object({
     .min(2, "Name must be at least 2 characters")
     .max(32, "Name must be at maximum 32 characters")
     .matches(/\S/, "Name cannot contain only spaces")
+    .matches(nameRegex, "Invalid name")
     .required("Required"),
   phone: Yup.string()
     .matches(phoneRegexp, "Invalid phone number")

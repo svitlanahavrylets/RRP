@@ -1,8 +1,8 @@
 body {
   background-color: var(--primary-color-blue);
-  color: var(--primary-color-white); /* Колір тексту */
+  color: var(--primary-color-white);
   font-family: var(--font-roboto);
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Плавний перехід */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
