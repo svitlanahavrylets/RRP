@@ -1,40 +1,46 @@
-import api from "../auth/auth.js"; // Імпортуємо api інстанс з auth.js
+import api from "../auth/auth.js";
 import { API_URL } from "../config.js";
 
 export const fetchBlogData = async () => {
   try {
-    const response = await api.get(`${API_URL}/blog`); // Використовуємо api інстанс
+    const response = await api.get(`${API_URL}/blog`);
     return response.data.posts;
   } catch (error) {
-    throw new Error("Chyba při získávání dat", error);
+    const errorMessage =
+      error.response?.data?.message || "Chyba při získávání dat";
+    throw new Error(errorMessage);
   }
 };
 
 export const fetchSingleBlog = async (id) => {
   try {
-    const response = await api.get(`${API_URL}/blog/${id}`); // Використовуємо api інстанс
+    const response = await api.get(`${API_URL}/blog/${id}`);
     return response.data;
   } catch (error) {
-    console.error("Помилка при отриманні блогу:", error);
-    return null;
+    const errorMessage =
+      error.response?.data?.message || "Chyba při načítání příspěvku";
+    throw new Error(errorMessage);
   }
 };
 
 export const createBlogData = async (dataBlog) => {
   try {
-    const response = await api.post(`${API_URL}/blog`, dataBlog); // Використовуємо api інстанс
+    const response = await api.post(`${API_URL}/blog`, dataBlog);
     return response.data;
   } catch (error) {
-    console.error("Помилка при отриманні даних:", error.response?.data);
-    return null;
+    const errorMessage =
+      error.response?.data?.message || "Chyba při vytváření příspěvku";
+    throw new Error(errorMessage);
   }
 };
 
 export const deleteBlogData = async (id) => {
   try {
-    const response = await api.delete(`${API_URL}/blog/${id}`); // Використовуємо api інстанс
+    const response = await api.delete(`${API_URL}/blog/${id}`);
     return response.data;
   } catch (error) {
-    console.error("Помилка при видаленні картки:", error.response.data);
+    const errorMessage =
+      error.response?.data?.message || "Chyba při mazání příspěvku";
+    throw new Error(errorMessage);
   }
 };

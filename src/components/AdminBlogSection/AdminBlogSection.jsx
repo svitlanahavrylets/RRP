@@ -22,6 +22,7 @@ import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
 import FontFamily from "@tiptap/extension-font-family";
 import Placeholder from "@tiptap/extension-placeholder";
+import iziToast from "izitoast";
 const BlogSchema = Yup.object().shape({
   image: Yup.mixed()
     .required("Povinné pole")
@@ -57,15 +58,27 @@ const BlogSchema = Yup.object().shape({
 const AdminBlogSection = () => {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const [isMobile, setIsMobile] = useState(false);
+  const [error, setError] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState("");
 
   useEffect(() => {
     const loadBlogData = async () => {
-      const data = await fetchBlogData();
+      try {
+        const data = await fetchBlogData(); // Запит на отримання блогу
+        setBlogs(data || []);
+        setIsLoading(false);
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
 
-      setBlogs(data || []);
-      setIsLoading(false);
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadBlogData();
@@ -109,6 +122,7 @@ const AdminBlogSection = () => {
       <h2 className={styles.projectsTitle}>Správa blogu</h2>
       <div className={styles.formCardWrapper}>
         {isLoading && <Loader />}
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <Formik
           initialValues={{
             image: null,
@@ -216,7 +230,7 @@ const AdminBlogSection = () => {
                 className={clsx(styles.input, styles.btnInput)}
                 name="date"
                 placeholder="Zadejte datum"
-                onFocus={(e) => e.target.showPicker()} // ⬅ Використовуємо showPicker() для відкриття календаря
+                onFocus={(e) => e.target.showPicker()}
               />
               <ErrorMessage
                 name="date"
@@ -241,7 +255,7 @@ const AdminBlogSection = () => {
         </Formik>
         <ul className={styles.projectsCard}>
           {isLoading ? (
-            <Loader /> // Покажемо лоадер, коли завантажується дані
+            <Loader />
           ) : blogs?.length > 0 ? (
             blogs.map((blog) =>
               blog ? (

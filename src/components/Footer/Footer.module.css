@@ -146,6 +146,10 @@
   align-items: center;
 }
 
+.PrivacyPolicy:hover {
+  color: var(--secondary-color-5);
+}
+
 /* Планшетна версія: два стовпчики */
 @media screen and (min-width: 768px) and (max-width: 1157px) {
   .footer {

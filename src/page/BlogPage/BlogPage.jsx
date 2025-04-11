@@ -4,6 +4,7 @@ import BlogCardItem from "../../components/BlogCardItem/BlogCardItem.jsx";
 import { useEffect, useState } from "react";
 import { fetchBlogData } from "../../api/content/blog.js";
 import Loader from "../../components/Loader/Loader.jsx";
+import iziToast from "izitoast";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -14,13 +15,16 @@ const Blog = () => {
     const loadBlogData = async () => {
       try {
         const data = await fetchBlogData();
-
         setBlogs(data || []);
       } catch (err) {
-        setError(
-          "Něco se pokazilo. Zkuste to prosím znovu později. Error:",
-          err
-        );
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
+
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
       } finally {
         setIsLoading(false);
       }
