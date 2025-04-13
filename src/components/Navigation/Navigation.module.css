@@ -60,14 +60,6 @@
   color: var(--primary-color-gold);
 }
 
-/* .navFooter .navList {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center;
-  flex-direction: column;
-  align-items: flex-start; 
-} */
-
 .navFooter {
   position: static;
   background: none;
@@ -79,13 +71,13 @@
 
 .navFooter .navList {
   flex-direction: column;
-  align-items: flex-start; /* або center */
+  align-items: flex-start;
   gap: 20px;
 }
 
 .activeLink {
   position: relative;
-  color: var(--primary-color-gold); /* Можеш змінити колір за потреби */
+  color: var(--primary-color-gold);
 }
 
 .activeLink::after {
@@ -101,12 +93,6 @@
 .navFooter .activeLink::after {
   bottom: -7px;
 }
-/* 
-@media (min-width: 758px) {
-  .navFooter .activeLink::after {
-    bottom: -7px;
-  }
-} */
 
 @media (min-width: 1158px) {
   .burger {
@@ -132,7 +118,4 @@
     flex-direction: row;
     align-items: flex-start;
   }
-  /* .navFooter .activeLink::after {
-    bottom: -7px;
-  } */
 }

@@ -4,10 +4,8 @@
 }
 
 .addressTitle {
-  /* font-size: 20px; */
   line-height: 1.2;
   letter-spacing: 0.02em;
-  /* color: var(--secondary-color-4); */
   margin-bottom: 36px;
   font-style: normal;
 }
@@ -41,13 +39,3 @@
   border-radius: 10px;
   overflow: hidden;
 }
-
-/* .info p {
-  margin: 5px 0;
-}
-
-.info a {
-  text-decoration: none;
-  color: #0073e6;
-  font-weight: bold;
-}*/

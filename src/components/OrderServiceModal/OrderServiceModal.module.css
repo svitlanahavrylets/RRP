@@ -6,20 +6,17 @@
   max-width: 500px;
   margin: 0 auto;
 
-  position: fixed; /* Зробить модалку фіксованою на екрані */
-  top: 50%; /* Центруємо по вертикалі */
-  left: 50%; /* Центруємо по горизонталі */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Використовуємо трансформацію для точного центрування */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: #fff;
   padding: 2rem;
   border-radius: 8px;
   max-width: 500px;
-  width: 100%; /* Забезпечить модалку на всю ширину, якщо це потрібно */
-  max-height: 80vh; /* Обмеження по висоті */
-  overflow-y: auto; /* Додасть скрол для вмісту, якщо висоти недостатньо */
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .closeButton {
@@ -82,7 +79,6 @@
   height: 120px;
   resize: none;
   padding: 8px;
-  /* margin-bottom: 16px; */
 }
 
 .input:focus,
@@ -92,10 +88,10 @@
 }
 
 .error {
-  color: red; /* Колір тексту для помилки */
-  font-size: 12px; /* Розмір шрифту */
-  margin-top: 4px; /* Відступ зверху для повідомлення про помилку */
-  padding-left: 10px; /* Відступ зліва, щоб вирівняти з інпутом */
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 10px;
   font-weight: bold;
 }
 

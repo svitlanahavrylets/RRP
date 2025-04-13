@@ -6,7 +6,7 @@ const ProjectCardItem = ({ project, isMobile, activeIndex }) => {
     return <p>Помилка: немає даних про проєкт.</p>;
   }
   return (
-    <div>
+    <>
       <motion.div
         className={styles.portfolioOverlayImages}
         whileHover={!isMobile ? { scale: 1.0 } : {}}
@@ -20,7 +20,7 @@ const ProjectCardItem = ({ project, isMobile, activeIndex }) => {
           className={`${styles.portfolioOverlayText} ${
             isMobile && activeIndex === project._id ? styles.active : ""
           }`}
-          initial={{ opacity: 0, y: 100 }} // Завжди прихований при завантаженні
+          initial={{ opacity: 0, y: 100 }}
           animate={
             isMobile && activeIndex === project._id ? { opacity: 1, y: 0 } : {}
           }
@@ -34,7 +34,7 @@ const ProjectCardItem = ({ project, isMobile, activeIndex }) => {
         <h3 className={styles.projectCardTitle}>{project.title}</h3>
         <p className={styles.projectCardText}>{project.category}</p>
       </div>
-    </div>
+    </>
   );
 };
 

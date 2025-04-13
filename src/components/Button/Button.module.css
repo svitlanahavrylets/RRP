@@ -12,18 +12,7 @@
   line-height: 1.5;
   letter-spacing: 0.04em;
   text-align: center;
-  /* box-shadow: var(--button-shadow); */
-
-  /* @media screen and (min-width: 768px) {
-    font-size: 18px;
-    line-height: 1.33;
-    padding: 10px 30px;
-  } */
 }
-
-/* .button:hover {
-  box-shadow: var(--button-shadow-hover);
-} */
 
 .primary {
   background-color: var(--primary-color-gold);
@@ -33,24 +22,6 @@
 .primary:hover {
   background-color: var(--secondary-color-5);
 }
-/* 
-.secondary {
-  background-color: var(--secondary-color---5);
-  color: var(--primary-color-blue);
-}
-
-.secondary:hover {
-  background-color: var(--secondary-color---5);
-}
-
-.warning {
-  background-color: var(--secondary-color-3);
-  color: var(--primary-color-white);
-}
-
-.warning:hover {
-  background-color: var(--secondary-color-3);
-} */
 
 .text {
   background-color: transparent;
@@ -63,11 +34,6 @@
   color: var(--primary-color-white);
   box-shadow: none;
 }
-/* 
-.text:hover .svgIcon {
-  stroke: var(--secondary-color-5);
-  fill: var(--secondary-color-5);
-}*/
 
 .svgIcon {
   fill: currentColor;

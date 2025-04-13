@@ -29,7 +29,7 @@
 }
 .line {
   position: absolute;
-  bottom: 68px; /* Піднімаємо лінію на 20px від нижнього краю футера */
+  bottom: 68px;
   left: 0;
   z-index: 5;
   width: 100%;

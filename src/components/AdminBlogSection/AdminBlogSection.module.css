@@ -30,7 +30,6 @@
   position: relative;
 }
 
-/* Видаляємо стандартний індикатор календаря */
 .input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
   position: absolute;
@@ -39,9 +38,8 @@
   cursor: pointer;
 }
 
-/* Додаємо власну іконку календаря 📅 */
 .input[type="date"]::after {
-  content: "\1F4C5"; /* Unicode для календаря */
+  content: "\1F4C5";
   font-size: 18px;
   position: absolute;
   right: 12px;
@@ -120,12 +118,10 @@
 .projectsCard {
   display: flex;
   flex-wrap: wrap;
-  /* gap: 24px; */
   row-gap: 48px;
   max-width: 1158px;
   margin: 0 auto;
   flex-direction: row;
-  /* row-gap: 64px; */
   justify-content: center;
 }
 

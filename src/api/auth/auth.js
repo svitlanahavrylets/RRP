@@ -3,7 +3,7 @@ import { API_URL } from "../config.js";
 
 const api = axios.create({
   baseURL: API_URL,
-  withCredentials: true, // для refreshToken в cookie
+  withCredentials: true,
 });
 
 const getToken = () => localStorage.getItem("adminToken");
@@ -28,7 +28,7 @@ api.interceptors.response.use(
       error.response?.status === 401 &&
       originalRequest &&
       !originalRequest._retry &&
-      !originalRequest.url.includes("/admin/refresh") // <--- ось додаткова перевірка
+      !originalRequest.url.includes("/admin/refresh")
     ) {
       originalRequest._retry = true;
 

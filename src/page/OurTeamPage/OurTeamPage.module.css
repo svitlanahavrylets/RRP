@@ -41,7 +41,6 @@
 }
 
 .teamListFullname {
-  /* font-weight: 500; */
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: 0.02em;
@@ -115,10 +114,6 @@
   .jednatelWrapper {
     margin-bottom: 64px;
   }
-
-  /* .teamCardItem {
-    width: calc((100% - 24px) / 2);
-  } */
 }
 
 @media screen and (min-width: 1158px) {

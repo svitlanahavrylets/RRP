@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import AdminPage from "../page/AdminPage/AdminPage.jsx"; // Імпортуємо AdminPage
-import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute.jsx"; // Для захищених маршрутів
-import AdminDashboard from "../components/AdminDashboard/AdminDashboard.jsx"; // Панель адміністратора
+import AdminPage from "../page/AdminPage/AdminPage.jsx";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute.jsx";
+import AdminDashboard from "../components/AdminDashboard/AdminDashboard.jsx";
 
 const AdminRoutes = () => (
   <Routes>

@@ -7,7 +7,9 @@ export const submitOrderData = async (orderData) => {
     const response = await axios.post(`${API_URL}/test`, orderData);
     return response;
   } catch (error) {
-    console.error("Error submitting order data:", error);
-    throw error;
+    const errorMessage =
+      error.response?.data?.message ||
+      "Došlo k chybě při odesílání objednávky. Zkuste to prosím znovu.";
+    throw new Error(errorMessage);
   }
 };

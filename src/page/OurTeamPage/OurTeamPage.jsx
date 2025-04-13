@@ -3,24 +3,37 @@ import { useEffect, useState } from "react";
 import { fetchTeamData } from "../../api/content/team.js";
 import TeamCardItem from "../../components/TeamCardItem/TeamCardItem.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
+import iziToast from "izitoast";
 
 const OurTeamPage = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadTeamData = async () => {
-      const data = await fetchTeamData();
+      try {
+        const data = await fetchTeamData();
 
-      if (data) {
-        // Переконуємося, що нові працівники додаються в кінець
+        if (data) {
+          const sortedData = data.sort(
+            (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+          );
+          setTeamMembers(sortedData || []);
+        }
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
 
-        const sortedData = data.sort(
-          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-        );
-        setTeamMembers(sortedData || []);
+        setError(errorMessage);
+
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     loadTeamData();
@@ -45,35 +58,6 @@ const OurTeamPage = () => {
               <div className={styles.jednatelWrapper}>
                 <div className={styles.teamCardItem}>
                   <TeamCardItem member={jednatel} />
-                  {/* <img
-                    src={jednatel.photoUrl}
-                    alt={`${jednatel.name} avatar`}
-                    width="264"
-                    height="260"
-                    className={styles.teamCardImg}
-                  />
-                  <div className={styles.teamCardContainer}>
-                    <h3 className={styles.teamListFullname}>{jednatel.name}</h3>
-                    <p className={styles.teamCardText}>{jednatel.position}</p>
-                    {jednatel.socialLinks && (
-                      <ul className={styles.teamIconList}>
-                        {socialIcons
-                          .filter(({ id }) => jednatel.socialLinks?.[id])
-                          .map(({ icon, id }) => (
-                            <li key={id} className={styles.teamIconItem}>
-                              <a
-                                href={jednatel.socialLinks[id]}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.socialLink}
-                              >
-                                {icon}
-                              </a>
-                            </li>
-                          ))}
-                      </ul>
-                    )}
-                  </div> */}
                 </div>
               </div>
             )}
@@ -91,6 +75,7 @@ const OurTeamPage = () => {
             )}
           </>
         )}
+        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
     </section>
   );

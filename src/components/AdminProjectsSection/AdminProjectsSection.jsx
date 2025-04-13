@@ -12,6 +12,7 @@ import Loader from "../Loader/Loader.jsx";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
+import iziToast from "izitoast";
 
 const ProjectSchema = Yup.object().shape({
   image: Yup.mixed()
@@ -49,13 +50,25 @@ const AdminProjectsSection = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadProjectsData = async () => {
-      const data = await fetchProjectsData();
+      try {
+        const data = await fetchProjectsData();
+        setProjects(data || []);
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
 
-      setProjects(data || []);
-      setIsLoading(false);
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadProjectsData();
@@ -78,7 +91,13 @@ const AdminProjectsSection = () => {
         prevProjects.filter((project) => project._id !== id)
       );
     } catch (error) {
-      console.error("Помилка при видаленні:", error);
+      const errorMessage =
+        error?.response?.data?.message || "Nepodařilo se odstranit projekt.";
+
+      iziToast.error({
+        title: "Chyba",
+        message: errorMessage,
+      });
     }
   };
 
@@ -99,6 +118,7 @@ const AdminProjectsSection = () => {
       <h2 className={styles.projectsTitle}>Správa projektů</h2>
       <div className={styles.formCardWrapper}>
         {isLoading && <Loader />}
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <Formik
           initialValues={{
             image: null,
@@ -124,13 +144,24 @@ const AdminProjectsSection = () => {
                   ...prevProjects,
                 ]);
               } else {
-                console.error("newProject.project не знайдено!", newProject);
+                iziToast.error({
+                  title: "Chyba",
+                  message:
+                    "Nový projekt nebyl správně vytvořen. Zkuste to znovu.",
+                });
               }
 
               resetForm();
               setSelectedFileName("");
-            } catch (error) {
-              console.error("Помилка при додаванні:", error);
+            } catch (err) {
+              const errorMessage =
+                err?.message ||
+                "Něco se pokazilo. Zkuste to prosím znovu později.";
+
+              iziToast.error({
+                title: "Chyba",
+                message: errorMessage,
+              });
             }
           }}
         >
@@ -145,11 +176,9 @@ const AdminProjectsSection = () => {
                   type="file"
                   onChange={(e) => {
                     const file = e.currentTarget.files[0];
-                    console.log("Selected file:", file);
                     setFieldValue("image", file);
 
-                    setSelectedFileName(() => (file ? file.name : "")); // Зберігаємо ім'я файлу
-                    console.log("Selected file name:", selectedFileName);
+                    setSelectedFileName(() => (file ? file.name : ""));
                   }}
                 />
                 <label

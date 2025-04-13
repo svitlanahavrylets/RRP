@@ -52,7 +52,6 @@ const OrderServiceModal = ({ onClose }) => {
   };
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
-    console.log("Form submitted:", values);
     setSubmitting(true);
 
     try {
@@ -81,9 +80,6 @@ const OrderServiceModal = ({ onClose }) => {
         });
       }
     } catch (error) {
-      console.error("Помилка відправки даних:", error);
-      console.log("Server error response:", error.response?.data);
-
       iziToast.error({
         title: "Chyba",
         message:

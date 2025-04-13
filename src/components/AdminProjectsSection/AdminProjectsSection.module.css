@@ -9,8 +9,7 @@
 
 .label {
   display: flex;
-  /* flex-direction: column;
-  gap: 4px; */
+
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.04em;
@@ -35,15 +34,10 @@
   outline: transparent;
 }
 
-/* .input:last-of-type {
-  margin-bottom: 16px;
-} */
-
 .textarea {
   height: 120px;
   resize: none;
   padding: 8px;
-  /* margin-bottom: 16px; */
 }
 
 .inputFile {
@@ -60,7 +54,6 @@
   color: var(--secondary-color-2);
   padding: 14px 8px;
   border-radius: 4px;
-  /* border: 1px solid #ccc; */
   cursor: pointer;
   text-align: start;
   width: 100%;
@@ -103,12 +96,10 @@
 .projectsCard {
   display: flex;
   flex-wrap: wrap;
-  /* gap: 24px; */
   row-gap: 48px;
   max-width: 1158px;
   margin: 0 auto;
   flex-direction: row;
-  /* row-gap: 64px; */
   justify-content: center;
 }
 

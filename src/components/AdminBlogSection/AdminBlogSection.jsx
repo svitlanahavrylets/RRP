@@ -12,7 +12,6 @@ import Loader from "../Loader/Loader.jsx";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
-// import EditorComponent from "../EditorComponent/EditorComponent.jsx";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
@@ -23,6 +22,7 @@ import Color from "@tiptap/extension-color";
 import FontFamily from "@tiptap/extension-font-family";
 import Placeholder from "@tiptap/extension-placeholder";
 import iziToast from "izitoast";
+
 const BlogSchema = Yup.object().shape({
   image: Yup.mixed()
     .required("Povinné pole")
@@ -64,7 +64,7 @@ const AdminBlogSection = () => {
   useEffect(() => {
     const loadBlogData = async () => {
       try {
-        const data = await fetchBlogData(); // Запит на отримання блогу
+        const data = await fetchBlogData();
         setBlogs(data || []);
         setIsLoading(false);
       } catch (err) {
@@ -89,11 +89,14 @@ const AdminBlogSection = () => {
       await deleteBlogData(id);
       setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
     } catch (error) {
-      console.error("Помилка при видаленні:", error);
+      iziToast.error({
+        title: "Chyba",
+        message: error.message || "Nepodařilo se odstranit příspěvek.",
+        position: "topRight",
+      });
     }
   };
 
-  // Ініціалізація редактора
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -128,7 +131,7 @@ const AdminBlogSection = () => {
             image: null,
             title: "",
             category: "",
-            date: new Date().toISOString().split("T")[0], // Поточна дата у форматі "YYYY-MM-DD"
+            date: new Date().toISOString().split("T")[0],
             description: "",
             youtubeLink: "",
           }}
@@ -154,8 +157,17 @@ const AdminBlogSection = () => {
                   ...(Array.isArray(prevPost) ? prevPost : []),
                   newBlog.post,
                 ]);
+                iziToast.success({
+                  title: "Úspěch",
+                  message: "Blog byl úspěšně přidán!",
+                  position: "topRight",
+                });
               } else {
-                console.error("newBlog.post не знайдено!", newBlog);
+                iziToast.error({
+                  title: "Chyba",
+                  message: "Nepodařilo se získat přidaný blog ze serveru.",
+                  position: "topRight",
+                });
               }
 
               resetForm();
@@ -164,7 +176,13 @@ const AdminBlogSection = () => {
 
               setSelectedFileName("");
             } catch (error) {
-              console.error("Помилка при додаванні:", error);
+              iziToast.error({
+                title: "Chyba",
+                message:
+                  error.message ||
+                  "Nepodařilo se přidat blog. Zkuste to znovu.",
+                position: "topRight",
+              });
             }
           }}
         >
@@ -182,7 +200,7 @@ const AdminBlogSection = () => {
 
                     setFieldValue("image", file);
 
-                    setSelectedFileName(() => (file ? file.name : "")); // Зберігаємо ім'я файлу
+                    setSelectedFileName(() => (file ? file.name : ""));
                   }}
                 />
                 <label
@@ -259,16 +277,8 @@ const AdminBlogSection = () => {
           ) : blogs?.length > 0 ? (
             blogs.map((blog) =>
               blog ? (
-                <li
-                  key={blog._id}
-                  className={styles.projectsCardItem}
-                  // onClick={() => handleClick(blog._id)}
-                >
-                  <BlogCardItem
-                    blog={blog}
-                    // isMobile={isMobile}
-                    // activeIndex={activeIndex}
-                  />
+                <li key={blog._id} className={styles.projectsCardItem}>
+                  <BlogCardItem blog={blog} />
                   <Button
                     onClick={() => handleDelete(blog._id)}
                     className={styles.btnAdminDelete}

@@ -12,6 +12,7 @@ import TeamCardItem from "../TeamCardItem/TeamCardItem.jsx";
 import { FaTrash } from "react-icons/fa";
 import Loader from "../Loader/Loader.jsx";
 import clsx from "clsx";
+import iziToast from "izitoast";
 
 const TeamMemberSchema = Yup.object().shape({
   photoUrl: Yup.mixed()
@@ -45,13 +46,25 @@ const AdminTeamSection = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFileName, setSelectedFileName] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadTeamData = async () => {
-      const data = await fetchTeamData();
+      try {
+        const data = await fetchTeamData();
+        setTeamMembers(data || []);
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
 
-      setTeamMembers(data || []);
-      setIsLoading(false);
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadTeamData();
@@ -63,8 +76,13 @@ const AdminTeamSection = () => {
       setTeamMembers((prevMembers) =>
         prevMembers.filter((member) => member._id !== id)
       );
-    } catch (error) {
-      console.error("Помилка при видаленні:", error);
+    } catch (err) {
+      const errorMessage = err?.message || "Nepodařilo se smazat člena týmu.";
+
+      iziToast.error({
+        title: "Chyba",
+        message: errorMessage,
+      });
     }
   };
 
@@ -85,9 +103,6 @@ const AdminTeamSection = () => {
           }}
           validationSchema={TeamMemberSchema}
           onSubmit={async (values, { resetForm }) => {
-            console.log("Форма сабмітиться!");
-            console.log("дані на відправку:", values);
-
             // Створюємо форму для відправки даних
             const formData = new FormData();
             formData.append("image", values.photoUrl);
@@ -113,7 +128,13 @@ const AdminTeamSection = () => {
               resetForm();
               setSelectedFileName("");
             } catch (error) {
-              console.error("Помилка при додаванні:", error);
+              const errorMessage =
+                error?.message ||
+                "Něco se pokazilo při přidávání nového člena.";
+              iziToast.error({
+                title: "Chyba",
+                message: errorMessage,
+              });
             }
           }}
         >
@@ -243,6 +264,7 @@ const AdminTeamSection = () => {
             <p>V databázi nebyl nalezen žádný zaměstnanec</p>
           )}
         </ul>
+        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
     </div>
   );

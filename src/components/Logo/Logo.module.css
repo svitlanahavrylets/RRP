@@ -1,7 +1,6 @@
 .logo {
   cursor: pointer;
   width: 80px;
-  /* height: 48px; */
-  object-fit: contain; /*Щоб лого не обрізалось */
+  object-fit: contain;
   padding: 4px;
 }

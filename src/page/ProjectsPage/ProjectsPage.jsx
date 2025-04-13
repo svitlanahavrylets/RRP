@@ -3,24 +3,32 @@ import styles from "./ProjectsPage.module.css";
 import { fetchProjectsData } from "../../api/content/projects.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import ProjectCardItem from "../../components/ProjectCardItem/ProjectCardItem.jsx";
+import iziToast from "izitoast";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadProjectsData = async () => {
-      const data = await fetchProjectsData();
+      try {
+        const data = await fetchProjectsData();
+        setProjects(data || []);
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
 
-      if (data) {
-        const sortedData = data.sort(
-          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-        );
-        setProjects(sortedData || []);
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     loadProjectsData();
@@ -70,6 +78,7 @@ const ProjectsPage = () => {
             ))}
           </ul>
         )}
+        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
     </section>
   );
