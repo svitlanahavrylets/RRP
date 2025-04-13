@@ -7,23 +7,35 @@ import { benefitsData } from "../../data/benefitsData.jsx";
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // useEffect(() => {
+  //   const setRealHeight = () => {
+  //     const height = window.innerHeight;
+  //     document.documentElement.style.setProperty(
+  //       "--real-height",
+  //       `${height}px`
+  //     );
+  //     if (window.innerWidth < 1158) {
+  //       const height = document.documentElement.clientHeight;
+  //       document.documentElement.style.setProperty(
+  //         "--real-height",
+  //         `${height}px`
+  //       );
+  //     }
+  //   };
+
+  //   setRealHeight();
+  // }, []);
+
   useEffect(() => {
     const setRealHeight = () => {
-      const height = window.innerHeight;
-      document.documentElement.style.setProperty(
-        "--real-height",
-        `${height}px`
-      );
-      if (window.innerWidth < 1158) {
-        const height = document.documentElement.clientHeight;
-        document.documentElement.style.setProperty(
-          "--real-height",
-          `${height}px`
-        );
-      }
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
     };
 
     setRealHeight();
+
+    window.addEventListener("resize", setRealHeight);
+    return () => window.removeEventListener("resize", setRealHeight);
   }, []);
 
   const handleOpenModal = () => setIsModalOpen(true);
