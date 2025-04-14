@@ -86,9 +86,11 @@
     margin-bottom: 48px;
   }
 }
+
 .benefitsContainer {
   padding: 96px 0;
 }
+
 .visuallyHidden {
   position: absolute;
   width: 1px;
