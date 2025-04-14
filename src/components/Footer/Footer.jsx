@@ -33,6 +33,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.socialLink}
+                      aria-label="Social media link"
                     >
                       {icon}
                     </a>

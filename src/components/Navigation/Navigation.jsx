@@ -23,7 +23,11 @@ const Navigation = ({ className, isFooter }) => {
     <div className={styles.navContainer}>
       {/* Бургер-кнопка тільки для хедера на мобайл/планшеті */}
       {!isFooter && !isDesktop && (
-        <button className={styles.burger} onClick={toggleMenu}>
+        <button
+          className={styles.burger}
+          onClick={toggleMenu}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+        >
           {isOpen ? <VscClose /> : <RxHamburgerMenu />}
         </button>
       )}

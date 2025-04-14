@@ -16,7 +16,7 @@ import iziToast from "izitoast";
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [activeSection, setActiveSection] = useState("home"); // Відображається за замовчуванням
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const verifyAuth = async () => {
@@ -26,10 +26,11 @@ const AdminDashboard = () => {
       } catch (error) {
         iziToast.error({
           title: "Chyba",
-          message: error || "Neplatné heslo. Zkuste to znovu",
+          message: error?.message || "Neplatné heslo. Zkuste to znovu",
           position: "topRight",
         });
-        navigate("/admin"); // Якщо неавторизований — переадресація на логін
+        localStorage.removeItem("adminToken");
+        navigate("/admin");
       }
     };
 
@@ -37,7 +38,7 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   useEffect(() => {
-    setIsLoading(false); // Прибираємо перевірку токена
+    setIsLoading(false);
   }, []);
 
   const logout = () => {
