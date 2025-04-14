@@ -88,7 +88,7 @@ const OrderServiceModal = ({ onClose }) => {
         position: "topRight",
       });
     } finally {
-      setSubmitting(false); // Завжди розблоковуємо кнопку після завершення
+      setSubmitting(false);
     }
   };
 

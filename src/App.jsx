@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
-import AdminRoutes from "./routes/AdminRoutes.jsx";
+// import AdminRoutes from "./routes/AdminRoutes.jsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));
@@ -16,6 +16,7 @@ const PrivacyPolicyPage = lazy(() =>
   import("./page/PrivacyPolicyPage/PrivacyPolicyPage.jsx")
 );
 const NotFoundPage = lazy(() => import("./page/NotFoundPage/NotFoundPage.jsx"));
+const AdminRoutes = lazy(() => import("./routes/AdminRoutes.jsx"));
 
 function App() {
   return (
