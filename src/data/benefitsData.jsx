@@ -12,7 +12,7 @@ export const benefitsData = [
 
   {
     id: 2,
-    title: "Poradenstvi",
+    title: "Poradenství",
     text: "Poskytujeme odborné konzultace pro efektivní rozvoj vašich IT řešení.",
     icon: <PiChartLineUp />,
   },
