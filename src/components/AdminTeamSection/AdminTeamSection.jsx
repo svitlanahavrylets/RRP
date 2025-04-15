@@ -151,7 +151,7 @@ const AdminTeamSection = () => {
                     const file = e.currentTarget.files[0];
 
                     setFieldValue("photoUrl", file);
-                    setSelectedFileName(file ? file.name : ""); // Зберігаємо ім'я файлу
+                    setSelectedFileName(file ? file.name : "");
                   }}
                 />
                 <label

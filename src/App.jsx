@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
-// import AdminRoutes from "./routes/AdminRoutes.jsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));

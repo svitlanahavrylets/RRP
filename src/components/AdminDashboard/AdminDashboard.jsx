@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { checkAdminAuth } from "../../../api/auth/auth.js";
 import logo from "../../assets/Лого RRP.png";
-
 import Button from "../Button/Button.jsx";
 import styles from "./AdminDashboard.module.css";
 import Loader from "../Loader/Loader.jsx";

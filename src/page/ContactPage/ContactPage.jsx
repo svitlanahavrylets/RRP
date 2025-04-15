@@ -3,7 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./ContactPage.module.css";
 
-const position = [50.1976, 14.9073]; // Координати (широта, довгота)
+const position = [50.1976, 14.9073];
 
 // Кастомна іконка маркера
 const customIcon = new L.Icon({
@@ -16,7 +16,6 @@ const customIcon = new L.Icon({
 
 const ContactPage = () => {
   useEffect(() => {
-    // Перевіряємо, чи карта вже створена, щоб уникнути дублювання
     if (!document.getElementById("map").hasChildNodes()) {
       const map = L.map("map").setView(position, 15);
 

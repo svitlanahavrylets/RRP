@@ -3,7 +3,7 @@ import styles from "./ProjectCardItem.module.css";
 
 const ProjectCardItem = ({ project, isMobile, activeIndex }) => {
   if (!project) {
-    return <p>Помилка: немає даних про проєкт.</p>;
+    return <p>Žádná data o projektu</p>;
   }
   return (
     <>

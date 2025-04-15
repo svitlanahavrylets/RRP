@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./Logo.module.css";
-import logo from "../../assets/Logo.svg"; // Імпортуємо логотип
+import logo from "../../assets/Logo.svg";
 
 const Logo = () => {
   const navigate = useNavigate();

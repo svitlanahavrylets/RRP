@@ -238,7 +238,7 @@ const AdminProjectsSection = () => {
         </Formik>
         <ul className={styles.projectsCard}>
           {isLoading ? (
-            <Loader /> // Покажемо лоадер, коли завантажується дані
+            <Loader />
           ) : projects?.length > 0 ? (
             projects.map((project) =>
               project ? (

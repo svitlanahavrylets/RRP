@@ -29,7 +29,7 @@
   line-height: 1.11;
   letter-spacing: 0.02em;
   text-align: center;
-  color: #ffffff;
+  color: var(--primary-color-white);
   margin: 0 auto;
   margin-bottom: 72px;
   max-width: 216px;
@@ -171,7 +171,7 @@
   .iconWrapper {
     border-radius: 4px;
     height: 112px;
-    background-color: #ffffff;
+    background-color: var(--primary-color-white);
     margin-bottom: 8px;
     display: flex;
     align-items: center;

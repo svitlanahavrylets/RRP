@@ -7,7 +7,7 @@ export const fetchBlogData = async () => {
     return response.data.posts;
   } catch (error) {
     const errorMessage =
-      error.response?.data?.message || "Chyba při získávání dat";
+      error.response?.data?.message || "Chyba při získávání dat blogu";
     throw new Error(errorMessage);
   }
 };

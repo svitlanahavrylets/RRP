@@ -38,7 +38,7 @@ const Blog = () => {
       <div className="container">
         <div className={styles.articlesWrapper}>
           {isLoading && <Loader />}
-          {error && <p className={styles.errorMessage}>{error}</p>}
+
           {Array.isArray(blogs) &&
             blogs.map((blog, index) => (
               <Link
@@ -52,6 +52,7 @@ const Blog = () => {
               </Link>
             ))}
         </div>
+        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
     </section>
   );

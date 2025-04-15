@@ -12,15 +12,15 @@ function Layout() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        setIsVisible(false); // Ховає хедер при скролі вниз
+        setIsVisible(false);
       } else {
-        setIsVisible(true); // Показує хедер при скролі вгору
+        setIsVisible(true);
       }
       lastScrollY = window.scrollY;
     };
 
     const handleTouch = () => {
-      setIsVisible(true); // Показує хедер при торканні екрану
+      setIsVisible(true);
     };
 
     window.addEventListener("scroll", handleScroll);
