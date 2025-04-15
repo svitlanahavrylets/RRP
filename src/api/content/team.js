@@ -4,8 +4,6 @@ import { API_URL } from "../config.js";
 export const fetchTeamData = async () => {
   try {
     const response = await api.get(`${API_URL}/team`);
-    console.log(response);
-
     return response.data;
   } catch (error) {
     const errorMessage =
