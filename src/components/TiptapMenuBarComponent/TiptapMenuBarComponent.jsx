@@ -1,4 +1,5 @@
 import styles from "./TiptapMenuBarComponent.module.css";
+import clsx from "clsx";
 
 const MenuBar = ({ editor }) => {
   if (!editor) {
@@ -7,147 +8,170 @@ const MenuBar = ({ editor }) => {
 
   return (
     <div className={styles.controlGroup}>
-      <div className={styles.buttonGroup}>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 1 }) ? "is-active" : ""
-          }
-        >
-          H1
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 2 }) ? "is-active" : ""
-          }
-        >
-          H2
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 3 }) ? "is-active" : ""
-          }
-        >
-          H3
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setParagraph().run()}
-          className={editor.isActive("paragraph") ? "is-active" : ""}
-        >
-          Paragraph
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive("bold") ? "is-active" : ""}
-        >
-          Bold
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? "is-active" : ""}
-        >
-          Italic
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={editor.isActive("strike") ? "is-active" : ""}
-        >
-          Strike
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHighlight().run()}
-          className={editor.isActive("highlight") ? "is-active" : ""}
-        >
-          Highlight
-        </button>
-        <select
-          className={styles.option}
-          onChange={(e) => {
-            editor.chain().focus().setFontFamily(e.target.value).run();
-          }}
-          defaultValue=""
-        >
-          <option value="" disabled>
-            Vyberte písmo
-          </option>
-          <option value="Arial">Arial</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Times New Roman">Times New Roman</option>
-          <option value="Courier New">Courier New</option>
-          <option value="Verdana">Verdana</option>
-        </select>
-        <button onClick={() => editor.chain().focus().unsetFontFamily().run()}>
-          Vymazat písmo
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setTextAlign("left").run()}
-          className={editor.isActive({ textAlign: "left" }) ? "is-active" : ""}
-        >
-          Left
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setTextAlign("center").run()}
-          className={
-            editor.isActive({ textAlign: "center" }) ? "is-active" : ""
-          }
-        >
-          Center
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setTextAlign("right").run()}
-          className={editor.isActive({ textAlign: "right" }) ? "is-active" : ""}
-        >
-          Right
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setTextAlign("justify").run()}
-          className={
-            editor.isActive({ textAlign: "justify" }) ? "is-active" : ""
-          }
-        >
-          Justify
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setColor("#D6B65A").run()}
-        >
-          <span style={{ color: "#D6B65A" }}>gold</span>
-        </button>
+       <div className={styles.buttonGroup}>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("heading", { level: 1 }),
+        })}
+      >
+        H1
+      </button>
 
-        <button
-          onClick={() => editor.chain().focus().setColor("#686F73").run()}
-        >
-          <span style={{ color: "#686F73" }}>grey</span>
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setColor("#000000").run()}
-        >
-          <span style={{ color: "#000000" }}>black</span>
-        </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("heading", { level: 2 }),
+        })}
+      >
+        H2
+      </button>
 
-        <button onClick={() => editor.chain().focus().unsetColor().run()}>
-          Vymazat barvu
-        </button>
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("heading", { level: 3 }),
+        })}
+      >
+        H3
+      </button>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().setParagraph().run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("paragraph"),
+        })}
+      >
+        Paragraph
+      </button>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleBold().run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("bold"),
+        })}
+      >
+        Bold
+      </button>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleItalic().run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("italic"),
+        })}
+      >
+        Italic
+      </button>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleStrike().run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("strike"),
+        })}
+      >
+        Strike
+      </button>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleHighlight().run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("highlight"),
+        })}
+      >
+        Highlight
+      </button>
+
+      <select
+        className={styles.option}
+        onChange={(e) =>
+          editor.chain().focus().setFontFamily(e.target.value).run()
+        }
+        defaultValue=""
+      >
+        <option value="" disabled>
+          Vyberte písmo
+        </option>
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Verdana">Verdana</option>
+      </select>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().unsetFontFamily().run()}
+        className={styles.button}
+      >
+        Vymazat písmo
+      </button>
+
+      {["left", "center", "right", "justify"].map((align) => (
         <button
-          onClick={() => editor.chain().focus().toggleList("bulletList").run()}
-          className={editor.isActive("bulletList") ? "is-active" : ""}
+          key={align}
+          type="button"
+          onClick={() =>
+            editor.chain().focus().setTextAlign(align).run()
+          }
+          className={clsx(styles.button, {
+            [styles.isActive]: editor.isActive({ textAlign: align }),
+          })}
         >
-          Bullet List
+          {align.charAt(0).toUpperCase() + align.slice(1)}
         </button>
+      ))}
+
+      {[
+        { color: "#D6B65A", label: "gold" },
+        { color: "#686F73", label: "grey" },
+        { color: "#000000", label: "black" },
+      ].map(({ color, label }) => (
         <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive("orderedList") ? "is-active" : ""}
+          key={color}
+          type="button"
+          onClick={() => editor.chain().focus().setColor(color).run()}
+          className={styles.button}
         >
-          Ordered List
+          <span style={{ color }}>{label}</span>
         </button>
-      </div>
+      ))}
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().unsetColor().run()}
+        className={styles.button}
+      >
+        Vymazat barvu
+      </button>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleList("bulletList").run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("bulletList"),
+        })}
+      >
+        Bullet List
+      </button>
+
+      <button
+        type="button"
+        onClick={() => editor.chain().focus().toggleOrderedList().run()}
+        className={clsx(styles.button, {
+          [styles.isActive]: editor.isActive("orderedList"),
+        })}
+      >
+        Ordered List
+      </button>
+    </div>
     </div>
   );
 };
