@@ -52,6 +52,7 @@ const OrderServiceModal = ({ onClose }) => {
   };
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+      document.activeElement?.blur();
     setSubmitting(true);
 
     try {
