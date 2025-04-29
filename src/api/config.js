@@ -1,1 +1,1 @@
-export const API_URL = "nodefornewproject-production.up.railway.app";
+export const API_URL = "https://nodefornewproject.onrender.com/api/test";

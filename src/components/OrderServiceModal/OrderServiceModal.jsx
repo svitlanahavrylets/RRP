@@ -52,6 +52,7 @@ const OrderServiceModal = ({ onClose }) => {
   };
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+    document.activeElement?.blur();
     setSubmitting(true);
 
     try {
@@ -153,7 +154,7 @@ const OrderServiceModal = ({ onClose }) => {
                   as="textarea"
                   name="message"
                   className={styles.textarea}
-                  placeholder="Text input"
+                  placeholder="Zadejte text"
                 />
                 <ErrorMessage
                   name="message"

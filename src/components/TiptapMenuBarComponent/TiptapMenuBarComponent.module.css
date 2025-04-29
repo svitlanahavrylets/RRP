@@ -21,17 +21,8 @@
   transition: all 0.3s ease;
 }
 
-.option {
-  background-color: #f0f0f0;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.buttonGroup button:hover {
+.buttonGroup button:hover,
+.option:hover {
   background-color: var(--primary-color-gold);
   border: 1px solid var(--primary-color-gold);
 }
@@ -89,17 +80,17 @@
 
   /* Code and preformatted text styles */
   code {
-    background-color: var(--purple-light);
+    background-color: var(--secondary-color-2);
     border-radius: 0.4rem;
-    color: var(--black);
+    color: var(--secondary-color-4);
     font-size: 0.85rem;
     padding: 0.25em 0.3em;
   }
 
   pre {
-    background: var(--black);
+    background: var(--secondary-color-4);
     border-radius: 0.5rem;
-    color: var(--white);
+    color: var(--primary-color-white);
     font-family: "JetBrainsMono", monospace;
     margin: 1.5rem 0;
     padding: 0.75rem 1rem;
@@ -120,14 +111,14 @@
   }
 
   blockquote {
-    border-left: 3px solid var(--gray-3);
+    border-left: 3px solid var(--secondary-color-2);
     margin: 1.5rem 0;
     padding-left: 1rem;
   }
 
   hr {
     border: none;
-    border-top: 1px solid var(--gray-2);
+    border-top: 1px solid var(--secondary-color-2);
     margin: 2rem 0;
   }
 }
