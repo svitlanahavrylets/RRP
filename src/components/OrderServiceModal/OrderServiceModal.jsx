@@ -1,3 +1,4 @@
+/* global gtag */
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
@@ -9,7 +10,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import FormAutoSave from "../FormAutoSave.jsx";
 
-const nameRegex = /^[A-Za-zА-Яа-яЁёІіЇїЄєČčĎďĚěŇňŘřŠšŤťŮůŽžÁáÉéÍíÓóÚúÝý' -]+$/;
+const nameRegex = /^[A-Za-zA-Яа-яЁёІіЇїЄєČčĎďĚěŇňŘřŠšŤťŮůŽžÁáÉéÍíÓóÚúÝý' -]+$/;
 const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegexp = /^\+?\d{10,15}$/;
 
@@ -52,13 +53,16 @@ const OrderServiceModal = ({ onClose }) => {
   };
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
-      document.activeElement?.blur();
+    document.activeElement?.blur();
     setSubmitting(true);
 
     try {
       const response = await submitOrderData(values);
 
       if (response?.status === 200 || response?.status === 201) {
+        gtag("event", "conversion", {
+          send_to: "G-0DPG58DNLF",
+        });
         iziToast.success({
           title: "Úspěch",
           message: "Objednávka byla úspěšně odeslána!",
