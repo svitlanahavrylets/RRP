@@ -4,8 +4,8 @@ import Button from "../../components/Button/Button.jsx";
 import OrderServiceModal from "../../components/OrderServiceModal/OrderServiceModal.jsx";
 import { benefitsData } from "../../data/benefitsData.jsx";
 
-const HomePage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const HomePage = ({ showModal = false }) => {
+  const [isModalOpen, setIsModalOpen] = useState(showModal);
 
   useEffect(() => {
     const setRealHeight = () => {
@@ -26,8 +26,22 @@ const HomePage = () => {
     setRealHeight();
   }, []);
 
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  useEffect(() => {
+    if (showModal) {
+      setIsModalOpen(true);
+    }
+  }, [showModal]);
+
+  const handleOpenModal = () => {
+    // Вручну відкриваємо модалку та оновлюємо URL
+    setIsModalOpen(true);
+    window.history.pushState(null, "", "/objednat");
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    window.history.pushState(null, "", "/");
+  };
 
   return (
     <>

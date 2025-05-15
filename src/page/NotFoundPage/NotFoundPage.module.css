@@ -10,7 +10,7 @@
 .title {
   font-size: 6rem;
   font-weight: bold;
-  color: var(--accent-color);
+  color: var(--primary-color-white);
 }
 
 .text {

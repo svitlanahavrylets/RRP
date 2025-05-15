@@ -1,11 +1,13 @@
 /* global gtag */
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { submitOrderData } from "../../api/user/userApi.js";
+import { useNavigate } from "react-router-dom";
+
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import styles from "./OrderServiceModal.module.css";
-import { submitOrderData } from "../../api/user/userApi.js";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import FormAutoSave from "../FormAutoSave.jsx";
@@ -43,6 +45,7 @@ const clearStorage = () => {
 };
 
 const OrderServiceModal = ({ onClose }) => {
+  const navigate = useNavigate();
   const savedValues = loadFromStorage();
 
   const initialValues = savedValues || {
@@ -77,6 +80,10 @@ const OrderServiceModal = ({ onClose }) => {
           },
         });
         clearStorage();
+
+        setTimeout(() => {
+          navigate("/objednavka-dekujeme");
+        }, 1500);
       } else {
         iziToast.error({
           title: "Chyba",

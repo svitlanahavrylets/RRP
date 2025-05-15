@@ -4,6 +4,7 @@ import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
+import OrderThanksPage from "./page/OrderThanksPage/OrderThanksPage.jsx";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));
 const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));
@@ -25,6 +26,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="objednat" element={<HomePage showModal />} />
+          <Route path="/objednavka-dekujeme" element={<OrderThanksPage />} />
           <Route path="our-team" element={<OurTeamPage />} />
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="blog" element={<BlogPage />} />
