@@ -35,7 +35,7 @@ const HomePage = ({ showModal = false }) => {
   const handleOpenModal = () => {
     // Вручну відкриваємо модалку та оновлюємо URL
     setIsModalOpen(true);
-    window.history.pushState(null, "", "/objednat");
+    window.history.pushState(null, "", "/order");
   };
 
   const handleCloseModal = () => {

@@ -67,6 +67,17 @@ const Navigation = ({ className, isFooter }) => {
             </li>
             <li className={styles.navItem}>
               <NavLink
+                to="/our-services"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
+                Naše služby
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
                 to="/projects"
                 onClick={closeMenu}
                 className={({ isActive }) =>
@@ -74,6 +85,17 @@ const Navigation = ({ className, isFooter }) => {
                 }
               >
                 Projekty
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink
+                to="/career"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
+                Kariéra
               </NavLink>
             </li>
             <li className={styles.navItem}>

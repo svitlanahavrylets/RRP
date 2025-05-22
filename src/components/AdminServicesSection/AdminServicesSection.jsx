@@ -1,0 +1,233 @@
+import { FaTrash } from "react-icons/fa";
+import Button from "../Button/Button.jsx";
+import ServiceCardItem from "../ServiceCardItem/ServiceCardItem.jsx";
+import styles from "./AdminServicesSection.module.css";
+import { useEffect, useState } from "react";
+import {
+  createServicesData,
+  deleteServicesData,
+  fetchServicesData,
+} from "../../api/content/services.js";
+import Loader from "../Loader/Loader.jsx";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import clsx from "clsx";
+import iziToast from "izitoast";
+import { servicesIcons } from "../../data/servicesIcons.jsx";
+
+const ServiceSchema = Yup.object().shape({
+  iconName: Yup.string().required("Povinné pole"),
+  title: Yup.string()
+    .trim()
+    .min(2, "Název musí mít alespoň 2 znaky")
+    .matches(/\S/, "Název nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
+  description: Yup.string()
+    .trim()
+    .min(2, "Popis musí mít alespoň 2 znaky")
+    .matches(/\S/, "Popis nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
+});
+
+const AdminServicesSection = () => {
+  const [services, setServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [error, setError] = useState(null);
+  //   const [selectedIcon, setSelectedIcon] = useState("");
+
+  useEffect(() => {
+    const loadServicesData = async () => {
+      try {
+        const data = await fetchServicesData();
+        setServices(data || []);
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
+
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadServicesData();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1158);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteServicesData(id);
+      setServices((prevServices) =>
+        prevServices.filter((service) => service._id !== id)
+      );
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message || "Nepodařilo se odstranit službu.";
+
+      iziToast.error({
+        title: "Chyba",
+        message: errorMessage,
+      });
+    }
+  };
+
+  useEffect(() => {}, [activeIndex]);
+
+  const handleClick = (_id) => {
+    if (isMobile) {
+      setActiveIndex((prev) => {
+        const newIndex = prev === _id ? null : _id;
+
+        return newIndex;
+      });
+    }
+  };
+
+  return (
+    <div className="container">
+      <h2 className={styles.servicesTitle}>Správa služeb</h2>
+      <div className={styles.formCardWrapper}>
+        {isLoading && <Loader />}
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        <Formik
+          initialValues={{
+            iconName: "",
+            title: "",
+            description: "",
+          }}
+          validationSchema={ServiceSchema}
+          onSubmit={async (values, { resetForm }) => {
+            try {
+              const response = await createServicesData(values);
+
+              if (response?.service) {
+                setServices((prevServices) => [
+                  response.service,
+                  ...prevServices,
+                ]);
+              } else {
+                iziToast.error({
+                  title: "Chyba",
+                  message:
+                    "Nová služba nebyla správně vytvořena. Zkuste to znovu.",
+                });
+              }
+
+              resetForm();
+              //   setSelectedIcon("");
+            } catch (err) {
+              const errorMessage =
+                err?.message ||
+                "Něco se pokazilo. Zkuste to prosím znovu později.";
+
+              iziToast.error({
+                title: "Chyba",
+                message: errorMessage,
+              });
+            }
+          }}
+        >
+          {({ setFieldValue, values }) => (
+            <Form className={styles.formikAdminWrapper}>
+              <div className={styles.icons}>
+                {Object.entries(servicesIcons).map(([label, Icon]) => (
+                  <div
+                    key={label}
+                    className={clsx(
+                      styles.iconOption,
+                      values.iconName === label && styles.activeIcon
+                    )}
+                    onClick={() => {
+                      setFieldValue("iconName", label);
+                      //   setSelectedIcon(label);
+                    }}
+                    title={label}
+                  >
+                    <Icon size={30} />
+                  </div>
+                ))}
+              </div>
+              <ErrorMessage
+                name="iconName"
+                component="div"
+                className={styles.error}
+              />
+              <label className={styles.label}>Název služby</label>
+              <Field
+                className={styles.input}
+                name="title"
+                placeholder="Zadejte název"
+              />
+              <ErrorMessage
+                name="title"
+                component="div"
+                className={styles.error}
+              />
+              <label className={styles.label}>Popis</label>
+              <Field
+                as="textarea"
+                className={styles.textarea}
+                name="description"
+                placeholder="Zadejte popis"
+              />
+              <ErrorMessage
+                name="description"
+                component="div"
+                className={styles.error}
+              />
+
+              <Button type="submit">Odeslat</Button>
+            </Form>
+          )}
+        </Formik>
+        <ul className={styles.servicesCard}>
+          {isLoading ? (
+            <Loader />
+          ) : services?.length > 0 ? (
+            services.map((service) =>
+              service ? (
+                <li
+                  key={service._id}
+                  className={styles.servicesCardItem}
+                  onClick={() => handleClick(service._id)}
+                >
+                  <ServiceCardItem
+                    service={service}
+                    isMobile={isMobile}
+                    activeIndex={activeIndex}
+                  />
+                  <Button
+                    onClick={() => handleDelete(service._id)}
+                    className={styles.btnAdminDelete}
+                    icon={<FaTrash />}
+                  >
+                    Smazat
+                  </Button>
+                </li>
+              ) : null
+            )
+          ) : (
+            <p>V databázi nebyla nalezena žádná služba</p>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default AdminServicesSection;

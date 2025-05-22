@@ -10,17 +10,18 @@ import {
 } from "../../api/content/blog.js";
 import Loader from "../Loader/Loader.jsx";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDefaultEditor } from "../../utils/editorConfig";
 import * as Yup from "yup";
 import clsx from "clsx";
-import { useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import TextAlign from "@tiptap/extension-text-align";
-import Highlight from "@tiptap/extension-highlight";
+// import { useEditor } from "@tiptap/react";
+// import StarterKit from "@tiptap/starter-kit";
+// import TextAlign from "@tiptap/extension-text-align";
+// import Highlight from "@tiptap/extension-highlight";
 import TiptapComponent from "../TiptapComponent/TiptapComponent.jsx";
-import TextStyle from "@tiptap/extension-text-style";
-import Color from "@tiptap/extension-color";
-import FontFamily from "@tiptap/extension-font-family";
-import Placeholder from "@tiptap/extension-placeholder";
+// import TextStyle from "@tiptap/extension-text-style";
+// import Color from "@tiptap/extension-color";
+// import FontFamily from "@tiptap/extension-font-family";
+// import Placeholder from "@tiptap/extension-placeholder";
 import iziToast from "izitoast";
 
 const BlogSchema = Yup.object().shape({
@@ -97,28 +98,7 @@ const AdminBlogSection = () => {
     }
   };
 
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Highlight,
-      TextStyle.configure({ mergeNestedSpanStyles: true }),
-      Color,
-      FontFamily,
-      Placeholder.configure({
-        emptyEditorClass: "is-editor-empty",
-        emptyNodeClass: "my-custom-is-empty-class",
-        placeholder: "Zadejte text...",
-      }),
-    ],
-    content: "",
-    editorProps: {
-      attributes: {
-        style:
-          "min-height: 200px; padding: 10px; margin: 0; outline: none; list-style-type: disc;",
-      },
-    },
-  });
+  const editor = useDefaultEditor();
 
   return (
     <div className="container">

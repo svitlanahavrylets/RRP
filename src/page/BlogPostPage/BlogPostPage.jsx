@@ -57,7 +57,7 @@ const BlogPostPage = () => {
     <section className={styles.blogPost}>
       <div className="container">
         <Link to="/blog" className={styles.backButton}>
-          <FaArrowLeft /> Zpět na blog
+          <FaArrowLeft /> Zpět na Blog
         </Link>
         {isLoading && <Loader />}
         <h1 className={styles.title}>{blog.title}</h1>

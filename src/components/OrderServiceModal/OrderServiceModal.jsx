@@ -82,7 +82,7 @@ const OrderServiceModal = ({ onClose }) => {
         clearStorage();
 
         setTimeout(() => {
-          navigate("/objednavka-dekujeme");
+          navigate("/order-success");
         }, 1500);
       } else {
         iziToast.error({

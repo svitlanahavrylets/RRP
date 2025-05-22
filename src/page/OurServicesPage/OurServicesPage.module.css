@@ -1,0 +1,33 @@
+.orderSection {
+  background-color: var(--primary-color-white);
+}
+
+.orderDescription {
+  padding: 120px 0;
+}
+
+/* .orderDescription {
+  padding: 120px 0;
+  max-width: 320px;
+  padding: 0 16px;
+  margin: 0 auto;
+} */
+
+.orderTitle {
+  color: var(--secondary-color-4);
+  text-align: center;
+  margin-bottom: 72px;
+}
+/* 
+@media only screen and (min-width: 768px) {
+  .orderDescription {
+    max-width: 768px;
+  }
+}
+
+@media only screen and (min-width: 1158px) {
+  .orderDescription {
+    max-width: 1158px;
+    padding: 0 15px;
+  }
+} */
