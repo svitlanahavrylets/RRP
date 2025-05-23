@@ -10,6 +10,7 @@ const OrderThanksPage = lazy(() =>
   import("./page/OrderThanksPage/OrderThanksPage.jsx")
 );
 const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));
+const AboutUsPage = lazy(() => import("./page/AboutUsPage/AboutUsPage.jsx"));
 const OurServicesPage = lazy(() =>
   import("./page/OurServicesPage/OurServicesPage.jsx")
 );
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="order" element={<HomePage showModal />} />
           <Route path="order-success" element={<OrderThanksPage />} />
+          <Route path="about-us" element={<AboutUsPage />} />
           <Route path="our-team" element={<OurTeamPage />} />
           <Route path="our-services" element={<OurServicesPage />} />
           <Route path="projects" element={<ProjectsPage />} />

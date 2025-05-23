@@ -157,7 +157,9 @@ const AdminCareerSection = () => {
               </li>
             ))
           ) : (
-            <p>Žádné pozice zatím nejsou k dispozici v databázi</p>
+            <p className={styles.noInfoText}>
+              Žádné pozice zatím nejsou k dispozici v databázi
+            </p>
           )}
         </ul>
       </div>

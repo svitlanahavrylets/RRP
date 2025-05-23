@@ -263,7 +263,9 @@ const AdminProjectsSection = () => {
               ) : null
             )
           ) : (
-            <p>V databázi nebyl nalezen žádný project</p>
+            <p className={styles.noInfoText}>
+              V databázi nebyl nalezen žádný project
+            </p>
           )}
         </ul>
       </div>

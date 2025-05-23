@@ -13,7 +13,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
 import iziToast from "izitoast";
-import { servicesIcons } from "../../data/servicesIcons.jsx";
 
 const ServiceSchema = Yup.object().shape({
   iconName: Yup.string().required("Povinné pole"),
@@ -35,7 +34,7 @@ const AdminServicesSection = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [error, setError] = useState(null);
-  //   const [selectedIcon, setSelectedIcon] = useState("");
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   useEffect(() => {
     const loadServicesData = async () => {
@@ -106,18 +105,22 @@ const AdminServicesSection = () => {
         {error && <p className={styles.errorMessage}>{error}</p>}
         <Formik
           initialValues={{
-            iconName: "",
+            image: null,
             title: "",
             description: "",
           }}
           validationSchema={ServiceSchema}
           onSubmit={async (values, { resetForm }) => {
+            const formData = new FormData();
+            formData.append("image", values.image);
+            formData.append("title", values.title);
+            formData.append("description", values.description);
             try {
-              const response = await createServicesData(values);
+              const newService = await createServicesData(values);
 
-              if (response?.service) {
+              if (newService?.service) {
                 setServices((prevServices) => [
-                  response.service,
+                  newService.service,
                   ...prevServices,
                 ]);
               } else {
@@ -129,7 +132,7 @@ const AdminServicesSection = () => {
               }
 
               resetForm();
-              //   setSelectedIcon("");
+              setSelectedFileName("");
             } catch (err) {
               const errorMessage =
                 err?.message ||
@@ -142,32 +145,39 @@ const AdminServicesSection = () => {
             }
           }}
         >
-          {({ setFieldValue, values }) => (
+          {({ setFieldValue }) => (
             <Form className={styles.formikAdminWrapper}>
-              <div className={styles.icons}>
-                {Object.entries(servicesIcons).map(([label, Icon]) => (
-                  <div
-                    key={label}
-                    className={clsx(
-                      styles.iconOption,
-                      values.iconName === label && styles.activeIcon
-                    )}
-                    onClick={() => {
-                      setFieldValue("iconName", label);
-                      //   setSelectedIcon(label);
-                    }}
-                    title={label}
-                  >
-                    <Icon size={30} />
-                  </div>
-                ))}
+              <label className={styles.label}>Obrázek</label>
+              <div className={styles.fileInputWrapper}>
+                <input
+                  id="fileInputProject"
+                  className={clsx(styles.inputFile, styles.btnInput)}
+                  name="image"
+                  type="file"
+                  onChange={(e) => {
+                    const file = e.currentTarget.files[0];
+                    setFieldValue("image", file);
+
+                    setSelectedFileName(() => (file ? file.name : ""));
+                  }}
+                />
+                <label
+                  htmlFor="fileInputProject"
+                  className={styles.fileInputButton}
+                >
+                  Vybrat soubor
+                </label>
+                {/* Виведення імені вибраного файлу */}
+                {selectedFileName && (
+                  <div className={styles.selectedFile}>{selectedFileName}</div>
+                )}
               </div>
               <ErrorMessage
-                name="iconName"
+                name="image"
                 component="div"
                 className={styles.error}
               />
-              <label className={styles.label}>Název služby</label>
+              <label className={styles.label}>Název</label>
               <Field
                 className={styles.input}
                 name="title"
@@ -222,7 +232,9 @@ const AdminServicesSection = () => {
               ) : null
             )
           ) : (
-            <p>V databázi nebyla nalezena žádná služba</p>
+            <p className={styles.noInfoText}>
+              V databázi nebyla nalezena žádná služba
+            </p>
           )}
         </ul>
       </div>

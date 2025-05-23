@@ -11,6 +11,8 @@ import AdminProjectsSection from "../AdminProjectsSection/AdminProjectsSection.j
 import AdminBlogSection from "../AdminBlogSection/AdminBlogSection.jsx";
 import AdminServicesSection from "../AdminServicesSection/AdminServicesSection.jsx";
 import AdminCareerSection from "../AdminCareerSection/AdminCareerSection.jsx";
+import AdminAboutSection from "../AdminAboutUsSection/AdminAboutUsSection.jsx";
+
 import iziToast from "izitoast";
 
 const AdminDashboard = () => {
@@ -52,18 +54,13 @@ const AdminDashboard = () => {
       <div className={styles.adminHeaderLogout}>
         <ul className={clsx("container", styles.btnWrapper)}>
           <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("about")}>
+              Správa o nás
+            </Button>
+          </li>
+          <li className={styles.btn}>
             <Button onClick={() => setActiveSection("team")}>
               Správa týmu
-            </Button>
-          </li>
-          <li className={styles.btn}>
-            <Button onClick={() => setActiveSection("projects")}>
-              Správa projektů
-            </Button>
-          </li>
-          <li className={styles.btn}>
-            <Button onClick={() => setActiveSection("blog")}>
-              Správa blogu
             </Button>
           </li>
           <li className={styles.btn}>
@@ -72,8 +69,18 @@ const AdminDashboard = () => {
             </Button>
           </li>
           <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("projects")}>
+              Správa projektů
+            </Button>
+          </li>
+          <li className={styles.btn}>
             <Button onClick={() => setActiveSection("career")}>
               Správa kariéry
+            </Button>
+          </li>
+          <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("blog")}>
+              Správa blogu
             </Button>
           </li>
           <li className={styles.btn}>
@@ -94,6 +101,7 @@ const AdminDashboard = () => {
         }
       >
         {activeSection === "home" && <div></div>}
+        {activeSection === "about" && <AdminAboutSection />}
         {activeSection === "team" && <AdminTeamSection />}
         {activeSection === "projects" && <AdminProjectsSection />}
         {activeSection === "blog" && <AdminBlogSection />}

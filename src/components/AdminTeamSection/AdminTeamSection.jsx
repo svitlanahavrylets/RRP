@@ -261,7 +261,7 @@ const AdminTeamSection = () => {
               ) : null
             )
           ) : (
-            <p>V databázi nebyl nalezen žádný zaměstnanec</p>
+            <p className={styles.noInfoText}>V databázi nebyl nalezen žádný zaměstnanec</p>
           )}
         </ul>
         {error && <p className={styles.errorMessage}>{error}</p>}

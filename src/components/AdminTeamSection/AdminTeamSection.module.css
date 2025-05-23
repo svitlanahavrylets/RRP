@@ -112,3 +112,8 @@
   margin-bottom: 32px;
   display: flex;
 }
+
+.noInfoText {
+  margin: 0;
+  padding: 20px;
+}

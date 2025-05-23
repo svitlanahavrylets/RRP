@@ -13,15 +13,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDefaultEditor } from "../../utils/editorConfig";
 import * as Yup from "yup";
 import clsx from "clsx";
-// import { useEditor } from "@tiptap/react";
-// import StarterKit from "@tiptap/starter-kit";
-// import TextAlign from "@tiptap/extension-text-align";
-// import Highlight from "@tiptap/extension-highlight";
 import TiptapComponent from "../TiptapComponent/TiptapComponent.jsx";
-// import TextStyle from "@tiptap/extension-text-style";
-// import Color from "@tiptap/extension-color";
-// import FontFamily from "@tiptap/extension-font-family";
-// import Placeholder from "@tiptap/extension-placeholder";
 import iziToast from "izitoast";
 
 const BlogSchema = Yup.object().shape({
@@ -102,7 +94,7 @@ const AdminBlogSection = () => {
 
   return (
     <div className="container">
-      <h2 className={styles.projectsTitle}>Správa blogu</h2>
+      <h2 className={styles.title}>Správa blogu</h2>
       <div className={styles.formCardWrapper}>
         {isLoading && <Loader />}
         {error && <p className={styles.errorMessage}>{error}</p>}
@@ -251,13 +243,13 @@ const AdminBlogSection = () => {
             </Form>
           )}
         </Formik>
-        <ul className={styles.projectsCard}>
+        <ul className={styles.card}>
           {isLoading ? (
             <Loader />
           ) : blogs?.length > 0 ? (
             blogs.map((blog) =>
               blog ? (
-                <li key={blog._id} className={styles.projectsCardItem}>
+                <li key={blog._id} className={styles.cardItem}>
                   <BlogCardItem blog={blog} />
                   <Button
                     onClick={() => handleDelete(blog._id)}
@@ -270,7 +262,9 @@ const AdminBlogSection = () => {
               ) : null
             )
           ) : (
-            <p>V databázi nebyl nalezen žádný článek</p>
+            <p className={styles.noInfoText}>
+              V databázi nebyl nalezen žádný článek
+            </p>
           )}
         </ul>
       </div>
