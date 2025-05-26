@@ -7,6 +7,7 @@ import {
 } from "../../api/content/about.js";
 import { useDefaultEditor } from "../../utils/editorConfig.js";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import styles from "./AdminAboutUsSection.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Loader from "../Loader/Loader.jsx";
@@ -28,8 +29,8 @@ const AboutSchema = Yup.object().shape({
         );
       }
     ),
-  youtubeLink: Yup.string("Neplatný odkaz na YouTube"),
   text: Yup.string(),
+  youtubeLink: Yup.string("Neplatný odkaz na YouTube"),
 });
 
 const AdminAboutUsSection = () => {

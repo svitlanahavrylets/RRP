@@ -1,7 +1,6 @@
 import api from "../auth/auth.js";
 import { API_URL } from "../config.js";
 
-// Отримати всі відкриті позиції
 export const fetchCareerPositions = async () => {
   try {
     const response = await api.get(`${API_URL}/careers`);

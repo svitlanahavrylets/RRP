@@ -44,6 +44,7 @@ const AboutUsPage = () => {
                 />
               )}
             </div>
+            <p className={styles.text}>{about?.text}</p>
             {about?.youtubeUrl && (
               <div className={styles.videoWrapper}>
                 <iframe
@@ -54,7 +55,6 @@ const AboutUsPage = () => {
                   frameBorder="0"
                   allowFullScreen
                 ></iframe>
-                <p className={styles.text}>{about?.text}</p>
                 {error && <p className={styles.errorMessage}>{error}</p>}
               </div>
             )}

@@ -14,6 +14,7 @@ import AdminCareerSection from "../AdminCareerSection/AdminCareerSection.jsx";
 import AdminAboutSection from "../AdminAboutUsSection/AdminAboutUsSection.jsx";
 
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();

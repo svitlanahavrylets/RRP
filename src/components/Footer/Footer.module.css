@@ -20,6 +20,8 @@
 }
 
 .footerText {
+  display: flex;
+  text-align: left;
   width: 264px;
   margin: 0;
 }

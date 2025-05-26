@@ -15,6 +15,7 @@ import * as Yup from "yup";
 import clsx from "clsx";
 import TiptapComponent from "../TiptapComponent/TiptapComponent.jsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const BlogSchema = Yup.object().shape({
   image: Yup.mixed()

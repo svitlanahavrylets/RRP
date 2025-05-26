@@ -1,4 +1,5 @@
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader.jsx";
 import ServiceCardItem from "../../components/ServiceCardItem/ServiceCardItem.jsx";
@@ -45,7 +46,7 @@ const OurServicesPage = ({ showModal = false }) => {
   const handleOpenModal = () => {
     // Вручну відкриваємо модалку та оновлюємо URL
     setIsModalOpen(true);
-    window.history.pushState(null, "", "/objednat");
+    window.history.pushState(null, "", "/order");
   };
 
   const handleCloseModal = () => {

@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
 
             <p className={styles.footerText}>
-              Pomáháme podnikům dosahovat úspěchu díky strategickému řízení IT
+              Pomáháme podnikům dosahovat úspěchů díky strategickému řízení IT
               projektů.
             </p>
           </div>

@@ -3,6 +3,7 @@ import { fetchCareerPositions } from "../../api/content/career.js";
 import styles from "./CareerPage.module.css";
 import Loader from "../../components/Loader/Loader.jsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import CareerPositionsItem from "../../components/CareerPositionsItem/CareerPositionsItem.jsx";
 
 const CareerPage = () => {

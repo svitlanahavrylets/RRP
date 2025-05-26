@@ -12,6 +12,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import TiptapComponent from "../TiptapComponent/TiptapComponent.jsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import { useDefaultEditor } from "../../utils/editorConfig.js";
 import CareerPositionsItem from "../CareerPositionsItem/CareerPositionsItem.jsx";
 

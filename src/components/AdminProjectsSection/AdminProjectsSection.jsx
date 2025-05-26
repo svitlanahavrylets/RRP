@@ -13,6 +13,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const ProjectSchema = Yup.object().shape({
   image: Yup.mixed()

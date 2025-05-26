@@ -4,6 +4,7 @@ import { fetchProjectsData } from "../../api/content/projects.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import ProjectCardItem from "../../components/ProjectCardItem/ProjectCardItem.jsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
