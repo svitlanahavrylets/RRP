@@ -4,6 +4,7 @@ import AppBar from "../AppBar/AppBar";
 import Footer from "../Footer/Footer.jsx";
 import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton.jsx";
 import styles from "./Layout.module.css";
+import CookieConsentBanner from "../CookieConsentBanner/CookieConsentBanner.jsx";
 
 function Layout() {
   const [isVisible, setIsVisible] = useState(true);
@@ -49,6 +50,7 @@ function Layout() {
         <div className={styles.line}></div>
       </footer>
       <ScrollToTopButton />
+      <CookieConsentBanner />
     </div>
   );
 }

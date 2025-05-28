@@ -11,8 +11,12 @@ const AboutUsPage = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await fetchAboutData();
-        setAbout(data);
+        const res = await fetchAboutData();
+        console.log(res.data);
+
+        const aboutObj = res.data;
+        const fixedText = aboutObj.text.replace(/<p>&nbsp;<\/p>/g, "<p></p>");
+        setAbout({ ...aboutObj, text: fixedText });
       } catch (error) {
         const errorMessage =
           error?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
@@ -36,25 +40,35 @@ const AboutUsPage = () => {
         ) : (
           <>
             <div className={styles.imgAndTextWrapper}>
-              {about?.image && (
+              {about?.imageUrl && (
                 <img
-                  src={about.image}
+                  src={about.imageUrl}
                   alt="Zakladatel"
                   className={styles.image}
                 />
               )}
             </div>
-            <p className={styles.text}>{about?.text}</p>
-            {about?.youtubeUrl && (
+            <div
+              className={styles.text}
+              dangerouslySetInnerHTML={{ __html: about?.text }}
+            />
+            {about?.youtubeLink && (
               <div className={styles.videoWrapper}>
                 <iframe
                   width="100%"
                   height="315"
-                  src={about.youtubeUrl.replace("watch?v=", "embed/")}
+                  // 1) Вирізаємо ID відео
+                  src={`https://www.youtube-nocookie.com/embed/${
+                    // підтримуємо як формати watch?v=, так і вже embed/
+                    about.youtubeLink.includes("watch?v=")
+                      ? about.youtubeLink.split("watch?v=")[1]
+                      : about.youtubeLink.split("/embed/")[1]
+                  }`}
                   title="Úvodní video"
                   frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                ></iframe>
+                />
                 {error && <p className={styles.errorMessage}>{error}</p>}
               </div>
             )}

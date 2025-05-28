@@ -1,9 +1,10 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
+import { loadGoogleAnalytics } from "./utils/loadGoogleAnalytics.js";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));
 const OrderThanksPage = lazy(() =>
@@ -29,6 +30,10 @@ const NotFoundPage = lazy(() => import("./page/NotFoundPage/NotFoundPage.jsx"));
 const AdminRoutes = lazy(() => import("./routes/AdminRoutes.jsx"));
 
 function App() {
+  useEffect(() => {
+    loadGoogleAnalytics();
+  }, []);
+
   return (
     <Suspense fallback={<Loader />}>
       <ScrollToTop />

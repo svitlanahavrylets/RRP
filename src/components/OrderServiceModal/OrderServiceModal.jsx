@@ -1,9 +1,9 @@
-/* global gtag */
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { submitOrderData } from "../../api/user/userApi.js";
 import { useNavigate } from "react-router-dom";
+import { useAnalytics } from "../../hooks/useAnalytics.js";
 
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
@@ -47,6 +47,7 @@ const clearStorage = () => {
 const OrderServiceModal = ({ onClose }) => {
   const navigate = useNavigate();
   const savedValues = loadFromStorage();
+  const { trackEvent } = useAnalytics();
 
   const initialValues = savedValues || {
     name: "",
@@ -63,9 +64,10 @@ const OrderServiceModal = ({ onClose }) => {
       const response = await submitOrderData(values);
 
       if (response?.status === 200 || response?.status === 201) {
-        gtag("event", "conversion", {
+        trackEvent("conversion", {
           send_to: "G-0DPG58DNLF",
         });
+
         iziToast.success({
           title: "Úspěch",
           message: "Objednávka byla úspěšně odeslána!",

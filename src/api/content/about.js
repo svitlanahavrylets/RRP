@@ -4,6 +4,8 @@ import { API_URL } from "../config.js";
 export const fetchAboutData = async () => {
   try {
     const response = await api.get(`${API_URL}/about`);
+    console.log(response.data);
+
     return response.data;
   } catch (error) {
     const errorMessage =
@@ -14,7 +16,7 @@ export const fetchAboutData = async () => {
 
 export const createAboutData = async (formData) => {
   try {
-    const response = await api.patch(`${API_URL}/about`, formData);
+    const response = await api.post(`${API_URL}/about`, formData);
     return response.data; // { updated: true } або { created: true }
   } catch (error) {
     const errorMessage =
@@ -23,9 +25,10 @@ export const createAboutData = async (formData) => {
   }
 };
 
-export const deleteAboutData = async () => {
+export const deleteAboutData = async (id) => {
   try {
-    const response = await api.delete(`${API_URL}/about`);
+    const response = await api.delete(`${API_URL}/about/${id}`);
+
     return response.data;
   } catch (error) {
     const errorMessage =

@@ -42,8 +42,12 @@ const AdminAboutUsSection = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await fetchAboutData();
-        setInfo(data);
+        const res = await fetchAboutData();
+        console.log(res.data);
+
+        const aboutObj = res.data;
+        const fixedText = aboutObj.text.replace(/<p>&nbsp;<\/p>/g, "<p></p>");
+        setInfo({ ...aboutObj, text: fixedText });
       } catch (error) {
         const errorMessage =
           error?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
@@ -57,9 +61,10 @@ const AdminAboutUsSection = () => {
     loadData();
   }, []);
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     try {
-      await deleteAboutData();
+      console.log(id);
+      await deleteAboutData(id);
       setInfo(null);
       iziToast.success({
         title: "Úspěch",
@@ -95,6 +100,10 @@ const AdminAboutUsSection = () => {
           formData.append("image", values.image);
           formData.append("text", values.text.replace(/\n/g, "\\n"));
           formData.append("youtubeLink", values.youtubeLink);
+
+          for (let [key, value] of formData.entries()) {
+            console.log(`FormData field: ${key}`, value);
+          }
 
           try {
             const newInfo = await createAboutData(formData);
@@ -176,7 +185,7 @@ const AdminAboutUsSection = () => {
               component="div"
               className={styles.error}
             />
-            <TiptapComponent editor={editor} />
+            <TiptapComponent editor={editor} name="text" />
             <ErrorMessage
               name="text"
               component="div"
@@ -189,30 +198,24 @@ const AdminAboutUsSection = () => {
       </Formik>
       {isLoading ? (
         <Loader />
-      ) : info?.length > 0 ? (
-        info.map((i) =>
-          i ? (
-            <>
-              <div className={styles.imgAndTextWrapper}>
-                {i?.image && (
-                  <img
-                    src={i.image}
-                    alt="Zakladatel"
-                    className={styles.image}
-                  />
-                )}
-                <p className={styles.text}>{i?.text}</p>
-                <Button
-                  onClick={handleDelete}
-                  className={styles.btnAdminDelete}
-                  icon={<FaTrash />}
-                >
-                  Smazat
-                </Button>
-              </div>
-            </>
-          ) : null
-        )
+      ) : info ? (
+        <div className={styles.imgAndTextWrapper}>
+          {info?.imageUrl && (
+            <img
+              src={info.imageUrl}
+              alt="Zakladatel"
+              className={styles.image}
+            />
+          )}
+          <p className={styles.text}>{info.text}</p>
+          <Button
+            onClick={() => handleDelete(info._id)}
+            className={styles.btnAdminDelete}
+            icon={<FaTrash />}
+          >
+            Smazat
+          </Button>
+        </div>
       ) : (
         <p className={styles.noInfoText}>
           V databázi nebyla nalezena žádná informace

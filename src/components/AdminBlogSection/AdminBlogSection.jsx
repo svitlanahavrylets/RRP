@@ -239,7 +239,7 @@ const AdminBlogSection = () => {
                 component="div"
                 className={styles.error}
               />
-              <TiptapComponent editor={editor} />
+              <TiptapComponent editor={editor} name="description" />
               <Button type="submit">Odeslat</Button>
             </Form>
           )}

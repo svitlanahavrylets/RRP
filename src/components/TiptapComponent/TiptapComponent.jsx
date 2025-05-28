@@ -4,7 +4,7 @@ import { EditorContent } from "@tiptap/react";
 import styles from "./TiptapComponent.module.css";
 import MenuBar from "../TiptapMenuBarComponent/TiptapMenuBarComponent.jsx"; // Підключаємо панель кнопок
 
-const TiptapComponent = ({ editor }) => {
+const TiptapComponent = ({ editor, name }) => {
   const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const TiptapComponent = ({ editor }) => {
       // Заміняємо порожні абзаци на &nbsp;
       html = html.replace(/<p><\/p>/g, "<p>&nbsp;</p>");
 
-      setFieldValue("description", html);
+      setFieldValue(name, html);
     };
 
     // Відслідковуємо оновлення в редакторі
@@ -28,7 +28,7 @@ const TiptapComponent = ({ editor }) => {
     return () => {
       editor.off("update", handleUpdate);
     };
-  }, [editor, setFieldValue]);
+  }, [editor, setFieldValue, name]);
 
   return editor ? (
     <>
@@ -42,11 +42,7 @@ const TiptapComponent = ({ editor }) => {
         <EditorContent editor={editor} className={styles.editor} />
       </div>
 
-      <ErrorMessage
-        name="description"
-        component="div"
-        className={styles.error}
-      />
+      <ErrorMessage name={name} component="div" className={styles.error} />
     </>
   ) : null;
 };
