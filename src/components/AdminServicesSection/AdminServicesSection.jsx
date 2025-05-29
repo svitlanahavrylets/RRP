@@ -16,7 +16,18 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 const ServiceSchema = Yup.object().shape({
-  iconName: Yup.string().required("Povinné pole"),
+  image: Yup.mixed()
+    .required("Povinné pole")
+    .test(
+      "fileType",
+      "Neplatný typ souboru. Povolené: jpeg, png, webp",
+      (value) => {
+        return (
+          value &&
+          ["image/jpeg", "image/png", "image/webp"].includes(value.type)
+        );
+      }
+    ),
   title: Yup.string()
     .trim()
     .min(2, "Název musí mít alespoň 2 znaky")
@@ -116,12 +127,13 @@ const AdminServicesSection = () => {
             formData.append("image", values.image);
             formData.append("title", values.title);
             formData.append("description", values.description);
-            try {
-              const newService = await createServicesData(values);
 
-              if (newService?.service) {
+            try {
+              const newService = await createServicesData(formData);
+
+              if (newService?.data) {
                 setServices((prevServices) => [
-                  newService.service,
+                  newService.data,
                   ...prevServices,
                 ]);
               } else {

@@ -4,7 +4,9 @@ import { API_URL } from "../config.js";
 export const fetchCareerPositions = async () => {
   try {
     const response = await api.get(`${API_URL}/careers`);
-    return response.data;
+    console.log(response.data);
+
+    return response.data.data;
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Chyba při získávání pracovních pozic";
@@ -13,6 +15,8 @@ export const fetchCareerPositions = async () => {
 };
 
 export const fetchSingleCareerPosition = async (id) => {
+  console.log(id);
+
   try {
     const response = await api.get(`${API_URL}/careers/${id}`);
     return response.data;

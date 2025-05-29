@@ -6,7 +6,7 @@ import {
   createCareerPosition,
   deleteCareerPosition,
   fetchCareerPositions,
-} from "../../api/content/career.js";
+} from "../../api/content/careers.js";
 import Loader from "../Loader/Loader.jsx";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -137,26 +137,33 @@ const AdminCareerSection = () => {
                 className={styles.error}
               />
 
-              <TiptapComponent editor={editor} />
+              <TiptapComponent editor={editor} name="description" />
               <Button type="submit">Odeslat</Button>
             </Form>
           )}
         </Formik>
 
         <ul className={styles.projectsCard}>
-          {positions.length > 0 ? (
-            positions.map((position) => (
-              <li key={position._id} className={styles.projectsCardItem}>
-                <CareerPositionsItem position={position} />
-                <Button
-                  onClick={() => handleDelete(position._id)}
-                  className={styles.btnAdminDelete}
-                  icon={<FaTrash />}
+          {isLoading ? (
+            <Loader />
+          ) : positions?.length > 0 ? (
+            positions.map((position) =>
+              position ? (
+                <li
+                  key={`career-${position._id}`}
+                  className={styles.projectsCardItem}
                 >
-                  Smazat
-                </Button>
-              </li>
-            ))
+                  <CareerPositionsItem position={position} />
+                  <Button
+                    onClick={() => handleDelete(position._id)}
+                    className={styles.btnAdminDelete}
+                    icon={<FaTrash />}
+                  >
+                    Smazat
+                  </Button>
+                </li>
+              ) : null
+            )
           ) : (
             <p className={styles.noInfoText}>
               Žádné pozice zatím nejsou k dispozici v databázi

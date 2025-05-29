@@ -19,8 +19,16 @@ const OurServicesPage = ({ showModal = false }) => {
     const loadServicesData = async () => {
       try {
         const data = await fetchServicesData();
-        setServices(data || []);
+        if (data) {
+          const sortedData = data.sort(
+            (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+          );
+
+          setServices(sortedData || []);
+        }
       } catch (err) {
+        console.log(err);
+
         const errorMessage =
           err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
         setError(errorMessage);
@@ -62,19 +70,20 @@ const OurServicesPage = ({ showModal = false }) => {
           <Loader />
         ) : (
           <ul className={styles.servicesCard}>
-            {services.map((service) => (
-              <li
-                key={service._id}
-                className={styles.serviceCardItem}
-                // onClick={() => handleClick(service._id)}
-              >
-                <ServiceCardItem
-                  services={services}
-                  // isMobile={isMobile}
-                  // activeIndex={activeIndex}
-                />
-              </li>
-            ))}
+            {Array.isArray(services) &&
+              services.map((service) => (
+                <li
+                  key={service._id}
+                  className={styles.serviceCardItem}
+                  // onClick={() => handleClick(service._id)}
+                >
+                  <ServiceCardItem
+                    service={service}
+                    // isMobile={isMobile}
+                    // activeIndex={activeIndex}
+                  />
+                </li>
+              ))}
           </ul>
         )}
         {error && <p className={styles.errorMessage}>{error}</p>}

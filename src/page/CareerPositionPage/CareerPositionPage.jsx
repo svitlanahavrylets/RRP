@@ -3,7 +3,7 @@ import styles from "./CareerPositionPage.module.css";
 import { FaArrowLeft } from "react-icons/fa";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useEffect, useState } from "react";
-import { fetchSingleCareerPosition } from "../../api/content/career.js";
+import { fetchSingleCareerPosition } from "../../api/content/careers.js";
 
 const CareerPositionPage = () => {
   const { id } = useParams();

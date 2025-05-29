@@ -4,7 +4,8 @@ import { API_URL } from "../config.js";
 export const fetchServicesData = async () => {
   try {
     const response = await api.get(`${API_URL}/services`);
-    return response.data;
+
+    return response.data.data;
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Chyba při získávání dat služeb";

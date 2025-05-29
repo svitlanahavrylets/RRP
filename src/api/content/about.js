@@ -25,9 +25,9 @@ export const createAboutData = async (formData) => {
   }
 };
 
-export const deleteAboutData = async (id) => {
+export const deleteAboutData = async () => {
   try {
-    const response = await api.delete(`${API_URL}/about/${id}`);
+    const response = await api.delete(`${API_URL}/about`);
 
     return response.data;
   } catch (error) {

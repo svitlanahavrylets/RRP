@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchCareerPositions } from "../../api/content/career.js";
+import { fetchCareerPositions } from "../../api/content/careers.js";
 import styles from "./CareerPage.module.css";
 import Loader from "../../components/Loader/Loader.jsx";
 import iziToast from "izitoast";

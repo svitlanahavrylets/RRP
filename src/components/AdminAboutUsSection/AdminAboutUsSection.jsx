@@ -34,7 +34,7 @@ const AboutSchema = Yup.object().shape({
 });
 
 const AdminAboutUsSection = () => {
-  const [info, setInfo] = useState(null);
+  const [about, setAbout] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -47,7 +47,7 @@ const AdminAboutUsSection = () => {
 
         const aboutObj = res.data;
         const fixedText = aboutObj.text.replace(/<p>&nbsp;<\/p>/g, "<p></p>");
-        setInfo({ ...aboutObj, text: fixedText });
+        setAbout({ ...aboutObj, text: fixedText });
       } catch (error) {
         const errorMessage =
           error?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
@@ -61,11 +61,11 @@ const AdminAboutUsSection = () => {
     loadData();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      console.log(id);
-      await deleteAboutData(id);
-      setInfo(null);
+      console.log();
+      await deleteAboutData();
+      setAbout(null);
       iziToast.success({
         title: "Úspěch",
         message: "Sekce O nás byla úspěšně odstraněna.",
@@ -106,15 +106,15 @@ const AdminAboutUsSection = () => {
           }
 
           try {
-            const newInfo = await createAboutData(formData);
+            const newAbout = await createAboutData(formData);
 
-            if (newInfo.updated) {
+            if (newAbout.updated) {
               iziToast.success({
                 title: "Úspěch",
                 message: "Data byla úspěšně aktualizována!",
                 position: "topRight",
               });
-            } else if (newInfo.created) {
+            } else if (newAbout.created) {
               iziToast.success({
                 title: "Úspěch",
                 message: "Data byla úspěšně vytvořena!",
@@ -198,18 +198,21 @@ const AdminAboutUsSection = () => {
       </Formik>
       {isLoading ? (
         <Loader />
-      ) : info ? (
+      ) : about ? (
         <div className={styles.imgAndTextWrapper}>
-          {info?.imageUrl && (
+          {about?.imageUrl && (
             <img
-              src={info.imageUrl}
+              src={about.imageUrl}
               alt="Zakladatel"
               className={styles.image}
             />
           )}
-          <p className={styles.text}>{info.text}</p>
+          <div
+            className={styles.text}
+            dangerouslySetInnerHTML={{ __html: about.text }}
+          />
           <Button
-            onClick={() => handleDelete(info._id)}
+            onClick={handleDelete}
             className={styles.btnAdminDelete}
             icon={<FaTrash />}
           >
@@ -217,7 +220,7 @@ const AdminAboutUsSection = () => {
           </Button>
         </div>
       ) : (
-        <p className={styles.noInfoText}>
+        <p className={styles.noAboutText}>
           V databázi nebyla nalezena žádná informace
         </p>
       )}
