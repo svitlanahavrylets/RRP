@@ -19,7 +19,9 @@ export const fetchSingleCareerPosition = async (id) => {
 
   try {
     const response = await api.get(`${API_URL}/careers/${id}`);
-    return response.data;
+    console.log(response.data);
+
+    return response.data.data;
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Chyba při načítání pracovní pozice";

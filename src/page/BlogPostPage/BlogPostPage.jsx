@@ -4,24 +4,38 @@ import { FaArrowLeft } from "react-icons/fa";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useEffect, useState } from "react";
 import { fetchSingleBlog } from "../../api/content/blog.js";
+import iziToast from "izitoast";
 
 const BlogPostPage = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadBlog = async () => {
-      const data = await fetchSingleBlog(id);
+      try {
+        const data = await fetchSingleBlog(id);
+        if (data) {
+          const fixedDescription = data.description.replace(
+            /<p>&nbsp;<\/p>/g,
+            "<p></p>"
+          );
+          setBlog({ ...data, description: fixedDescription });
+        }
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
 
-      const fixedDescription = data.description.replace(
-        /<p>&nbsp;<\/p>/g,
-        "<p></p>"
-      );
-      setBlog({ ...data, description: fixedDescription });
-      setIsLoading(false);
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
+      }
     };
-
     loadBlog();
   }, [id]);
 
@@ -60,6 +74,7 @@ const BlogPostPage = () => {
           <FaArrowLeft /> Zpět na Blog
         </Link>
         {isLoading && <Loader />}
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <h1 className={styles.title}>{blog.title}</h1>
         <div className={styles.categoryDateWrap}>
           <p className={styles.category}>{blog.category}</p>

@@ -1,21 +1,20 @@
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
-import { loadGoogleAnalytics } from "./utils/loadGoogleAnalytics.js";
 
 const HomePage = lazy(() => import("./page/HomePage/HomePage.jsx"));
 const OrderThanksPage = lazy(() =>
   import("./page/OrderThanksPage/OrderThanksPage.jsx")
 );
-const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));
+// const OurTeamPage = lazy(() => import("./page/OurTeamPage/OurTeamPage.jsx"));
 const AboutUsPage = lazy(() => import("./page/AboutUsPage/AboutUsPage.jsx"));
 const OurServicesPage = lazy(() =>
   import("./page/OurServicesPage/OurServicesPage.jsx")
 );
-const ProjectsPage = lazy(() => import("./page/ProjectsPage/ProjectsPage.jsx"));
+// const ProjectsPage = lazy(() => import("./page/ProjectsPage/ProjectsPage.jsx"));
 const CareerPage = lazy(() => import("./page/CareerPage/CareerPage.jsx"));
 const CareerPositionPage = lazy(() =>
   import("./page/CareerPositionPage/CareerPositionPage.jsx")
@@ -30,10 +29,6 @@ const NotFoundPage = lazy(() => import("./page/NotFoundPage/NotFoundPage.jsx"));
 const AdminRoutes = lazy(() => import("./routes/AdminRoutes.jsx"));
 
 function App() {
-  useEffect(() => {
-    loadGoogleAnalytics();
-  }, []);
-
   return (
     <Suspense fallback={<Loader />}>
       <ScrollToTop />
@@ -44,9 +39,9 @@ function App() {
           <Route path="order" element={<HomePage showModal />} />
           <Route path="order-success" element={<OrderThanksPage />} />
           <Route path="about-us" element={<AboutUsPage />} />
-          <Route path="our-team" element={<OurTeamPage />} />
+          {/* <Route path="our-team" element={<OurTeamPage />} /> */}
           <Route path="our-services" element={<OurServicesPage />} />
-          <Route path="projects" element={<ProjectsPage />} />
+          {/* <Route path="projects" element={<ProjectsPage />} /> */}
           <Route path="careers" element={<CareerPage />} />
           <Route path="careers/:id" element={<CareerPositionPage />} />
           <Route path="blog" element={<BlogPage />} />

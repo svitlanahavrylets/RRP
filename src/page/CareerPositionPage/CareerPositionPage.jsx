@@ -4,25 +4,41 @@ import { FaArrowLeft } from "react-icons/fa";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useEffect, useState } from "react";
 import { fetchSingleCareerPosition } from "../../api/content/careers.js";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const CareerPositionPage = () => {
   const { id } = useParams();
   const [positions, setPositions] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const loadBlog = async () => {
-      const data = await fetchSingleCareerPosition(id);
+    const loadPosition = async () => {
+      try {
+        const data = await fetchSingleCareerPosition(id);
 
-      const fixedDescription = data.description.replace(
-        /<p>&nbsp;<\/p>/g,
-        "<p></p>"
-      );
-      setPositions({ ...data, description: fixedDescription });
-      setIsLoading(false);
+        if (data) {
+          const fixedDescription = data.description.replace(
+            /<p>&nbsp;<\/p>/g,
+            "<p></p>"
+          );
+          setPositions({ ...data, description: fixedDescription });
+        }
+      } catch (err) {
+        const errorMessage =
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+        setError(errorMessage);
+
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+        });
+      } finally {
+        setIsLoading(false);
+      }
     };
-
-    loadBlog();
+    loadPosition();
   }, [id]);
 
   if (!positions) {
@@ -36,6 +52,7 @@ const CareerPositionPage = () => {
           <FaArrowLeft /> Zpět na Kariéra
         </Link>
         {isLoading && <Loader />}
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <h1 className={styles.title}>{positions.title}</h1>
         <p className={styles.category}>{positions.text}</p>
         <div
