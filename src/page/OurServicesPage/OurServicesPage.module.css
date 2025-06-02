@@ -1,33 +1,79 @@
+.servicesSection {
+  padding: 96px 0 0;
+}
+
+.servicesTitle {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin-bottom: 72px;
+  background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.servicesCard {
+  display: flex;
+  flex-wrap: wrap;
+
+  row-gap: 48px;
+  justify-content: center;
+  padding-bottom: 96px;
+}
+.serviceCardItem {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-color-white);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  /* cursor: pointer; */
+}
+
+.serviceCardItem:hover,
+.serviceCardItem:focus {
+  box-shadow: 0 4px 6px rgba(46, 47, 66, 0.1), 0 2px 4px rgba(46, 47, 66, 0.06);
+}
+
 .orderSection {
   background-color: var(--primary-color-white);
 }
 
 .orderDescription {
-  padding: 120px 0;
+  padding: 96px 0;
 }
-
-/* .orderDescription {
-  padding: 120px 0;
-  max-width: 320px;
-  padding: 0 16px;
-  margin: 0 auto;
-} */
 
 .orderTitle {
   color: var(--secondary-color-4);
   text-align: center;
   margin-bottom: 72px;
 }
-/* 
-@media only screen and (min-width: 768px) {
-  .orderDescription {
-    max-width: 768px;
+
+@media screen and (min-width: 768px) {
+  .servicesCard {
+    gap: 24px;
+    row-gap: 72px;
+  }
+
+  .serviceCardItem {
+    width: calc((100% - 24px) / 2);
   }
 }
 
-@media only screen and (min-width: 1158px) {
-  .orderDescription {
-    max-width: 1158px;
-    padding: 0 15px;
+@media screen and (min-width: 1158px) {
+  .servicesSection {
+    padding: 96px 0;
   }
-} */
+
+  .servicesCard {
+    row-gap: 48px;
+  }
+
+  .serviceCardItem {
+    width: calc((100% - 2 * 24px) / 3);
+  }
+}

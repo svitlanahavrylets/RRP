@@ -65,7 +65,7 @@ const OurServicesPage = ({ showModal = false }) => {
   return (
     <section className={styles.servicesSection}>
       <div className="container">
-        <h2 className={styles.servicesTitle}>Naše klíčové služby</h2>
+        <h1 className={styles.servicesTitle}>Naše klíčové služby</h1>
         {isLoading ? (
           <Loader />
         ) : (

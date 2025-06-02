@@ -48,7 +48,7 @@ const OurTeamPage = () => {
   return (
     <section className={styles.teamSection}>
       <div className="container">
-        <h2 className={styles.teamTitle}>Náš tým</h2>
+        <h1 className={styles.teamTitle}>Náš tým</h1>
 
         {isLoading ? (
           <Loader />

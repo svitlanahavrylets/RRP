@@ -1,0 +1,44 @@
+.pageContainer {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.pageTitle {
+  color: var(--primary-color-gold);
+  margin-bottom: 72px;
+  text-align: center;
+}
+
+.pageText {
+  margin-bottom: 16px;
+}
+
+.strongText {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  margin-top: 36px;
+  margin-bottom: 10px;
+  color: var(--primary-color-gold);
+}
+
+.pageList {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.pageLink {
+  color: var(--secondary-color-2);
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+}
+
+.pageLink:hover {
+  text-decoration: underline;
+}
+
+.strongItrmText {
+  color: var(--primary-color-gold);
+  font-weight: bold;
+}

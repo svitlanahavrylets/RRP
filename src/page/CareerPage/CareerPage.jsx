@@ -41,7 +41,7 @@ const CareerPage = () => {
   return (
     <section className={styles.careerSection}>
       <div className="container">
-        <h2 className={styles.careerTitle}>Aktuálně nabízené pozice</h2>
+        <h1 className={styles.careerTitle}>Aktuálně nabízené pozice</h1>
 
         {isLoading ? (
           <Loader />

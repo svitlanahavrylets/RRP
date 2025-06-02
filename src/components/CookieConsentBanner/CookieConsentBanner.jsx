@@ -83,7 +83,7 @@ const CookieBanner = () => {
         popis_color: "rgb(255,255,255)",
         popis_size: "16px ",
         odkaz_text: "Více ...",
-        odkaz_url: "https://www.cookie-lista.cz/co-je-cookies.html",
+        odkaz_url: "https://rrp-it.cz/cookie-policy",
         odkaz_color: "rgb(214,182,90)",
         odkaz_color_hover: "rgb(26,54,91)",
         odkaz_size: "14px ",

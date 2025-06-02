@@ -48,17 +48,19 @@ const CareerPositionPage = () => {
   return (
     <section className={styles.careerPosition}>
       <div className="container">
-        <Link to="/career" className={styles.backButton}>
+        <Link to="/careers" className={styles.backButton}>
           <FaArrowLeft /> Zpět na Kariéra
         </Link>
         {isLoading && <Loader />}
         {error && <p className={styles.errorMessage}>{error}</p>}
-        <h1 className={styles.title}>{positions.title}</h1>
-        <p className={styles.category}>{positions.text}</p>
-        <div
-          className={styles.content}
-          dangerouslySetInnerHTML={{ __html: positions.description }}
-        />
+        <div className={styles.titleAndTextWrapper}>
+          <h1 className={styles.title}>{positions.title}</h1>
+          <p className={styles.text}>{positions.text}</p>
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: positions.description }}
+          />
+        </div>
       </div>
     </section>
   );

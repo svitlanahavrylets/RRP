@@ -132,6 +132,11 @@
   color: var(--secondary-color-5);
 }
 
+.PrivacyAndCookiePolicy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 /* Планшетна версія: два стовпчики */
 @media screen and (min-width: 768px) and (max-width: 1157px) {
   .footer {
@@ -149,6 +154,16 @@
   .copyright {
     padding: 24px 0;
   }
+
+  .copyrightAndPolicy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .PrivacyAndCookiePolicy {
+    gap: 16px;
+  }
 }
 
 /* Десктопна версія: в рядок */
@@ -161,6 +176,7 @@
   }
   .LogoTextContainer {
     margin-right: 170px;
+    margin-bottom: 0;
   }
   .footerLeft {
     display: flex;
@@ -182,5 +198,14 @@
   .copyrightPrivacyPolicy {
     flex-direction: row;
     justify-content: space-between;
+  }
+  .copyrightAndPolicy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .PrivacyAndCookiePolicy {
+    gap: 20px;
   }
 }

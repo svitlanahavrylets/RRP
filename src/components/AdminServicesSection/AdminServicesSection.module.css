@@ -122,18 +122,16 @@
   letter-spacing: 0.02em;
   margin-bottom: 72px;
 }
-/* 
-.projectsCard {
+
+.servicesCard {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 48px;
-  max-width: 1158px;
-  margin: 0 auto;
-  flex-direction: row;
-  justify-content: center;
-}
 
-.projectsCardItem {
+  row-gap: 48px;
+  justify-content: center;
+  padding-bottom: 96px;
+}
+.serviceCardItem {
   position: relative;
   overflow: hidden;
   background: var(--primary-color-white);
@@ -144,33 +142,39 @@
   cursor: pointer;
 }
 
-.projectsCardItem:hover,
-.projectsCardItem:focus {
+.serviceCardItem:hover,
+.serviceCardItem:focus {
   box-shadow: 0 4px 6px rgba(46, 47, 66, 0.1), 0 2px 4px rgba(46, 47, 66, 0.06);
-} */
+}
 
 @media screen and (min-width: 768px) {
-  /* .projectsCard {
+  .servicesCard {
     gap: 24px;
     row-gap: 72px;
   }
 
-  .projectsCardItem {
+  .serviceCardItem {
     width: calc((100% - 24px) / 2);
-  } */
+  }
+
   .formikAdminWrapper {
     max-width: 356px;
   }
 }
 
 @media screen and (min-width: 1158px) {
-  /* .projectsCard {
+  .servicesSection {
+    padding: 96px 0;
+  }
+
+  .servicesCard {
     row-gap: 48px;
   }
 
-  .projectsCardItem {
+  .serviceCardItem {
     width: calc((100% - 2 * 24px) / 3);
-  } */
+  }
+
   .formikAdminWrapper {
     max-width: 360px;
   }

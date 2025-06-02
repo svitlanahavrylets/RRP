@@ -25,6 +25,9 @@ const ContactPage = lazy(() => import("./page/ContactPage/ContactPage.jsx"));
 const PrivacyPolicyPage = lazy(() =>
   import("./page/PrivacyPolicyPage/PrivacyPolicyPage.jsx")
 );
+const CookiePolicyPage = lazy(() =>
+  import("./page/CookiePolicyPage/CookiePolicyPage.jsx")
+);
 const NotFoundPage = lazy(() => import("./page/NotFoundPage/NotFoundPage.jsx"));
 const AdminRoutes = lazy(() => import("./routes/AdminRoutes.jsx"));
 
@@ -48,6 +51,7 @@ function App() {
           <Route path="blog/:id" element={<BlogPostPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="cookie-policy" element={<CookiePolicyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 

@@ -4,10 +4,17 @@
 }
 
 .addressTitle {
+  /* line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin-bottom: 36px; */
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  margin-bottom: 36px;
-  font-style: normal;
+  margin-bottom: 72px;
+  color: var(--primary-color-white);
 }
 .address,
 .email,
@@ -35,7 +42,7 @@
 .mapContainer {
   height: 300px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 72px;
   border-radius: 10px;
   overflow: hidden;
 }

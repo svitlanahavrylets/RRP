@@ -17,18 +17,15 @@ import Button from "../Button/Button.jsx";
 import { FaTrash } from "react-icons/fa";
 
 const AboutSchema = Yup.object().shape({
-  image: Yup.mixed()
-    .required("Povinné pole")
-    .test(
-      "fileType",
-      "Neplatný typ souboru. Povolené: jpeg, png, webp",
-      (value) => {
-        return (
-          value &&
-          ["image/jpeg", "image/png", "image/webp"].includes(value.type)
-        );
-      }
-    ),
+  image: Yup.mixed().test(
+    "fileType",
+    "Neplatný typ souboru. Povolené: jpeg, png, webp",
+    (value) => {
+      return (
+        value && ["image/jpeg", "image/png", "image/webp"].includes(value.type)
+      );
+    }
+  ),
   text: Yup.string(),
   youtubeLink: Yup.string("Neplatný odkaz na YouTube"),
 });
@@ -121,13 +118,6 @@ const AdminAboutUsSection = () => {
                 position: "topRight",
               });
             }
-            // else {
-            //   iziToast.error({
-            //     title: "Chyba",
-            //     message: "Nepodařilo se vytvořit nové informace",
-            //     position: "topRight",
-            //   });
-            // }
 
             resetForm();
             editor.commands.clearContent();
@@ -144,7 +134,7 @@ const AdminAboutUsSection = () => {
         }}
       >
         {({ setFieldValue }) => (
-          <Form className={styles.formWrapper}>
+          <Form className={styles.formikAdminWrapper}>
             <label className={styles.label}>Obrázek</label>
             <div className={styles.fileInputWrapper}>
               <input
@@ -199,18 +189,22 @@ const AdminAboutUsSection = () => {
       {isLoading ? (
         <Loader />
       ) : about ? (
-        <div className={styles.imgAndTextWrapper}>
-          {about?.imageUrl && (
-            <img
-              src={about.imageUrl}
-              alt="Zakladatel"
-              className={styles.image}
+        <div className={styles.wrapper}>
+          <div className={styles.imgAndTextWrapper}>
+            <div className={styles.img}>
+              {about?.imageUrl && (
+                <img
+                  src={about.imageUrl}
+                  alt="Zakladatel"
+                  className={styles.image}
+                />
+              )}
+            </div>
+            <div
+              className={styles.text}
+              dangerouslySetInnerHTML={{ __html: about.text }}
             />
-          )}
-          <div
-            className={styles.text}
-            dangerouslySetInnerHTML={{ __html: about.text }}
-          />
+          </div>
           <Button
             onClick={handleDelete}
             className={styles.btnAdminDelete}

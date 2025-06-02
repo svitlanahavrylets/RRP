@@ -5,11 +5,17 @@ const ServiceCardItem = ({ service }) => {
     return <p>Žádná data o službách</p>;
   }
   return (
-    <div>
-      <h3 className={styles.benefitsTitle}>{service.title}</h3>
-      <p className={styles.benefitsText}>{service.description}</p>
-      <img src={service.imageUrl} alt={service.title} />
-    </div>
+    <>
+      <img
+        src={service.imageUrl}
+        alt={service.title}
+        className={styles.cardImg}
+      />
+      <div className={styles.cardContainer}>
+        <h2 className={styles.title}>{service.title}</h2>
+        <p className={styles.description}>{service.description}</p>
+      </div>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ const OrderThanksPage = () => {
   return (
     <section className="container">
       <div className={styles.thanksSection}>
-        <h2 className={styles.title}>Děkujeme za vaši žádost!</h2>
+        <h1 className={styles.title}>Děkujeme za vaši žádost!</h1>
         <p className={styles.text}>
           Vaši zprávu jsme obdrželi a brzy se s vámi spojíme.
         </p>

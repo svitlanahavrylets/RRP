@@ -33,27 +33,29 @@ const AboutUsPage = () => {
   return (
     <section className={styles.aboutSection}>
       <div className="container">
-        <h2 className={styles.aboutTitle}>O nás</h2>
+        <h1 className={styles.aboutTitle}>O nás</h1>
 
         {isLoading ? (
           <Loader />
         ) : (
           <>
             <div className={styles.imgAndTextWrapper}>
-              {about?.imageUrl && (
-                <img
-                  src={about.imageUrl}
-                  alt="Zakladatel"
-                  className={styles.image}
-                />
-              )}
+              <div className={styles.img}>
+                {about?.imageUrl && (
+                  <img
+                    src={about.imageUrl}
+                    alt="Zakladatel"
+                    className={styles.image}
+                  />
+                )}
+              </div>
+              <div
+                className={styles.text}
+                dangerouslySetInnerHTML={{ __html: about?.text }}
+              />
             </div>
-            <div
-              className={styles.text}
-              dangerouslySetInnerHTML={{ __html: about?.text }}
-            />
             {about?.youtubeLink && (
-              <div className={styles.videoWrapper}>
+              <div className={styles.video}>
                 <iframe
                   width="100%"
                   height="315"

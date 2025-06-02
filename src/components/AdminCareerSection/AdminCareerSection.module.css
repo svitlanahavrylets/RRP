@@ -98,14 +98,6 @@
   padding-left: 10px;
 }
 
-.error {
-  color: #e60202;
-  font-size: 12px;
-  margin-bottom: 12px;
-  padding-left: 10px;
-  font-weight: bold;
-}
-
 .projectsTitle {
   text-align: center;
   font-weight: 700;
@@ -134,6 +126,7 @@
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
   cursor: pointer;
+  padding: 16px;
 }
 
 .projectsCardItem:hover,
@@ -144,6 +137,14 @@
 .noInfoText {
   margin: 0;
   padding: 20px;
+}
+
+.error {
+  color: #e60202;
+  font-size: 12px;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 768px) {

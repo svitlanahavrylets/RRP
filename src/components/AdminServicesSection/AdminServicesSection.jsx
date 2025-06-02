@@ -226,7 +226,7 @@ const AdminServicesSection = () => {
               service ? (
                 <li
                   key={service._id}
-                  className={styles.servicesCardItem}
+                  className={styles.serviceCardItem}
                   onClick={() => handleClick(service._id)}
                 >
                   <ServiceCardItem

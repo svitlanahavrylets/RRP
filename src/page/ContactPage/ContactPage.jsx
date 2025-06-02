@@ -32,12 +32,12 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div className={styles.contact}>
+    <section className={styles.contact}>
       <div className="container">
         <address className={styles.info}>
-          <h3 className={styles.addressTitle}>
+          <h1 className={styles.addressTitle}>
             Kontaktní a fakturační adresa:
-          </h3>
+          </h1>
           <p>RRP s.r.o.</p>
           <p className={styles.address}>č.p. 181, 294 31 Písková Lhota</p>
 
@@ -59,7 +59,7 @@ const ContactPage = () => {
         {/* Контейнер для карти */}
         <div id="map" className={styles.mapContainer}></div>
       </div>
-    </div>
+    </section>
   );
 };
 

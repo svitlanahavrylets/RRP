@@ -59,7 +59,7 @@ const ProjectsPage = () => {
   return (
     <section className={styles.portfolioSection}>
       <div className="container">
-        <h2 className={styles.portfolioTitle}>Portfolio</h2>
+        <h1 className={styles.portfolioTitle}>Portfolio</h1>
         {isLoading ? (
           <Loader />
         ) : (

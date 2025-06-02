@@ -8,7 +8,7 @@ const CareerPositionsItem = ({ position }) => {
   return (
     <Link to={`/careers/${position._id}`} className={styles.link}>
       <div className={styles.careerCardContainer}>
-        <h3 className={styles.careerListFullname}>{position.title}</h3>
+        <h2 className={styles.careerListFullname}>{position.title}</h2>
         <p className={styles.careerCardText}>{position.text}</p>
       </div>
     </Link>

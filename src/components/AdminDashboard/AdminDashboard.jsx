@@ -59,21 +59,21 @@ const AdminDashboard = () => {
               Správa o nás
             </Button>
           </li>
-          <li className={styles.btn}>
+          {/* <li className={styles.btn}>
             <Button onClick={() => setActiveSection("team")}>
               Správa týmu
             </Button>
-          </li>
+          </li> */}
           <li className={styles.btn}>
             <Button onClick={() => setActiveSection("services")}>
               Správa služeb
             </Button>
           </li>
-          <li className={styles.btn}>
+          {/* <li className={styles.btn}>
             <Button onClick={() => setActiveSection("projects")}>
               Správa projektů
             </Button>
-          </li>
+          </li> */}
           <li className={styles.btn}>
             <Button onClick={() => setActiveSection("career")}>
               Správa kariéry

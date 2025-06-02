@@ -1,3 +1,9 @@
+.wrapper {
+  padding-bottom: 72px;
+  /* background-color: var(--primary-color-gold); */
+  border-radius: 4px;
+}
+
 .title {
   text-align: center;
   font-weight: 700;
@@ -118,4 +124,87 @@
 .noAboutText {
   margin: 0;
   padding: 20px;
+}
+
+.imgAndTextWrapper {
+  display: flex;
+  flex-direction: column;
+  background: var(--primary-color-white);
+  padding: 24px;
+  border-radius: 4px;
+  gap: 24px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.img {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.image {
+  /* width: 300px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block; */
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.text {
+  flex: 1;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.btnAdminDelete {
+  background-color: #e60202;
+  margin-bottom: 32px;
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .imgAndTextWrapper {
+    /* flex-direction: row; */
+    align-items: flex-start;
+  }
+  .formikAdminWrapper {
+    max-width: 356px;
+  }
+}
+
+@media (min-width: 1158px) {
+  .formikAdminWrapper {
+    width: 100%;
+    max-width: none;
+  }
+
+  .imgAndTextWrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .img {
+    flex: 0 0 auto;
+    max-width: 40%; /* Фото максимум 40% ширини контейнера */
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .text {
+    flex: 1;
+    min-width: 0; /* запобігає переповненню */
+    overflow-wrap: break-word;
+  }
 }

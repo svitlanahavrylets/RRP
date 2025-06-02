@@ -37,6 +37,7 @@ const Blog = () => {
   return (
     <section className={styles.blogSection}>
       <div className="container">
+        <h1 className={styles.visuallyHidden}>Blog</h1>
         <div className={styles.articlesWrapper}>
           {isLoading && <Loader />}
 
