@@ -14,6 +14,8 @@ import * as Yup from "yup";
 import clsx from "clsx";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import TiptapComponent from "../TiptapComponent/TiptapComponent.jsx";
+import { useDefaultEditor } from "../../utils/editorConfig.js";
 
 const ServiceSchema = Yup.object().shape({
   image: Yup.mixed()
@@ -33,6 +35,11 @@ const ServiceSchema = Yup.object().shape({
     .min(2, "Název musí mít alespoň 2 znaky")
     .matches(/\S/, "Název nemůže obsahovat pouze mezery")
     .required("Povinné pole"),
+  text: Yup.string()
+    .trim()
+    .min(2, "Kategorie musí mít alespoň 2 znaky")
+    .matches(/\S/, "Kategorie nemůže obsahovat pouze mezery")
+    .required("Povinné pole"),
   description: Yup.string()
     .trim()
     .min(2, "Popis musí mít alespoň 2 znaky")
@@ -47,6 +54,8 @@ const AdminServicesSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [error, setError] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState("");
+
+  const editor = useDefaultEditor();
 
   useEffect(() => {
     const loadServicesData = async () => {
@@ -119,6 +128,7 @@ const AdminServicesSection = () => {
           initialValues={{
             image: null,
             title: "",
+            text: "",
             description: "",
           }}
           validationSchema={ServiceSchema}
@@ -126,9 +136,18 @@ const AdminServicesSection = () => {
             const formData = new FormData();
             formData.append("image", values.image);
             formData.append("title", values.title);
-            formData.append("description", values.description);
+            formData.append("text", values.text);
+            formData.append(
+              "description",
+              values.description.replace(/\n/g, "\\n")
+            );
 
             try {
+              // const servicesData = {
+              //   ...values,
+              //   description: editor?.getHTML() || "", // довгий опис
+              // };
+
               const newService = await createServicesData(formData);
 
               if (newService?.data) {
@@ -145,6 +164,7 @@ const AdminServicesSection = () => {
               }
 
               resetForm();
+              editor?.commands.clearContent();
               setSelectedFileName("");
             } catch (err) {
               const errorMessage =
@@ -201,19 +221,18 @@ const AdminServicesSection = () => {
                 component="div"
                 className={styles.error}
               />
-              <label className={styles.label}>Popis</label>
+              <label className={styles.label}>Krátký text</label>
               <Field
-                as="textarea"
-                className={styles.textarea}
-                name="description"
-                placeholder="Zadejte popis"
+                className={styles.input}
+                name="text"
+                placeholder="Zadejte krátký popis"
               />
               <ErrorMessage
-                name="description"
+                name="text"
                 component="div"
                 className={styles.error}
               />
-
+              <TiptapComponent editor={editor} name="description" />
               <Button type="submit">Odeslat</Button>
             </Form>
           )}

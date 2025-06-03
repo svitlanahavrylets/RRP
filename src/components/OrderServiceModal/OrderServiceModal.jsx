@@ -85,7 +85,7 @@ const OrderServiceModal = ({ onClose }) => {
 
         setTimeout(() => {
           navigate("/order-success");
-        }, 1500);
+        }, 1000);
       } else {
         iziToast.error({
           title: "Chyba",

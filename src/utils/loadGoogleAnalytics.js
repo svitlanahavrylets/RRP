@@ -14,4 +14,5 @@ export const loadGoogleAnalytics = () => {
 
   gtag("js", new Date());
   gtag("config", "G-0DPG58DNLF");
+  gtag("config", "AW-17020583672");
 };

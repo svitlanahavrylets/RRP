@@ -20,11 +20,18 @@ const OurServicesPage = ({ showModal = false }) => {
       try {
         const data = await fetchServicesData();
         if (data) {
+          // const fixedData = data.map((service) => ({
+          //   ...service,
+          //   description: service.description
+          //     ? service.description.replace(/<p>&nbsp;<\/p>/g, "<p></p>")
+          //     : "",
+          // }));
+
           const sortedData = data.sort(
             (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
           );
 
-          setServices(sortedData || []);
+          setServices(sortedData);
         }
       } catch (err) {
         console.log(err);

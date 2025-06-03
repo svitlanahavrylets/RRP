@@ -1,5 +1,5 @@
 .careerSection {
-  background: var(--primary-color-gold);
+  background: var(--primary-color-blue);
   padding: 96px 0;
 }
 
@@ -10,6 +10,10 @@
   line-height: 1.11;
   letter-spacing: 0.02em;
   margin-bottom: 72px;
+  background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .careerCard {

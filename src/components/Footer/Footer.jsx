@@ -20,7 +20,6 @@ const Footer = () => {
               projektů.
             </p>
           </div>
-
           <div className={styles.social}>
             <h3 className={styles.socialText}>Sociální sítě</h3>
             <ul className={styles.socialIconList}>
@@ -40,30 +39,26 @@ const Footer = () => {
                   </li>
                 ))}
             </ul>
+          </div>{" "}
+          <div className={styles.navWrapper}>
+            {/* <div className={styles.footerRight}> */}
+            <h3 className={styles.menu}>Menu</h3>
+            <Navigation isFooter={true} className={styles.navFooter} />
           </div>
         </div>
-        <div className={styles.navWrapper}>
-          <h3 className={styles.menu}>Menu</h3>
-          <Navigation isFooter={true} className={styles.navFooter} />
+
+        <div className={styles.firmyWidget}>
+          <iframe
+            title="Firmy.cz Widget"
+            width="280"
+            height="424"
+            src="https://www.firmy.cz/detail/13814780-rrp-s-r-o-piskova-lhota.html?widget&limit=5"
+            style={{ borderRadius: "4px", backgroundColor: "white" }}
+            frameBorder="0"
+          ></iframe>
         </div>
+        {/* </div> */}
       </div>
-      {/* <ul className={styles.copyrightPrivacyPolicy}>
-        <li className={styles.cPpItem}>
-          <p className={styles.copyright}>
-            Copyright © {new Date().getFullYear()} RRP. All Rights Reserved.
-          </p>
-        </li>
-        <li className={styles.cPpItem}>
-          <Link to="/cookie-policy" className={styles.PrivacyPolicy}>
-            CookiePolicy
-          </Link>
-        </li>
-        <li className={styles.cPpItem}>
-          <Link to="/privacy-policy" className={styles.PrivacyPolicy}>
-            PrivacyPolicy
-          </Link>
-        </li>
-      </ul> */}
       <div className={styles.copyrightAndPolicy}>
         <p className={styles.copyright}>
           Copyright © {new Date().getFullYear()} RRP. All Rights Reserved.

@@ -21,9 +21,8 @@ const AboutSchema = Yup.object().shape({
     "fileType",
     "Neplatný typ souboru. Povolené: jpeg, png, webp",
     (value) => {
-      return (
-        value && ["image/jpeg", "image/png", "image/webp"].includes(value.type)
-      );
+      if (!value) return true; // дозволити відсутність файлу
+      return ["image/jpeg", "image/png", "image/webp"].includes(value.type);
     }
   ),
   text: Yup.string(),
@@ -60,7 +59,6 @@ const AdminAboutUsSection = () => {
 
   const handleDelete = async () => {
     try {
-      console.log();
       await deleteAboutData();
       setAbout(null);
       iziToast.success({
@@ -87,14 +85,17 @@ const AdminAboutUsSection = () => {
       {error && <p className={styles.errorMessage}>{error}</p>}
       <Formik
         initialValues={{
-          image: null,
+          image: "",
           text: "",
           youtubeLink: "",
         }}
         validationSchema={AboutSchema}
         onSubmit={async (values, { resetForm }) => {
           const formData = new FormData();
-          formData.append("image", values.image);
+          if (values.image) {
+            // додаємо тільки якщо є новий файл
+            formData.append("image", values.image);
+          }
           formData.append("text", values.text.replace(/\n/g, "\\n"));
           formData.append("youtubeLink", values.youtubeLink);
 
