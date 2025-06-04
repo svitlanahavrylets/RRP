@@ -6,12 +6,16 @@ import { useEffect, useState } from "react";
 import { fetchSingleService } from "../../api/content/services.js";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import clsx from "clsx";
+import Button from "../../components/Button/Button.jsx";
+import OrderServiceModal from "../../components/OrderServiceModal/OrderServiceModal.jsx";
 
-const ServicesItemPage = () => {
+const ServicesItemPage = ({ showModal = false }) => {
   const { id } = useParams();
   const [service, setService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(showModal);
 
   useEffect(() => {
     const loadService = async () => {
@@ -41,6 +45,23 @@ const ServicesItemPage = () => {
     loadService();
   }, [id]);
 
+  useEffect(() => {
+    if (showModal) {
+      setIsModalOpen(true);
+    }
+  }, [showModal]);
+
+  const handleOpenModal = () => {
+    // Вручну відкриваємо модалку та оновлюємо URL
+    setIsModalOpen(true);
+    window.history.pushState(null, "", "/order");
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    window.history.pushState(null, "", "/");
+  };
+
   if (!service) {
     return <p>Zatím žádné služby nejsou k dispozici.</p>;
   }
@@ -69,6 +90,19 @@ const ServicesItemPage = () => {
           />
         </div>
       </div>
+
+      <div className={styles.orderSection}>
+        <div className={clsx(styles.orderDescription, "container")}>
+          <h2 className={styles.orderTitle}>
+            Chcete využít některou službu, nebo se na něco jenom zeptat?
+          </h2>
+          <Button className={styles.orderButton} onClick={handleOpenModal}>
+            Objednat službu
+          </Button>
+        </div>
+      </div>
+
+      {isModalOpen && <OrderServiceModal onClose={handleCloseModal} />}
     </section>
   );
 };

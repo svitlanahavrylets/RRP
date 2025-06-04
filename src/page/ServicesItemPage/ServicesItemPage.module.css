@@ -26,6 +26,7 @@
   background-color: var(--primary-color-white);
   padding: 36px;
   border-radius: 4px;
+  margin-bottom: 72px;
 }
 
 .title {
@@ -48,8 +49,8 @@
 }
 
 .image {
-  width: 188px;
-  height: 180px;
+  width: 130px;
+  height: 130px;
   object-fit: scale-down;
   border-radius: 4px;
   display: block;
@@ -82,3 +83,28 @@
   display: inline-block;
   min-height: 1em;
 } */
+
+.orderSection {
+  background-color: var(--primary-color-gold);
+}
+
+.orderDescription {
+  padding: 96px 0;
+}
+
+.orderTitle {
+  color: var(--primary-color-white);
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.orderButton {
+  background-color: var(--primary-color-white);
+  color: var(--primary-color-blue);
+  /* font-weight: 500; */
+}
+
+.orderButton:hover {
+  background-color: #e0dfde;
+  /* color: var(--primary-color-blue); */
+}

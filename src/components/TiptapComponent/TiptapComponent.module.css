@@ -5,11 +5,13 @@
 .editorWrapper {
   border-radius: 5px;
   min-height: 200px;
+  min-height: 200px;
+  max-height: 550px; /* або будь-яка максимальна висота, яку хочеш */
   background: var(--primary-color-blue);
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
-  min-height: 200px;
+  overflow-y: auto;
 }
 
 .editorWrapper ul {
