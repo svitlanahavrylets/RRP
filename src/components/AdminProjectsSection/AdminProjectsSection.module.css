@@ -119,6 +119,18 @@
   box-shadow: 0 4px 6px rgba(46, 47, 66, 0.1), 0 2px 4px rgba(46, 47, 66, 0.06);
 }
 
+.noInfoText {
+  margin: 0;
+  padding: 20px;
+}
+.error {
+  color: #e60202;
+  font-size: 12px;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 768px) {
   .projectsCard {
     gap: 24px;

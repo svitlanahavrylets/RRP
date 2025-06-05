@@ -106,7 +106,7 @@
   font-weight: bold;
 }
 
-.projectsTitle {
+.title {
   text-align: center;
   font-weight: 700;
   font-size: 36px;
@@ -115,7 +115,7 @@
   margin-bottom: 72px;
 }
 
-.projectsCard {
+.card {
   display: flex;
   flex-wrap: wrap;
   row-gap: 48px;
@@ -125,7 +125,7 @@
   justify-content: center;
 }
 
-.projectsCardItem {
+.cardItem {
   position: relative;
   overflow: hidden;
   background: var(--primary-color-blue);
@@ -136,18 +136,23 @@
   cursor: pointer;
 }
 
-.projectsCardItem:hover,
-.projectsCardItem:focus {
+.cardItem:hover,
+.cardItem:focus {
   box-shadow: 0 4px 6px rgba(46, 47, 66, 0.1), 0 2px 4px rgba(46, 47, 66, 0.06);
 }
 
+.noInfoText {
+  margin: 0;
+  padding: 20px;
+}
+
 @media screen and (min-width: 768px) {
-  .projectsCard {
+  .card {
     gap: 24px;
     row-gap: 72px;
   }
 
-  .projectsCardItem {
+  .cCardItem {
     width: calc((100% - 24px) / 2);
   }
   .formikAdminWrapper {
@@ -156,11 +161,11 @@
 }
 
 @media screen and (min-width: 1158px) {
-  .projectsCard {
+  .card {
     row-gap: 48px;
   }
 
-  .projectsCardItem {
+  .cardItem {
     width: calc((100% - 2 * 24px) / 3);
   }
   .formikAdminWrapper {

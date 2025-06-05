@@ -1,9 +1,33 @@
 import styles from "./TiptapMenuBarComponent.module.css";
+import clsx from "clsx";
+import { useCallback, useState } from "react";
 
 const MenuBar = ({ editor }) => {
+  const [height, setHeight] = useState(480);
+  const [width, setWidth] = useState(640);
+
+  const addImage = useCallback(() => {
+    const url = window.prompt("Вставте URL зображення:");
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+  }, [editor]);
+
   if (!editor) {
     return null;
   }
+
+  const addYoutubeVideo = () => {
+    const url = prompt("Enter YouTube URL");
+
+    if (url) {
+      editor.commands.setYoutubeVideo({
+        src: url,
+        width: Math.max(320, parseInt(width, 10)) || 640,
+        height: Math.max(180, parseInt(height, 10)) || 480,
+      });
+    }
+  };
 
   return (
     <div className={styles.controlGroup}>
@@ -111,6 +135,7 @@ const MenuBar = ({ editor }) => {
           <option value="Verdana">Verdana</option>
         </select>
 
+
         <button
           type="button"
           onClick={() => editor.chain().focus().unsetFontFamily().run()}
@@ -155,7 +180,7 @@ const MenuBar = ({ editor }) => {
           Vymazat barvu
         </button>
 
-        <button
+        {/* <button
           type="button"
           onClick={() => editor.chain().focus().toggleList("bulletList").run()}
           className={clsx(styles.button, {
@@ -163,7 +188,7 @@ const MenuBar = ({ editor }) => {
           })}
         >
           Bullet List
-        </button>
+        </button> */}
 
         <button
           type="button"
@@ -173,6 +198,134 @@ const MenuBar = ({ editor }) => {
           })}
         >
           Ordered List
+        </button>
+
+        <div className={styles.youTubeWrapper}>
+          <input
+            id="width"
+            type="number"
+            min="320"
+            max="1024"
+            placeholder="width"
+            value={width}
+            onChange={(event) => setWidth(event.target.value)}
+            className={styles.optionYouTube}
+          />
+          <input
+            id="height"
+            type="number"
+            min="180"
+            max="720"
+            placeholder="height"
+            value={height}
+            onChange={(event) => setHeight(event.target.value)}
+            className={styles.optionYouTube}
+          />
+          <button id="add" onClick={addYoutubeVideo}>
+            Add YouTube video
+          </button>
+        </div>
+
+        <button type="button" onClick={addImage} className={styles.button}>
+          Insert Image
+        </button>
+
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+          className={styles.button}
+        >
+          Horizontal Rule
+        </button>
+
+        <button
+          type="button"
+          onClick={() =>
+            editor
+              .chain()
+              .focus()
+              .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+              .run()
+          }
+          className={styles.button}
+        >
+          Insert Table
+        </button>
+
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().addColumnBefore().run()}
+          className={styles.button}
+        >
+          Add Column Before
+        </button>
+
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().addColumnAfter().run()}
+          className={styles.button}
+        >
+          Add Column After
+        </button>
+
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().deleteColumn().run()}
+          className={styles.button}
+        >
+          Delete Column
+        </button>
+
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().addRowBefore().run()}
+          className={styles.button}
+        >
+          Add Row Before
+
+        </button>
+
+        <button
+          type="button"
+
+          onClick={() => editor.chain().focus().addRowAfter().run()}
+          className={styles.button}
+
+        >
+          Add Row After
+        </button>
+
+        <button
+          type="button"
+
+        >
+          Delete Row
+        </button>
+
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().deleteTable().run()}
+          className={styles.button}
+        >
+          Delete Table
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleTaskList().run()}
+          className={clsx(styles.button, {
+            [styles.isActive]: editor.isActive("taskList"),
+          })}
+        >
+          Toggle Task List
+        </button>
+
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().splitListItem("taskItem").run()}
+          disabled={!editor.can().splitListItem("taskItem")}
+          className={styles.button}
+        >
+          Split List Item
         </button>
       </div>
     </div>

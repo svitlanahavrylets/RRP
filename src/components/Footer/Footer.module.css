@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 72px;
 }
 
 .LogoTextContainer {
@@ -12,6 +13,7 @@
   flex-direction: column;
   gap: 16px;
   margin-bottom: 72px;
+  align-items: center;
 }
 
 .logoFooter {
@@ -20,6 +22,8 @@
 }
 
 .footerText {
+  display: flex;
+  text-align: center;
   width: 264px;
   margin: 0;
 }
@@ -30,6 +34,7 @@
   gap: 16px;
   margin-bottom: 72px;
 }
+
 .socialText {
   color: var(--primary-color-white);
   margin: 0;
@@ -46,7 +51,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .socialIconItem {
@@ -87,19 +92,34 @@
 
 .menu {
   color: var(--primary-color-gold);
-  text-align: left;
+  /* display: flex; */
+  align-content: center;
 }
+
 .navFooter {
   display: flex;
 }
+
 .navFooter ul {
   display: flex;
   flex-direction: row;
   gap: 16px;
   align-items: start;
 }
+
 .navFooter ul a {
   padding: 0;
+}
+
+.footerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.firmyWidget iframe {
+  max-width: 100%;
 }
 
 .copyrightPrivacyPolicy {
@@ -130,13 +150,21 @@
   color: var(--secondary-color-5);
 }
 
+.PrivacyAndCookiePolicy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 /* Планшетна версія: два стовпчики */
 @media screen and (min-width: 768px) and (max-width: 1157px) {
   .footer {
-    display: flex;
-    align-items: baseline;
+    align-items: flex-start;
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  .menu {
+    text-align: center;
   }
   .copyrightPrivacyPolicy {
     display: flex;
@@ -147,25 +175,42 @@
   .copyright {
     padding: 24px 0;
   }
+
+  .copyrightAndPolicy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .PrivacyAndCookiePolicy {
+    gap: 16px;
+  }
 }
 
 /* Десктопна версія: в рядок */
 @media screen and (min-width: 1158px) {
   .footer {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: start;
     text-align: left;
   }
   .LogoTextContainer {
-    margin-right: 170px;
+    /* margin-right: 170px; */
+    margin-bottom: 0;
   }
   .footerLeft {
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    text-align: left;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 72px;
   }
+
+  .social {
+    margin: 0;
+  }
+
   .socialIconList {
     gap: 16px;
   }
@@ -180,5 +225,14 @@
   .copyrightPrivacyPolicy {
     flex-direction: row;
     justify-content: space-between;
+  }
+  .copyrightAndPolicy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .PrivacyAndCookiePolicy {
+    gap: 20px;
   }
 }

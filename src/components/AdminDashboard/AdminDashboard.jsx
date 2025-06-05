@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { checkAdminAuth } from "../../api/auth/auth.js";
 import logo from "../../assets/Лого RRP.png";
 import Button from "../Button/Button.jsx";
 import styles from "./AdminDashboard.module.css";
@@ -8,8 +9,12 @@ import clsx from "clsx";
 import AdminTeamSection from "../AdminTeamSection/AdminTeamSection.jsx";
 import AdminProjectsSection from "../AdminProjectsSection/AdminProjectsSection.jsx";
 import AdminBlogSection from "../AdminBlogSection/AdminBlogSection.jsx";
-import { checkAdminAuth } from "../../api/auth/auth.js";
+import AdminServicesSection from "../AdminServicesSection/AdminServicesSection.jsx";
+import AdminCareerSection from "../AdminCareerSection/AdminCareerSection.jsx";
+import AdminAboutSection from "../AdminAboutUsSection/AdminAboutUsSection.jsx";
+
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -50,13 +55,28 @@ const AdminDashboard = () => {
       <div className={styles.adminHeaderLogout}>
         <ul className={clsx("container", styles.btnWrapper)}>
           <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("about")}>
+              Správa o nás
+            </Button>
+          </li>
+          {/* <li className={styles.btn}>
             <Button onClick={() => setActiveSection("team")}>
               Správa týmu
             </Button>
-          </li>
+          </li> */}
           <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("services")}>
+              Správa služeb
+            </Button>
+          </li>
+          {/* <li className={styles.btn}>
             <Button onClick={() => setActiveSection("projects")}>
               Správa projektů
+            </Button>
+          </li> */}
+          <li className={styles.btn}>
+            <Button onClick={() => setActiveSection("career")}>
+              Správa kariéry
             </Button>
           </li>
           <li className={styles.btn}>
@@ -72,16 +92,22 @@ const AdminDashboard = () => {
         </ul>
       </div>
 
-      <div className={styles.adminContent}>
-        {activeSection === "home" && (
-          <div
-            className={styles.homeSection}
-            style={{ backgroundImage: `url(${logo})` }}
-          ></div>
+      <div
+        className={clsx(
+          styles.adminContent,
+          activeSection === "home" ? styles.homeSection : styles.otherSection
         )}
+        style={
+          activeSection === "home" ? { backgroundImage: `url(${logo})` } : {}
+        }
+      >
+        {activeSection === "home" && <div></div>}
+        {activeSection === "about" && <AdminAboutSection />}
         {activeSection === "team" && <AdminTeamSection />}
         {activeSection === "projects" && <AdminProjectsSection />}
         {activeSection === "blog" && <AdminBlogSection />}
+        {activeSection === "services" && <AdminServicesSection />}
+        {activeSection === "career" && <AdminCareerSection />}
       </div>
     </div>
   );

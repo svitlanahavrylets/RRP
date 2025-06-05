@@ -13,6 +13,7 @@ import { FaTrash } from "react-icons/fa";
 import Loader from "../Loader/Loader.jsx";
 import clsx from "clsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const TeamMemberSchema = Yup.object().shape({
   photoUrl: Yup.mixed()
@@ -261,7 +262,9 @@ const AdminTeamSection = () => {
               ) : null
             )
           ) : (
-            <p>V databázi nebyl nalezen žádný zaměstnanec</p>
+            <p className={styles.noInfoText}>
+              V databázi nebyl nalezen žádný zaměstnanec
+            </p>
           )}
         </ul>
         {error && <p className={styles.errorMessage}>{error}</p>}

@@ -1,0 +1,46 @@
+.careerSection {
+  background: var(--primary-color-blue);
+  padding: 96px 0;
+}
+
+.careerTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  margin-bottom: 72px;
+  background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.careerCard {
+  display: flex;
+  /* max-width: 264px; */
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 72px;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+}
+
+.careerCardItem {
+  background: var(--primary-color-white);
+  color: var(--secondary-color-4);
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.careerCardItem:hover {
+  transform: scale(1.01);
+}
+
+.emptyMessage {
+  text-align: center;
+}

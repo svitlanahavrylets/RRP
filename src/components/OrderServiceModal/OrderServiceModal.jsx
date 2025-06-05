@@ -1,15 +1,18 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { submitOrderData } from "../../api/user/userApi.js";
+import { useNavigate } from "react-router-dom";
+import { useAnalytics } from "../../hooks/useAnalytics.js";
+
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import styles from "./OrderServiceModal.module.css";
-import { submitOrderData } from "../../api/user/userApi.js";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import FormAutoSave from "../FormAutoSave.jsx";
 
-const nameRegex = /^[A-Za-zА-Яа-яЁёІіЇїЄєČčĎďĚěŇňŘřŠšŤťŮůŽžÁáÉéÍíÓóÚúÝý' -]+$/;
+const nameRegex = /^[A-Za-zA-Яа-яЁёІіЇїЄєČčĎďĚěŇňŘřŠšŤťŮůŽžÁáÉéÍíÓóÚúÝý' -]+$/;
 const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegexp = /^\+?\d{10,15}$/;
 
@@ -27,7 +30,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .matches(emailRegexp, "Neplatná e-mailová adresa")
     .required("Povinné pole"),
-  message: Yup.string().trim(),
+  message: Yup.string().trim().required("Povinné pole"),
 });
 
 const STORAGE_KEY = "orderServiceFormData";
@@ -42,7 +45,9 @@ const clearStorage = () => {
 };
 
 const OrderServiceModal = ({ onClose }) => {
+  const navigate = useNavigate();
   const savedValues = loadFromStorage();
+  const { trackEvent } = useAnalytics();
 
   const initialValues = savedValues || {
     name: "",
@@ -54,11 +59,15 @@ const OrderServiceModal = ({ onClose }) => {
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     document.activeElement?.blur();
     setSubmitting(true);
-
+    console.log("📦 Form values:", values);
     try {
       const response = await submitOrderData(values);
 
       if (response?.status === 200 || response?.status === 201) {
+        trackEvent("conversion", {
+          send_to: "G-0DPG58DNLF",
+        });
+
         iziToast.success({
           title: "Úspěch",
           message: "Objednávka byla úspěšně odeslána!",
@@ -73,6 +82,10 @@ const OrderServiceModal = ({ onClose }) => {
           },
         });
         clearStorage();
+
+        setTimeout(() => {
+          navigate("/order-success");
+        }, 1000);
       } else {
         iziToast.error({
           title: "Chyba",

@@ -1,0 +1,16 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  /* cursor: pointer; */
+  /* transition: transform 0.2s ease; */
+}
+
+/* .link:hover {
+  transform: scale(1.01);
+} */
+
+.careerListFullname {
+  font-size: 20px;
+  color: var(--primary-color-gold);
+}

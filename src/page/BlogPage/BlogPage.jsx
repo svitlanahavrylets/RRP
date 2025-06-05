@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchBlogData } from "../../api/content/blog.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -36,6 +37,7 @@ const Blog = () => {
   return (
     <section className={styles.blogSection}>
       <div className="container">
+        <h1 className={styles.visuallyHidden}>Blog</h1>
         <div className={styles.articlesWrapper}>
           {isLoading && <Loader />}
 

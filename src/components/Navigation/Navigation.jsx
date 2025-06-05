@@ -44,7 +44,7 @@ const Navigation = ({ className, isFooter }) => {
           <ul className={styles.navList}>
             <li className={styles.navItem}>
               <NavLink
-                to="/"
+                to="/about-us"
                 end
                 onClick={closeMenu}
                 className={({ isActive }) =>
@@ -54,7 +54,7 @@ const Navigation = ({ className, isFooter }) => {
                 O nás
               </NavLink>
             </li>
-            <li className={styles.navItem}>
+            {/* <li className={styles.navItem}>
               <NavLink
                 to="/our-team"
                 onClick={closeMenu}
@@ -64,8 +64,19 @@ const Navigation = ({ className, isFooter }) => {
               >
                 Náš tým
               </NavLink>
-            </li>
+            </li> */}
             <li className={styles.navItem}>
+              <NavLink
+                to="/our-services"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
+                Naše služby
+              </NavLink>
+            </li>
+            {/* <li className={styles.navItem}>
               <NavLink
                 to="/projects"
                 onClick={closeMenu}
@@ -74,6 +85,17 @@ const Navigation = ({ className, isFooter }) => {
                 }
               >
                 Projekty
+              </NavLink>
+            </li> */}
+            <li className={styles.navItem}>
+              <NavLink
+                to="/careers"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+              >
+                Kariéra
               </NavLink>
             </li>
             <li className={styles.navItem}>

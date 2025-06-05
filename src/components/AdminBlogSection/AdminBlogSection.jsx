@@ -10,18 +10,12 @@ import {
 } from "../../api/content/blog.js";
 import Loader from "../Loader/Loader.jsx";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDefaultEditor } from "../../utils/editorConfig";
 import * as Yup from "yup";
 import clsx from "clsx";
-import { useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import TextAlign from "@tiptap/extension-text-align";
-import Highlight from "@tiptap/extension-highlight";
 import TiptapComponent from "../TiptapComponent/TiptapComponent.jsx";
-import TextStyle from "@tiptap/extension-text-style";
-import Color from "@tiptap/extension-color";
-import FontFamily from "@tiptap/extension-font-family";
-import Placeholder from "@tiptap/extension-placeholder";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const BlogSchema = Yup.object().shape({
   image: Yup.mixed()
@@ -97,32 +91,11 @@ const AdminBlogSection = () => {
     }
   };
 
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Highlight,
-      TextStyle.configure({ mergeNestedSpanStyles: true }),
-      Color,
-      FontFamily,
-      Placeholder.configure({
-        emptyEditorClass: "is-editor-empty",
-        emptyNodeClass: "my-custom-is-empty-class",
-        placeholder: "Zadejte text...",
-      }),
-    ],
-    content: "",
-    editorProps: {
-      attributes: {
-        style:
-          "min-height: 200px; padding: 10px; margin: 0; outline: none; list-style-type: disc;",
-      },
-    },
-  });
+  const editor = useDefaultEditor();
 
   return (
     <div className="container">
-      <h2 className={styles.projectsTitle}>Správa blogu</h2>
+      <h2 className={styles.title}>Správa blogu</h2>
       <div className={styles.formCardWrapper}>
         {isLoading && <Loader />}
         {error && <p className={styles.errorMessage}>{error}</p>}
@@ -266,18 +239,18 @@ const AdminBlogSection = () => {
                 component="div"
                 className={styles.error}
               />
-              <TiptapComponent editor={editor} />
+              <TiptapComponent editor={editor} name="description" />
               <Button type="submit">Odeslat</Button>
             </Form>
           )}
         </Formik>
-        <ul className={styles.projectsCard}>
+        <ul className={styles.card}>
           {isLoading ? (
             <Loader />
           ) : blogs?.length > 0 ? (
             blogs.map((blog) =>
               blog ? (
-                <li key={blog._id} className={styles.projectsCardItem}>
+                <li key={blog._id} className={styles.cardItem}>
                   <BlogCardItem blog={blog} />
                   <Button
                     onClick={() => handleDelete(blog._id)}
@@ -290,7 +263,9 @@ const AdminBlogSection = () => {
               ) : null
             )
           ) : (
-            <p>V databázi nebyl nalezen žádný článek</p>
+            <p className={styles.noInfoText}>
+              V databázi nebyl nalezen žádný článek
+            </p>
           )}
         </ul>
       </div>

@@ -1,0 +1,39 @@
+.banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #686f73a1;
+  color: var(--primary-color-white);
+  padding: 32px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3000;
+}
+
+.text {
+  margin: 0;
+  font-size: 14px;
+}
+
+.link {
+  color: var(--primary-color-gold);
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+.button {
+  background: var(--primary-color-gold);
+  color: var(--primary-color-white);
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 769px) {
+  .banner {
+    margin: 0 auto;
+    padding: 32px 150px;
+  }
+}

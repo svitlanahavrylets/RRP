@@ -4,6 +4,7 @@ import { fetchProjectsData } from "../../api/content/projects.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import ProjectCardItem from "../../components/ProjectCardItem/ProjectCardItem.jsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
@@ -58,7 +59,7 @@ const ProjectsPage = () => {
   return (
     <section className={styles.portfolioSection}>
       <div className="container">
-        <h2 className={styles.portfolioTitle}>Portfolio</h2>
+        <h1 className={styles.portfolioTitle}>Portfolio</h1>
         {isLoading ? (
           <Loader />
         ) : (

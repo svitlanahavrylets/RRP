@@ -1,0 +1,110 @@
+.serviceItem {
+  padding: 130px 0 96px;
+}
+
+.backButton {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 8px;
+  padding: 10px 16px;
+  margin-bottom: 58px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--primary-color-white);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: var(--primary-color-gold);
+}
+
+.titleAndTextWrapper {
+  /* background-color: var(--secondary-color-2); */
+  background-color: var(--primary-color-white);
+  padding: 36px;
+  border-radius: 4px;
+  margin-bottom: 72px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin-bottom: 72px;
+  background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.textAndImageWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 72px;
+}
+
+.image {
+  width: 130px;
+  height: 130px;
+  object-fit: scale-down;
+  border-radius: 4px;
+  display: block;
+  margin: auto;
+
+  /* background-color: white; */
+  padding: 24px;
+}
+
+.text {
+  color: var(--secondary-color-4);
+  font-weight: 700;
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  /* margin-top: 72px; */
+  color: var(--secondary-color-4);
+  /* text-align: left; */
+  max-width: 100%;
+  overflow-wrap: break-word; /* Переносить довгі слова */
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+/* .content p:empty::before {
+  content: " ";
+  display: inline-block;
+  min-height: 1em;
+} */
+
+.orderSection {
+  background-color: var(--primary-color-gold);
+}
+
+.orderDescription {
+  padding: 96px 0;
+}
+
+.orderTitle {
+  color: var(--primary-color-white);
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.orderButton {
+  background-color: var(--primary-color-white);
+  color: var(--primary-color-blue);
+  /* font-weight: 500; */
+}
+
+.orderButton:hover {
+  background-color: #e0dfde;
+  /* color: var(--primary-color-blue); */
+}

@@ -1,0 +1,77 @@
+.servicesSection {
+  padding: 96px 0 0;
+}
+
+.servicesTitle {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin-bottom: 72px;
+  background: linear-gradient(45deg, #d8b036, #e8ce82, #d8b036);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.servicesCard {
+  display: flex;
+  flex-wrap: wrap;
+
+  row-gap: 48px;
+  justify-content: center;
+  padding-bottom: 96px;
+}
+.serviceCardItem {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-color-white);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.serviceCardItem:hover,
+.serviceCardItem:focus {
+  transform: scale(1.01);
+}
+
+.orderSection {
+  background-color: var(--primary-color-white);
+}
+
+.orderDescription {
+  padding: 96px 0;
+}
+
+.orderTitle {
+  color: var(--secondary-color-4);
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+@media screen and (min-width: 768px) {
+  .servicesCard {
+    gap: 24px;
+    row-gap: 72px;
+  }
+
+  .serviceCardItem {
+    width: calc((100% - 24px) / 2);
+  }
+}
+
+@media screen and (min-width: 1158px) {
+  .servicesSection {
+    padding: 96px 0;
+  }
+
+  .servicesCard {
+    row-gap: 48px;
+  }
+
+  .serviceCardItem {
+    width: calc((100% - 2 * 24px) / 3);
+  }
+}

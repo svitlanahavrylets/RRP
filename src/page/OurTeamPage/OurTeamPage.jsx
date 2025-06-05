@@ -4,6 +4,7 @@ import { fetchTeamData } from "../../api/content/team.js";
 import TeamCardItem from "../../components/TeamCardItem/TeamCardItem.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const OurTeamPage = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -47,7 +48,7 @@ const OurTeamPage = () => {
   return (
     <section className={styles.teamSection}>
       <div className="container">
-        <h2 className={styles.teamTitle}>Náš tým</h2>
+        <h1 className={styles.teamTitle}>Náš tým</h1>
 
         {isLoading ? (
           <Loader />

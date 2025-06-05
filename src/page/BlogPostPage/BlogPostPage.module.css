@@ -1,6 +1,7 @@
 .blogPost {
   padding: 96px 0;
 }
+
 .backButton {
   display: inline-flex;
   flex-direction: row;
@@ -15,8 +16,9 @@
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
+
 .backButton:hover {
-  background-color: var(--primary-color-dark);
+  background-color: var(--primary-color-gold);
 }
 
 .title {
@@ -31,6 +33,7 @@
   -webkit-background-clip: text;
   color: transparent;
 }
+
 .categoryDateWrap {
   display: flex;
   flex-direction: row;
