@@ -25,8 +25,8 @@ const AboutSchema = Yup.object().shape({
       return ["image/jpeg", "image/png", "image/webp"].includes(value.type);
     }
   ),
-  text: Yup.string(),
-  youtubeLink: Yup.string("Neplatný odkaz na YouTube"),
+  text: Yup.string().required("Povinné pole"),
+  youtubeLink: Yup.string("Neplatný odkaz na YouTube").required("Povinné pole"),
 });
 
 const AdminAboutUsSection = () => {
@@ -177,11 +177,6 @@ const AdminAboutUsSection = () => {
               className={styles.error}
             />
             <TiptapComponent editor={editor} name="text" />
-            <ErrorMessage
-              name="text"
-              component="div"
-              className={styles.error}
-            />
 
             <Button type="submit">Uložit</Button>
           </Form>

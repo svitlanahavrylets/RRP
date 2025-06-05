@@ -23,6 +23,15 @@
   background-color: var(--secondary-color-5);
 }
 
+.secondary {
+  background-color: var(--primary-color-white);
+  color: var(--primary-color-blue);
+}
+
+.secondary:hover {
+  background-color: #e5e6e7;
+}
+
 .text {
   background-color: transparent;
   color: var(--primary-color-white);

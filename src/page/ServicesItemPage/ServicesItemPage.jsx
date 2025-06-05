@@ -96,7 +96,11 @@ const ServicesItemPage = ({ showModal = false }) => {
           <h2 className={styles.orderTitle}>
             Chcete využít některou službu, nebo se na něco jenom zeptat?
           </h2>
-          <Button className={styles.orderButton} onClick={handleOpenModal}>
+          <Button
+            types="secondary"
+            // className={styles.orderButton}
+            onClick={handleOpenModal}
+          >
             Objednat službu
           </Button>
         </div>

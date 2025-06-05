@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .matches(emailRegexp, "Neplatná e-mailová adresa")
     .required("Povinné pole"),
-  message: Yup.string().trim(),
+  message: Yup.string().trim().required("Povinné pole"),
 });
 
 const STORAGE_KEY = "orderServiceFormData";
@@ -59,7 +59,7 @@ const OrderServiceModal = ({ onClose }) => {
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     document.activeElement?.blur();
     setSubmitting(true);
-
+    console.log("📦 Form values:", values);
     try {
       const response = await submitOrderData(values);
 
