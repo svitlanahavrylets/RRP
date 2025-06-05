@@ -135,6 +135,7 @@ const MenuBar = ({ editor }) => {
           <option value="Verdana">Verdana</option>
         </select>
 
+
         <button
           type="button"
           onClick={() => editor.chain().focus().unsetFontFamily().run()}
@@ -281,20 +282,22 @@ const MenuBar = ({ editor }) => {
           className={styles.button}
         >
           Add Row Before
+
         </button>
 
         <button
           type="button"
+
           onClick={() => editor.chain().focus().addRowAfter().run()}
           className={styles.button}
+
         >
           Add Row After
         </button>
 
         <button
           type="button"
-          onClick={() => editor.chain().focus().deleteRow().run()}
-          className={styles.button}
+
         >
           Delete Row
         </button>

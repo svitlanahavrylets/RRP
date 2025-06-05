@@ -97,7 +97,7 @@
   code {
     background-color: var(--secondary-color-2);
     border-radius: 0.4rem;
-    color: var(--black);
+    color: var(--secondary-color-4);
     font-size: 0.85rem;
     padding: 0.25em 0.3em;
   }
