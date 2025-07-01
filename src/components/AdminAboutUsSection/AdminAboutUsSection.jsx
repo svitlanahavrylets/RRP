@@ -21,7 +21,7 @@ const AboutSchema = Yup.object().shape({
     "fileType",
     "Neplatný typ souboru. Povolené: jpeg, png, webp",
     (value) => {
-      if (!value) return true; // дозволити відсутність файлу
+      if (!value) return true;
       return ["image/jpeg", "image/png", "image/webp"].includes(value.type);
     }
   ),
@@ -93,7 +93,6 @@ const AdminAboutUsSection = () => {
         onSubmit={async (values, { resetForm }) => {
           const formData = new FormData();
           if (values.image) {
-            // додаємо тільки якщо є новий файл
             formData.append("image", values.image);
           }
           formData.append("text", values.text.replace(/\n/g, "\\n"));
