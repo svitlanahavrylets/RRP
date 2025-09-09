@@ -71,7 +71,7 @@ export const servicesIcons = {
 export const servicesData = [
   {
     id: 1,
-    title: " IT řízení projektů",
+    title: "IT řízení projektů",
     text: "Hladký průběh IT projektů od začátku do konce s důrazem na koordinaci, řízení rizik a dodržení termínů i rozpočtů.",
   },
 
