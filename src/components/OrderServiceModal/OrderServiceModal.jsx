@@ -59,7 +59,6 @@ const OrderServiceModal = ({ onClose }) => {
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     document.activeElement?.blur();
     setSubmitting(true);
-    console.log("📦 Form values:", values);
     try {
       const response = await submitOrderData(values);
 

@@ -25,6 +25,7 @@ const Blog = () => {
         iziToast.error({
           title: "Chyba",
           message: errorMessage,
+          error,
         });
       } finally {
         setIsLoading(false);
@@ -54,7 +55,6 @@ const Blog = () => {
               </Link>
             ))}
         </div>
-        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
     </section>
   );

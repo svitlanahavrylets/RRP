@@ -48,11 +48,6 @@
 }
 
 .image {
-  /* width: 300px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 4px;
-  display: block; */
   height: 100%;
   width: auto;
   object-fit: cover;
@@ -85,17 +80,13 @@
 }
 
 @media (min-width: 768px) {
-  .imgAndTextWrapper {
-    /* flex-direction: row; */
-  }
-
   .imgAndTextWrapper::before {
     content: "";
     position: absolute;
     top: -110px;
     right: -17px;
-    width: 240px; /* ширина лапок */
-    height: 240px; /* висота лапок */
+    width: 240px;
+    height: 240px;
     color: #000;
     background-image: url("../../assets/quotes.png");
     background-size: contain;
@@ -114,8 +105,8 @@
     position: absolute;
     top: -126px;
     right: -100px;
-    width: 240px; /* ширина лапок */
-    height: 240px; /* висота лапок */
+    width: 240px;
+    height: 240px;
     color: #000;
     background-image: url("../../assets/quotes.png");
     background-size: contain;
@@ -126,7 +117,7 @@
 
   .img {
     flex: 0 0 auto;
-    max-width: 40%; /* Фото максимум 40% ширини контейнера */
+    max-width: 40%;
   }
 
   .image {
@@ -138,7 +129,7 @@
 
   .text {
     flex: 1;
-    min-width: 0; /* запобігає переповненню */
+    min-width: 0;
     overflow-wrap: break-word;
   }
 }

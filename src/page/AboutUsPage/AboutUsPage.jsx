@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { fetchAboutData } from "../../api/content/about";
 import styles from "./AboutUsPage.module.css";
 import Loader from "../../components/Loader/Loader.jsx";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const AboutUsPage = () => {
   const [about, setAbout] = useState(null);
@@ -12,16 +14,21 @@ const AboutUsPage = () => {
     const loadData = async () => {
       try {
         const res = await fetchAboutData();
-        console.log(res.data);
 
         const aboutObj = res.data;
         const fixedText = aboutObj.text.replace(/<p>&nbsp;<\/p>/g, "<p></p>");
         setAbout({ ...aboutObj, text: fixedText });
-      } catch (error) {
+      } catch (err) {
         const errorMessage =
-          error?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
+          err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
 
         setError(errorMessage);
+
+        iziToast.error({
+          title: "Chyba",
+          message: errorMessage,
+          error,
+        });
       } finally {
         setIsLoading(false);
       }
@@ -59,9 +66,7 @@ const AboutUsPage = () => {
                 <iframe
                   width="100%"
                   height="315"
-                  // 1) Вирізаємо ID відео
                   src={`https://www.youtube-nocookie.com/embed/${
-                    // підтримуємо як формати watch?v=, так і вже embed/
                     about.youtubeLink.includes("watch?v=")
                       ? about.youtubeLink.split("watch?v=")[1]
                       : about.youtubeLink.split("/embed/")[1]
@@ -71,7 +76,6 @@ const AboutUsPage = () => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
-                {error && <p className={styles.errorMessage}>{error}</p>}
               </div>
             )}
           </>

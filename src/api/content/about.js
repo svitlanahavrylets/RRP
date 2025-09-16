@@ -4,7 +4,6 @@ import { API_URL } from "../config.js";
 export const fetchAboutData = async () => {
   try {
     const response = await api.get(`${API_URL}/about`);
-    console.log(response.data);
 
     return response.data;
   } catch (error) {

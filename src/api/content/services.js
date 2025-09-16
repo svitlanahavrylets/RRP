@@ -14,11 +14,8 @@ export const fetchServicesData = async () => {
 };
 
 export const fetchSingleService = async (id) => {
-  console.log(id);
-
   try {
     const response = await api.get(`${API_URL}/services/${id}`);
-    console.log(response.data);
 
     return response.data.data;
   } catch (error) {

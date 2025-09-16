@@ -5,7 +5,6 @@ import { API_URL } from "../config.js";
 export const submitOrderData = async (orderData) => {
   try {
     const response = await axios.post(`${API_URL}/test`, orderData);
-    console.log("✅ Response:", response);
     return response;
   } catch (error) {
     const errorMessage =

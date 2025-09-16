@@ -29,6 +29,7 @@ const CareerPage = () => {
         iziToast.error({
           title: "Chyba",
           message: errorMessage,
+          error,
         });
       } finally {
         setIsLoading(false);
@@ -60,8 +61,6 @@ const CareerPage = () => {
             )}
           </>
         )}
-
-        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
     </section>
   );

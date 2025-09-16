@@ -34,8 +34,6 @@ const OurServicesPage = ({ showModal = false }) => {
           setServices(sortedData);
         }
       } catch (err) {
-        console.log(err);
-
         const errorMessage =
           err?.message || "Něco se pokazilo. Zkuste to prosím znovu později.";
         setError(errorMessage);
@@ -43,6 +41,7 @@ const OurServicesPage = ({ showModal = false }) => {
         iziToast.error({
           title: "Chyba",
           message: errorMessage,
+          error,
         });
       } finally {
         setIsLoading(false);
@@ -59,7 +58,6 @@ const OurServicesPage = ({ showModal = false }) => {
   }, [showModal]);
 
   const handleOpenModal = () => {
-    // Вручну відкриваємо модалку та оновлюємо URL
     setIsModalOpen(true);
     window.history.pushState(null, "", "/order");
   };
@@ -93,7 +91,6 @@ const OurServicesPage = ({ showModal = false }) => {
               ))}
           </ul>
         )}
-        {error && <p className={styles.errorMessage}>{error}</p>}
       </div>
       <div className={styles.orderSection}>
         <div className={clsx(styles.orderDescription, "container")}>

@@ -4,7 +4,6 @@ import { API_URL } from "../config.js";
 export const fetchCareerPositions = async () => {
   try {
     const response = await api.get(`${API_URL}/careers`);
-    console.log(response.data);
 
     return response.data.data;
   } catch (error) {
@@ -15,11 +14,8 @@ export const fetchCareerPositions = async () => {
 };
 
 export const fetchSingleCareerPosition = async (id) => {
-  console.log(id);
-
   try {
     const response = await api.get(`${API_URL}/careers/${id}`);
-    console.log(response.data);
 
     return response.data.data;
   } catch (error) {

@@ -39,7 +39,6 @@ const AdminAboutUsSection = () => {
     const loadData = async () => {
       try {
         const res = await fetchAboutData();
-        console.log(res.data);
 
         const aboutObj = res.data;
         const fixedText = aboutObj.text.replace(/<p>&nbsp;<\/p>/g, "<p></p>");
@@ -97,10 +96,6 @@ const AdminAboutUsSection = () => {
           }
           formData.append("text", values.text.replace(/\n/g, "\\n"));
           formData.append("youtubeLink", values.youtubeLink);
-
-          for (let [key, value] of formData.entries()) {
-            console.log(`FormData field: ${key}`, value);
-          }
 
           try {
             const newAbout = await createAboutData(formData);
